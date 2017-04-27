@@ -1,0 +1,93 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceFragment</item>
+    </style>
+
+
+    <style name="ProgressBar.Horizontal" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">24sp</item>
+        <item name="android:layout_marginTop">-10sp</item>
+    </style>
+
+
+    <!--  PREFERENCES  -->
+    <style name="PreferenceThemeOverlay">
+        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen</item>
+        <item name="preferenceFragmentStyle">@style/PreferenceFragment</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category</item>
+        <item name="preferenceStyle">@style/Preference</item>
+        <item name="preferenceInformationStyle">@style/Preference.Information</item>
+        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat</item>
+        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference</item>
+        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference</item>
+        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList</item>
+    </style>
+
+    <!--  BUTTONS  -->
+
+    <style name="Button">
+        <item name="android:textSize">@dimen/text_regular</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="Button.Auth" parent="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/spacing_extra_large</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+        <item name="android:layout_marginLeft">@dimen/auth_button_spacing</item>
+        <item name="android:layout_marginRight">@dimen/auth_button_spacing</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2sp</item>
+        <item name="android:paddingLeft">@dimen/spacing_normal_extra</item>
+        <item name="android:paddingRight">@dimen/spacing_normal_extra</item>
+    </style>
+
+    <style name="Button.Start" parent="Button">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/spacing_extra_large</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2sp</item>
+        <item name="android:paddingLeft">@dimen/spacing_normal_extra</item>
+        <item name="android:paddingRight">@dimen/spacing_normal_extra</item>
+    </style>
+
+    <style name="Input">
+        <item name="android:textSize">@dimen/text_regular</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textColorHint">@color/secondaryText</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Input.Auth" parent="Input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/auth_text_spacing</item>
+        <item name="android:layout_marginRight">@dimen/auth_text_spacing</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:drawablePadding">12sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="View"/>
+    <style name="View.Auth" parent="View">
+        <item name="android:layout_marginLeft">@dimen/auth_line_spacing</item>
+        <item name="android:layout_marginRight">@dimen/auth_line_spacing</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+    </style>
+
+</resources>

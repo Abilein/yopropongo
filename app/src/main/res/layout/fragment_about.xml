@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/code"
+    >
+
+    <!--<include layout="@layout/toolbar" />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="50sp"
+            android:paddingRight="50sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+            <com.xiberty.warpp.contrib.views.XTextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:text="@string/credits_developed_by"
+                android:textColor="@color/white"
+                android:layout_marginBottom="15sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/xiberty" />
+
+            <com.xiberty.warpp.contrib.views.XTextView
+                android:id="@+id/lblPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:text="@string/credits_page"
+                android:textColor="@color/colorAccentAlternLight"
+                android:layout_marginTop="2sp"
+                android:layout_marginBottom="10sp"
+
+                android:textStyle="bold"/>
+
+
+            <com.xiberty.warpp.contrib.views.XTextView
+                android:id="@+id/lblContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:text="@string/credits_contact_us"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_regular_extra"
+                android:layout_marginBottom="5sp"
+                android:textStyle="bold"/>
+
+
+            <com.xiberty.warpp.contrib.views.XTextView
+                android:id="@+id/lblEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_regular"
+                android:text="@string/credits_email"
+                android:textColor="@color/orange_light"
+                android:textStyle="bold"/>
+
+
+            <com.xiberty.warpp.contrib.views.XTextView
+                android:id="@+id/lblPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:text="@string/credits_phone"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Warpp</string>
+
+
+    <!--Facebook-->
+    <string name="facebook_app_id">1116903005090333</string>
+    <string name="fb_login_protocol_scheme">fb1116903005090333</string>
+
+
+    <string name="img_logo">Logo</string>
+
+
+    <!-- Actions -->
+    <string name="action_settings">Settings</string>
+    <string name="action_exit">Exit</string>
+    <string name="action_feedback">Feedback</string>
+    <string name="action_retry">Retry</string>
+
+    <!-- Labels -->
+    <string name="label_welcome">Bienvenido!</string>
+    <string name="label_start_message">La mejor app para empezar</string>
+    <string name="label_user_or_email">Usuario o correo electrónico</string>
+    <string name="label_username">Nombre de Usuario</string>
+    <string name="label_email">Correo Electrónico</string>
+
+
+    <string name="label_password">Contraseña</string>
+    <string name="label_remember_me">Recordarme</string>
+    <string name="label_forgot_password"><u>¿Olvidaste tu contraseña?</u></string>
+    <string name="label_go_register"><u>¿Aún no tienes cuenta?</u></string>
+    <string name="label_go_login"><u>¿Ya tienes cuenta?</u></string>
+    <string name="label_or">ó</string>
+    <string name="label_has_account"><u>Ya tengo una cuenta.</u></string>
+    <string name="label_reset_password">Restaurar Contraseña</string>
+    <string name="label_preferences">Preferencias</string>
+    <string name="label_edit_profile">Editar Perfil</string>
+    <string name="label_first_name">Nombres</string>
+    <string name="label_last_name">Apellidos</string>
+
+    <string name="label_posts">Publicaciones</string>
+    <string name="label_followers">Seguidores</string>
+    <string name="label_following">Siguiendo</string>
+    <string name="label_new_user">Crear Cuenta</string>
+
+    <string name="label_current_password">Contraseña actual</string>
+    <string name="label_new_password">Nueva contraseña</string>
+    <string name="label_current_email">Correo electrónico actual</string>
+    <string name="label_new_mail">Nuevo correo electrónico</string>
+
+
+    <!-- Buttons -->
+    <string name="button_login">Iniciar Sesión</string>
+    <string name="button_facebook_login">Conectar con facebook</string>
+    <string name="button_register">Crear Cuenta</string>
+    <string name="button_go">Entrar</string>
+    <string name="button_create">Crear</string>
+    <string name="button_facebook">Facebook</string>
+    <string name="button_google">Google</string>
+    <string name="button_send">Restaurar</string>
+    <string name="button_following">Seguir</string>
+    <string name="button_yes">Si</string>
+    <string name="button_no">No</string>
+    <string name="button_save">Guardar</string>
+
+    <string name="button_cancel">CANCELAR</string>
+
+    <!-- Menues -->
+    <string name="menu_info">Información</string>
+    <string name="menu_account">Cuenta</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_edit">Editar</string>
+
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="menu_logout">Salir</string>
+
+    <string name="menu_take_photo">Tomar desde la camara</string>
+    <string name="menu_choose_photo">Escoger desde la galería</string>
+
+    <string name="menu_camera">Cámara</string>
+    <string name="menu_gallery">Galería</string>
+    <string name="menu_password">Contraseña</string>
+    <string name="menu_email">Email</string>
+
+
+    <!-- Errors -->
+    <string name="error_default">Error inesperado</string>
+    <string name="error_invalid_application">Aplicación inválida</string>
+    <string name="error_without_connection">No se ha podido conectar</string>
+    <string name="error_invalid_credentials">Usuario o contraseña invalidos</string>
+    <string name="error_invalid_password">Contraseña inválida</string>
+    <string name="error_invalid_login">Debe escribir un nombre de usuario o correo electrónico</string>
+    <string name="error_invalid_access_token">Esta sesión</string>
+    <string name="error_user_not_found">No se pudo encontrar a este usuario</string>
+    <string name="error_used_email">Este correo ya esta registrado</string>
+    <string name="error_used_username">Este nombre de usuario ya esta registrado</string>
+    <string name="error_used_username_email">Este nombre de usuario y el correo ya estan registrados</string>
+    <string name="error_malformed_new_password">La nueva contraseña no es válida</string>
+
+    <string name="error_server">Oops! Error 500 en el server</string>
+
+
+    <!-- Successes -->
+    <string name="success_reset_email_sent">Se le ha enviado un correo para restaurar su contraseña</string>
+    <string name="success_account_created">Cuenta creada, solo hace falta que confirmes el email</string>
+    <string name="success_account_updated">Tu cuenta ha sido actualizada</string>
+    <string name="success_email_updated">Tu correo electrónico ha sido actualizado</string>
+    <string name="success_email_without_changes">Correo electrónico sin cambios</string>
+    <string name="success_password_changed">Contraseña actualizada</string>
+
+
+
+
+    <!-- Dialogs -->
+
+    <string name="dialog_exit_content">¿Deseas salir?</string>
+
+
+    <!-- Titles -->
+    <string name="title_exit">Salir</string>
+    <string name="title_edit_password">Editar contraseña</string>
+    <string name="title_edit_email">Editar correo electrónico</string>
+
+    <!-- VALIDATION -->
+    <string name="validation_required">Este campo es requerido</string>
+    <string name="validation_username">Solo puede tener 150 caracteres o menos, letras, digitos o @/./+/-/_ solamente.</string>
+    <string name="validation_word">Solo se admiten palabras</string>
+    <string name="validation_name">La longitud máxima es de 30 caracteres</string>
+    <string name="validation_email">Este campo debe ser un correo electronico válido</string>
+
+    <!-- TOAST -->
+    <string name="toast_permissions_denied">Necesita activar los permisos de CAMARA y ALMACENAMIENTO para que puedas editar tu avatar</string>
+
+
+
+    <!-- PREFERENCES -->
+    <string name="pref_settings">Ajustes</string>
+    <string name="pref_general">General</string>
+    <string name="pref_sync">Sincronización</string>
+    <string name="pref_sync_summary">Habilitar/Desabilitar Sincronización</string>
+
+    <string name="pref_viewing">Intervalo de sincronización</string>
+    <string name="pref_viewing_summary">Tiempo entre sincronizaciones.</string>
+
+    <!-- DATA FILTERING VALUES -->
+    <string name="pref_every_hour">Cada hora</string>
+    <string name="pref_every_quarter">Cuatro veces al día</string>
+    <string name="pref_every_half">Dos veces al día</string>
+    <string name="pref_every_day">Cada día</string>
+    <string name="pref_every_week">Cada semana</string>
+
+
+    <!-- CREDITS -->
+    <string name="credits_developed_by">Desarrollado por:</string>
+    <string name="credits_page">www.xiberty.com</string>
+    <string name="credits_contact_us">Contactanos</string>
+    <string name="credits_email">info@xiberty.com</string>
+    <string name="credits_phone">+591 72529356</string>
+
+
+
+</resources>

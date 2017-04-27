@@ -1,0 +1,25 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<resources>
+    <array name="avatar_items">
+        <item>@string/menu_take_photo</item>
+        <item>@string/menu_choose_photo</item>
+    </array>
+
+    <!-- SYNC PREFERENCES -->
+    <string-array name="syncInterval">
+        <item name="100">@string/pref_every_hour</item>
+        <item name="200">@string/pref_every_quarter</item>
+        <item name="300">@string/pref_every_half</item>
+        <item name="400">@string/pref_every_day</item>
+        <item name="500">@string/pref_every_week</item>
+    </string-array>
+
+    <string-array name="syncIntervalValues">
+        <item name="100">100</item>
+        <item name="200">200</item>
+        <item name="300">300</item>
+        <item name="400">400</item>
+        <item name="500">500</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:id="@+id/layoutMainContainer">
+
+
+    <include layout="@layout/progressbar" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="ContentDescription">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/console"
+                android:id="@+id/imageView"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <com.xiberty.warpp.contrib.views.XTextView
+            android:id="@+id/head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/title_regular"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/spacing_double" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/secondaryText"
+            android:textColor="@color/textIcons">
+
+            <com.xiberty.warpp.contrib.views.XEditText
+                style="@style/Input.Auth"
+
+                android:text="vic"
+                android:hint="@string/label_user_or_email"
+                android:maxLength="25"
+                android:drawableLeft="@drawable/ic_profile"
+                android:id="@+id/txtUser" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View style="@style/View.Auth" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/secondaryText"
+            android:textColor="@color/textIcons">
+
+            <com.xiberty.warpp.contrib.views.XEditText
+                style="@style/Input.Auth"
+                android:text="rampagegear"
+                android:hint="@string/label_password"
+                android:drawableLeft="@drawable/ic_lock"
+                android:id="@+id/txtPassword"
+                android:inputType="textPassword"
+                 />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View style="@style/View.Auth" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/spacing_regular"
+            android:id="@+id/linearII"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_marginBottom="@dimen/spacing_double"
+            android:layout_marginLeft="@dimen/auth_button_spacing"
+            android:layout_marginRight="@dimen/auth_button_spacing"
+            >
+
+            <CheckBox
+                android:id="@+id/checkRememberPass"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_remember_me"
+                android:checked="false"
+                android:buttonTint="@color/secondaryText"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginLeft="@dimen/spacing_normal" />
+
+            <TextView
+                android:layout_weight="1.2"
+                android:id="@+id/lblForgotPassword"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/label_forgot_password"
+                android:textColor="@color/divider"
+                android:textSize="@dimen/text_standar"
+                android:gravity="right|center_vertical"
+                android:textStyle="normal|bold" />
+
+
+        </LinearLayout>
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnEnter"
+            style="@style/Button.Auth"
+
+            app:fb_defaultColor="@color/colorAccent"
+            app:fb_focusColor="@color/colorAccentLight"
+            app:fb_fontIconResource="&#xf058;"
+            app:fb_fontIconSize="@dimen/text_big"
+
+            app:fb_iconPaddingRight="@dimen/spacing_normal_extra"
+            app:fb_iconPosition="left"
+            app:fb_radius="@dimen/spacing_micro"
+            app:fb_text="@string/button_login"
+            app:fb_textColor="@color/white"
+
+            app:fb_textSize="@dimen/text_regular"
+            tools:targetApi="lollipop" />
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnFacebookLogin"
+            style="@style/Button.Auth"
+
+            app:fb_defaultColor="@color/facebook_default"
+
+            app:fb_focusColor="@color/facebook_focus"
+            app:fb_fontIconResource="&#xf230;"
+
+            app:fb_fontIconSize="@dimen/text_big"
+            app:fb_iconPaddingRight="@dimen/spacing_normal_extra"
+            app:fb_iconPosition="left"
+
+            app:fb_radius="@dimen/spacing_micro"
+            app:fb_text="@string/button_facebook_login"
+            app:fb_textColor="@color/white"
+            app:fb_textSize="@dimen/text_regular"
+            tools:targetApi="lollipop" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/goRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:padding="@dimen/spacing_regular"
+        android:gravity="center"
+        android:text="@string/label_go_register"
+        android:textColor="@color/colorAccentAlternLight"
+        android:textSize="@dimen/text_standar"
+        android:textStyle="normal|bold" />
+
+
+</RelativeLayout>

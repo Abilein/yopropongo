@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <include layout="@layout/progressbar" />
+    <include layout="@layout/toolbar_with_back" />
+
+
+    <!--Coordinator-->
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp">
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        tools:ignore="ContentDescription">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:elevation="10dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/avatar"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
+        <com.xiberty.warpp.contrib.views.XTextView
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_edit_profile"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/title_regular"
+            android:gravity="center"
+
+            android:layout_marginBottom="@dimen/spacing_double" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/FirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/secondaryText"
+            android:textColor="@color/textIcons">
+
+            <com.xiberty.warpp.contrib.views.XEditText
+                android:textSize="@dimen/text_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_username"
+                android:layout_marginLeft="@dimen/profile_text_spacing"
+                android:textColorHint="@color/secondaryText"
+                android:textColor="@color/primaryText"
+                android:maxLength="25"
+                android:background="#0000"
+                android:padding="@dimen/text_padding"
+                android:gravity="left"
+                android:drawableLeft="@drawable/ic_rename"
+                android:drawablePadding="12dp"
+                android:layout_marginRight="@dimen/profile_text_spacing"
+                android:id="@+id/txtUsername" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/profile_line_spacing"
+            android:layout_marginRight="@dimen/profile_line_spacing"
+            android:layout_height="1dp"
+            android:background="@color/accent"
+            android:layout_marginBottom="@dimen/spacing_regular" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/secondaryText"
+            android:textColor="@color/textIcons">
+
+            <com.xiberty.warpp.contrib.views.XEditText
+                android:id="@+id/txtFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profile_text_spacing"
+                android:layout_marginRight="@dimen/profile_text_spacing"
+                android:background="#0000"
+                android:drawableLeft="@drawable/ic_rename"
+                android:drawablePadding="12dp"
+                android:gravity="left"
+                android:hint="@string/label_first_name"
+                android:maxLength="25"
+                android:padding="@dimen/text_padding"
+                android:textColor="@color/primaryText"
+                android:textColorHint="@color/secondaryText"
+                android:textSize="@dimen/text_regular" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/profile_line_spacing"
+            android:layout_marginRight="@dimen/profile_line_spacing"
+            android:layout_height="1dp"
+            android:background="@color/accent"
+            android:layout_marginBottom="@dimen/spacing_regular" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/secondaryText"
+            android:textColor="@color/textIcons">
+
+            <com.xiberty.warpp.contrib.views.XEditText
+                android:textSize="@dimen/text_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_last_name"
+                android:layout_marginLeft="@dimen/profile_text_spacing"
+                android:textColorHint="@color/secondaryText"
+                android:textColor="@color/primaryText"
+                android:maxLength="25"
+                android:background="#0000"
+                android:padding="@dimen/text_padding"
+                android:gravity="left"
+                android:drawableLeft="@drawable/ic_rename"
+                android:drawablePadding="12dp"
+                android:layout_marginRight="@dimen/profile_text_spacing"
+                android:id="@+id/txtLastName" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/profile_line_spacing"
+            android:layout_marginRight="@dimen/profile_line_spacing"
+            android:layout_height="1dp"
+            android:background="@color/accent"
+            android:layout_marginBottom="@dimen/spacing_regular" />
+
+    </LinearLayout>
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_done"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            android:clickable="true"
+            android:layout_marginRight="@dimen/btn_fab_margin"
+            android:layout_marginBottom="@dimen/btn_fab_margin"
+            android:layout_gravity="end|bottom"
+            />
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
+
+</RelativeLayout>
+
+
+
+
