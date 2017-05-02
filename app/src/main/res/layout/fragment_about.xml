@@ -25,7 +25,7 @@
             android:layout_alignParentStart="true">
 
 
-            <com.xiberty.warpp.contrib.views.XTextView
+            <com.xiberty.propongo.contrib.views.XTextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/xiberty" />
 
-            <com.xiberty.warpp.contrib.views.XTextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:id="@+id/lblPage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:textStyle="bold"/>
 
 
-            <com.xiberty.warpp.contrib.views.XTextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:id="@+id/lblContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 android:textStyle="bold"/>
 
 
-            <com.xiberty.warpp.contrib.views.XTextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:id="@+id/lblEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 android:textStyle="bold"/>
 
 
-            <com.xiberty.warpp.contrib.views.XTextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:id="@+id/lblPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

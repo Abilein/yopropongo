@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xiberty.warpp">
+    package="com.xiberty.propongo">
 
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -10,18 +10,17 @@
     <uses-sdk xmlns:tools="http://schemas.android.com/tools"
         tools:overrideLibrary="android.support.v14.preference" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".App" >
+        android:name="com.xiberty.propongo.App" >
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
-        <activity android:name=".onset.StartActivity"
+        <activity android:name="com.xiberty.propongo.onset.StartActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,21 +29,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".credentials.LoginActivity"
+        <activity android:name="com.xiberty.propongo.credentials.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboard|orientation|screenSize"/>
 
-        <activity android:name=".credentials.ResetPassActivity"
+        <activity android:name="com.xiberty.propongo.credentials.ResetPassActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboard|orientation|screenSize"/>
 
-        <activity android:name=".credentials.RegisterActivity"
+        <activity android:name="com.xiberty.propongo.credentials.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".accounts.MainActivity"
+        <activity android:name="com.xiberty.propongo.accounts.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".accounts.EditProfileActivity"
+        <activity android:name="com.xiberty.propongo.accounts.EditProfileActivity"
 
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"/>

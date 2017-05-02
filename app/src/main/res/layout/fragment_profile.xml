@@ -8,7 +8,7 @@
     android:windowSoftInputMode="adjustPan"
     >
 
-    <com.xiberty.warpp.contrib.views.DiagonalLayout
+    <com.xiberty.propongo.contrib.views.DiagonalLayout
         android:id="@+id/diagonalLayout"
         android:layout_width="match_parent"
         android:layout_height="266dp"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:background="#a000"/>
 
-        <com.xiberty.warpp.contrib.views.XTextView
+        <com.xiberty.propongo.contrib.views.XTextView
             android:id="@+id/lblFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 />
         </LinearLayout>
 
-    </com.xiberty.warpp.contrib.views.DiagonalLayout>
+    </com.xiberty.propongo.contrib.views.DiagonalLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAvatar"

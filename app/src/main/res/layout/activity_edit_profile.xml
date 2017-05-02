@@ -44,7 +44,7 @@
 
         </FrameLayout>
 
-        <com.xiberty.warpp.contrib.views.XTextView
+        <com.xiberty.propongo.contrib.views.XTextView
             android:id="@+id/head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             android:textColorHint="@color/secondaryText"
             android:textColor="@color/textIcons">
 
-            <com.xiberty.warpp.contrib.views.XEditText
+            <com.xiberty.propongo.contrib.views.XEditText
                 android:textSize="@dimen/text_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             android:textColorHint="@color/secondaryText"
             android:textColor="@color/textIcons">
 
-            <com.xiberty.warpp.contrib.views.XEditText
+            <com.xiberty.propongo.contrib.views.XEditText
                 android:id="@+id/txtFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
             android:textColorHint="@color/secondaryText"
             android:textColor="@color/textIcons">
 
-            <com.xiberty.warpp.contrib.views.XEditText
+            <com.xiberty.propongo.contrib.views.XEditText
                 android:textSize="@dimen/text_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

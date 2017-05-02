@@ -14,7 +14,7 @@
         android:id="@+id/viewCloseEmail"
         android:orientation="horizontal">
 
-        <com.xiberty.warpp.contrib.views.XTextView
+        <com.xiberty.propongo.contrib.views.XTextView
             android:id="@+id/dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:textColorHint="@color/secondaryText"
         android:textColor="@color/textIcons">
 
-        <com.xiberty.warpp.contrib.views.XEditText
+        <com.xiberty.propongo.contrib.views.XEditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
         android:textColorHint="@color/secondaryText"
         android:textColor="@color/textIcons">
 
-        <com.xiberty.warpp.contrib.views.XEditText
+        <com.xiberty.propongo.contrib.views.XEditText
             android:id="@+id/txtNewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

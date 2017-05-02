@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Warpp.iml" filepath="$PROJECT_DIR$/Warpp.iml" />
       <module fileurl="file://$PROJECT_DIR$/WarppAndroid.iml" filepath="$PROJECT_DIR$/WarppAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YoPropongoAndroid.iml" filepath="$PROJECT_DIR$/YoPropongoAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

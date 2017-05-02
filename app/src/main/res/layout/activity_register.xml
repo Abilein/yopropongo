@@ -33,7 +33,7 @@
         android:layout_alignParentLeft="true"
         tools:ignore="ContentDescription">
 
-        <com.xiberty.warpp.contrib.views.XTextView
+        <com.xiberty.propongo.contrib.views.XTextView
             android:id="@+id/head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:textColorHint="@color/secondaryText"
             android:textColor="@color/textIcons">
 
-            <com.xiberty.warpp.contrib.views.XEditText
+            <com.xiberty.propongo.contrib.views.XEditText
                 style="@style/Input.Auth"
                 android:text="noob"
                 android:hint="@string/label_username"
@@ -72,7 +72,7 @@
             android:textColorHint="@color/secondaryText"
             android:textColor="@color/textIcons">
 
-            <com.xiberty.warpp.contrib.views.XEditText
+            <com.xiberty.propongo.contrib.views.XEditText
                 style="@style/Input.Auth"
                 android:text="noob@boog.com"
                 android:hint="@string/label_email"
@@ -92,7 +92,7 @@
             android:textColorHint="@color/secondaryText"
             android:textColor="@color/textIcons">
 
-            <com.xiberty.warpp.contrib.views.XEditText
+            <com.xiberty.propongo.contrib.views.XEditText
                 style="@style/Input.Auth"
                 android:text="rampagegear"
                 android:hint="@string/label_password"
