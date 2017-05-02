@@ -25,7 +25,7 @@ public class UserProfile {
     @SerializedName("last_name")  @Expose       private String   last_name;
     @SerializedName("email")@Expose             private String   email;
     @SerializedName("photo")@Expose             private String   photo;
-
+    @SerializedName("is_councilman")@Expose     private boolean   is_councilman  ;
     public int id() { return id; }
 
     public String username() {return username;}
@@ -50,6 +50,10 @@ public class UserProfile {
     public String toString(){
         Gson gson = new Gson();
         return gson.toJson(this);
+    }
+
+    public boolean is_councilman() {
+        return is_councilman;
     }
 
 }

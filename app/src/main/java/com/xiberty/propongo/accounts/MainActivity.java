@@ -45,10 +45,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     AccountHeader accountHeader;
 
     public enum Menues {
-        PROFILE(1001),
-        SETTINGS(1002),
-        ABOUT(1003),
-        LOGOUT(1004);
+        INBOX(1001),
+        PROFILE(1002),
+        COUNCIL(1003),
+        COMISSIONS(1004),
+        PROPOSAL(1005),
+        SETTINGS(1006),
+        ABOUT(1007),
+        LOGOUT(1008);
 
         public int id;
         private Menues(int id) {
@@ -92,12 +96,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     private void showMenu(long identifier) {
-        if(identifier==Menues.PROFILE.getID()){
+        if(identifier==Menues.INBOX.getID()){
             setContainer(new ProfileFragment());
+        } else if(identifier==Menues.PROFILE.getID()){
+            setContainer(new ProfileFragment());
+        } else if(identifier==Menues.COUNCIL.getID()){
+            setContainer(new AboutFragment());
+        } else if(identifier==Menues.COMISSIONS.getID()){
+            setContainer(new AboutFragment());
+        } else if(identifier==Menues.PROPOSAL.getID()){
+            setContainer(new AboutFragment());
         } else if(identifier==Menues.SETTINGS.getID()){
             setContainer(new SettingsFragment());
-        } else if(identifier==Menues.ABOUT.getID()){
-            setContainer(new AboutFragment());
         } else if(identifier==Menues.LOGOUT.getID()){
             toolbar.setTitle(""); toolbar.setSubtitle("");
             logout();
@@ -138,6 +148,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 .build();
 
 
+        //YoPropongo Menu Items
+        PrimaryDrawerItem MenuInbox = new PrimaryDrawerItem().withName("Buzon de Entrada").withIdentifier(Menues.INBOX.id).withIcon(R.drawable.ic_inbox);
+        PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem().withName("Perfil").withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
+        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Consejo").withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
+        PrimaryDrawerItem MenuComissions = new PrimaryDrawerItem().withName("Comisiones").withIdentifier(Menues.COMISSIONS.id).withIcon(R.drawable.ic_commissions);
+        PrimaryDrawerItem MenuProposals = new PrimaryDrawerItem().withName("Propuestas").withIdentifier(Menues.PROPOSAL.id).withIcon(R.drawable.ic_proposals);
+        PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem().withName("Ajustes").withIdentifier(Menues.SETTINGS.id).withIcon(R.drawable.ic_settings);
+        PrimaryDrawerItem MenuAbout = new PrimaryDrawerItem().withName("Acerca de").withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
+        PrimaryDrawerItem Menulogout = new PrimaryDrawerItem().withName("Salir").withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
+
+
+        //Warp Menu Items
+        /**
         PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem()
                 .withName(getString(R.string.menu_profile)).withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
         PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem()
@@ -146,30 +169,65 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 .withName(getString(R.string.menu_about)).withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
         PrimaryDrawerItem Menulogout = new PrimaryDrawerItem()
                 .withName(getString(R.string.menu_logout)).withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
+        **/
 
-        drawer = new DrawerBuilder()
-                .withActivity(this)
-                .withToolbar(toolbar)
-                .withHeader(R.layout.drawer_header)
-                .withAccountHeader(accountHeader)
-                .addDrawerItems(MenuProfile, MenuSettings, MenuAbout, Menulogout)
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem != null) {
-                            if (drawerItem instanceof Nameable) {
-                                toolbar.setTitle(((Nameable) drawerItem)
-                                        .getName()
-                                        .getText(MainActivity.this));
+        try{
+            if (profile.is_councilman()) {
+                drawer = new DrawerBuilder()
+                        .withActivity(this)
+                        .withToolbar(toolbar)
+                        .withHeader(R.layout.drawer_header)
+                        .withAccountHeader(accountHeader)
+                        .addDrawerItems(MenuInbox ,MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuSettings, MenuAbout, Menulogout)
+                        .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                            @Override
+                            public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
+                                if (drawerItem != null) {
+                                    if (drawerItem instanceof Nameable) {
+                                        toolbar.setTitle(((Nameable) drawerItem)
+                                                .getName()
+                                                .getText(MainActivity.this));
+                                    }
+                                    showMenu(drawerItem.getIdentifier());
+                                }
+                                return false;
                             }
-                            showMenu(drawerItem.getIdentifier());
-                        }
-                        return false;
-                    }
-                })
-                .build();
-        drawer.setSelection(Menues.PROFILE.getID());
-        drawer.getRecyclerView().setVerticalScrollBarEnabled(false);
+                        })
+                        .build();
+                drawer.setSelection(Menues.PROFILE.getID());
+                drawer.getRecyclerView().setVerticalScrollBarEnabled(false);
+            }else{
+                drawer = new DrawerBuilder()
+                        .withActivity(this)
+                        .withToolbar(toolbar)
+                        .withHeader(R.layout.drawer_header)
+                        .withAccountHeader(accountHeader)
+                        .addDrawerItems(MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuSettings, MenuAbout, Menulogout)
+                        .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                            @Override
+                            public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
+                                if (drawerItem != null) {
+                                    if (drawerItem instanceof Nameable) {
+                                        toolbar.setTitle(((Nameable) drawerItem)
+                                                .getName()
+                                                .getText(MainActivity.this));
+                                    }
+                                    showMenu(drawerItem.getIdentifier());
+                                }
+                                return false;
+                            }
+                        })
+                        .build();
+                drawer.setSelection(Menues.PROFILE.getID());
+                drawer.getRecyclerView().setVerticalScrollBarEnabled(false);
+
+            }
+
+        }catch (Exception e){
+
+        }
+
+
     }
 
 
