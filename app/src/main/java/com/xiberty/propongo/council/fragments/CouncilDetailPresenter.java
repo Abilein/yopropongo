@@ -56,8 +56,6 @@ public class CouncilDetailPresenter implements CouncilDetailContract.Presenter {
                     table_council.save();
 
 
-
-
                     Log.e("CouncilDetailPresenter", response.message());
                     List<Council> items = response.body();
                     mView.showCouncils(items);
@@ -71,7 +69,7 @@ public class CouncilDetailPresenter implements CouncilDetailContract.Presenter {
 
             @Override
             public void onFailure(Call<List<Council>> call, Throwable t) {
-                Log.e("CouncilDetailPresenter", t.getCause().getMessage());
+                 Log.e("CouncilDetailPresenter", t.getCause().getMessage());
                 mView.errorLoadCouncil(t.getCause().getMessage());
             }
         });

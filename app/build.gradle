@@ -24,29 +24,23 @@ android {
     }
 }
 
-def dbflow_version = "4.0.0-beta7"
+
 
 repositories {
     jcenter()
     maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 
+def dbflow_version = "4.0.1"
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-
-
-
-
     compile('com.mikepenz:materialdrawer:5.9.0@aar') {
         transitive = true
     }
-
-    //Yo Propongo dependencies
-    
 
     // Required for instrumented tests
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -86,14 +80,7 @@ dependencies {
 
     // DBFLOW
     annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
-
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
-
-    // RXJava 1 support
-    compile "com.github.Raizlabs.DBFlow:dbflow-rx:${dbflow_version}"
-
-    // RXJava 2 support
-    compile "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflow_version}"
 
 }

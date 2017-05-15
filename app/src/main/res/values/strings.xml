@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Yo Propongo</string>
-
+    <string name="sync_account_type" translatable="false">propongo.xiberty.com</string>
+    <string name="content_authority">com.xiberty.propongo</string>
 
     <!--Facebook-->
     <string name="facebook_app_id">1116903005090333</string>

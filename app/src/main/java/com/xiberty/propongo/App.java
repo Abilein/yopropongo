@@ -28,6 +28,7 @@ public class App extends Application {
         /**
          * Manage Glide with Material Drawer
          * **/
+
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
             public void set(ImageView imageView, Uri uri, Drawable placeholder, String tag) {
