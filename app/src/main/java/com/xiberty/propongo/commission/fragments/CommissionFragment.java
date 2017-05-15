@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.commission.adapter.CommissionAdapter;
 import com.xiberty.propongo.contrib.Store;

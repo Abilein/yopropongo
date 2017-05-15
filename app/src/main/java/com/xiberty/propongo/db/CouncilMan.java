@@ -9,8 +9,6 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xiberty.propongo.R;
 
-import java.util.ArrayList;
-
 /**
  * Created by growcallisaya on 2/5/17.
  */

@@ -1,7 +1,5 @@
 package com.xiberty.propongo.commission.fragments;
 
-import android.content.Context;
-
 import com.xiberty.propongo.db.Commission;
 
 import java.util.List;

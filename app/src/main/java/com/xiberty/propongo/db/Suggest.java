@@ -1,9 +1,4 @@
-package com.xiberty.propongo.data;
-
-
-import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.PrimaryKey;
-import com.raizlabs.android.dbflow.annotation.Table;
+package com.xiberty.propongo.db;
 
 
 //@Table(database = AppDatabase.class)
