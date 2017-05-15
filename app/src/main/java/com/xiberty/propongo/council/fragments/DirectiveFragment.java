@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.xiberty.propongo.R;
-import com.xiberty.propongo.council.adapters.DirectiveAdapter;
-import com.xiberty.propongo.council.responses.CouncilMan;
 
 import java.util.ArrayList;
 

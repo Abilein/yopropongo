@@ -26,7 +26,7 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
-import com.xiberty.propongo.commission.CommissionFragment;
+import com.xiberty.propongo.commission.fragments.CommissionFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.council.fragments.CouncilDetailFragment;
@@ -78,13 +78,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
 
         setToolbar();
-
         // TODO Validar si la sesion esta vigente
         accountService = WS.makeService(AccountService.class, Store.getCredential(this));
         credentialService = WS.makeService(CredentialService.class);
         presenter = new MainPresenter(this, accountService, credentialService);
         setUserProfile();
     }
+
+
 
     @Override
     public void onResume(){

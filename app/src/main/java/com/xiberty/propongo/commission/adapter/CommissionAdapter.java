@@ -14,9 +14,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.commission.CommissionDetailActivity;
-import com.xiberty.propongo.council.responses.Commission;
+import com.xiberty.propongo.db.Commission;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

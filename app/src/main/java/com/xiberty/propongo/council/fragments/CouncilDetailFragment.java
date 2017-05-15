@@ -22,9 +22,7 @@ import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.council.CouncilService;
 import com.xiberty.propongo.council.adapters.PageAdapter;
-import com.xiberty.propongo.council.responses.Council;
-import com.xiberty.propongo.db.Council_T;
-import com.xiberty.propongo.db.Council_T_Table;
+import com.xiberty.propongo.db.Council;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +60,6 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
         setHasOptionsMenu(true);
     }
 
-
     CouncilDetailPresenter presenter;
     Bundle savedInstanceState;
     View rootView;
@@ -80,6 +77,10 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
         CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
         presenter = new CouncilDetailPresenter(this, service);
         presenter.getCouncils(context);
+        presenter.getCommissions(context);
+        presenter.getProposals(context);
+        presenter.getCouncilMen(context);
+
         return rootView;
     }
 
@@ -118,7 +119,7 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
     public void showCouncils(List<Council> councils) {
         for (int i = 0; i< councils.size();i++){
             Council council= councils.get(i);
-            Log.e("Council",council.getName());
+            Log.e("CouncilOLD",council.getName());
         }
     }
 

@@ -20,6 +20,7 @@ public class MainContract {
 
     public interface Presenter {
         void logout(Context context);
+
     }
     
 }

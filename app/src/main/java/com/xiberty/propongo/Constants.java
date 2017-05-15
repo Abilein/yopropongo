@@ -50,7 +50,7 @@ public class Constants {
     public static final String CHANGE_PASSWORD_ENDPOINT = "/api/account/change-password/";
 
 
-    // Council
+    // CouncilOLD
     public static final String COUNCIL_ENDPOINT = "/api/council/";
     public static final String COMISSIONS_ENDPOINT = "/api/council/commissions/";
     public static final String COUNCILMEN_ENDPOINT = "/api/council/councilmen/";

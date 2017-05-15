@@ -1,6 +1,6 @@
 package com.xiberty.propongo.council.models;
 
-import com.xiberty.propongo.council.responses.CouncilMan;
+import com.xiberty.propongo.db.CouncilMan;
 
 /**
  * Created by growcallisaya on 4/5/17.

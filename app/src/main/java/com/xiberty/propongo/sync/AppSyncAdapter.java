@@ -35,7 +35,7 @@ public class AppSyncAdapter extends AbstractThreadedSyncAdapter {
 //
 //        Log.e(TAG, "endpoint: " + Constants.COUNCILMEN_ENDPOINT);
 //        pages = SyncRequest.loadPaginatedRequests(Constants.COUNCILS_ENDPOINT, null, null);
-//        Council.savePagesOnProvider(getContext(), pages);
+//        CouncilOLD.savePagesOnProvider(getContext(), pages);
 //
 //        pages = SyncRequest.loadPaginatedRequests(Constants.COUNCILMEN_ENDPOINT, null, null);
 //        CouncilMan.savePagesOnProvider(getContext(), pages);

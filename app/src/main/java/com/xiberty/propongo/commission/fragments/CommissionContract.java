@@ -1,8 +1,8 @@
-package com.xiberty.propongo.commission;
+package com.xiberty.propongo.commission.fragments;
 
 import android.content.Context;
 
-import com.xiberty.propongo.council.responses.Commission;
+import com.xiberty.propongo.db.Commission;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
 public class CommissionContract {
 
     public interface Presenter{
-        void getCommissions(Context context);
+        void getCommissionsFromDB();
     }
 
     public interface CommissionView{
-        void loadCommissions(List<Commission> items);
+        void loadCommissions(List<Commission> commissions);
     }
 }

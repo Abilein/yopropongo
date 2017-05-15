@@ -1,10 +1,10 @@
 package com.xiberty.propongo.council;
 
 import com.xiberty.propongo.Constants;
-import com.xiberty.propongo.council.responses.Commission;
-import com.xiberty.propongo.council.responses.Council;
-import com.xiberty.propongo.council.responses.CouncilMan;
-import com.xiberty.propongo.council.responses.Proposal;
+import com.xiberty.propongo.db.Commission;
+import com.xiberty.propongo.db.Council;
+import com.xiberty.propongo.db.CouncilMan;
+import com.xiberty.propongo.db.Proposal;
 
 import java.util.List;
 
@@ -32,13 +32,13 @@ public interface CouncilService {
     Call<List<Commission>> getCommissions();
 
     @GET(Constants.COUNCILMEN_ENDPOINT)
-    Call<CouncilMan> getCouncilMan();
+    Call<List<CouncilMan>> getCouncilMan();
 
     @GET(Constants.COUNCILMEN_INBOX_ENDPOINT)
     Call<Proposal> getCouncilMenInbox();
 
     @GET(Constants.PROPOSALS_ENDPOINT)
-    Call<Proposal> getProposal();
+    Call<List<Proposal>> getProposal();
 
     @Multipart
     @POST(Constants.PROPOSALS_ENDPOINT)

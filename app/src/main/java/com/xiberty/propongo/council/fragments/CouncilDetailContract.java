@@ -3,7 +3,7 @@ package com.xiberty.propongo.council.fragments;
 
 import android.content.Context;
 
-import com.xiberty.propongo.council.responses.Council;
+import com.xiberty.propongo.db.Council;
 
 import java.util.List;
 
@@ -20,5 +20,8 @@ public class CouncilDetailContract {
 
     public interface Presenter{
         void getCouncils(Context context);
+        void getCommissions(Context context);
+        void getProposals(Context context);
+        void getCouncilMen(Context context);
     }
 }

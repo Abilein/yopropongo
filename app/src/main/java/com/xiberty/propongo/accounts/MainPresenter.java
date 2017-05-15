@@ -1,7 +1,12 @@
 package com.xiberty.propongo.accounts;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
+import com.raizlabs.android.dbflow.structure.database.transaction.ProcessModelTransaction;
+import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.Excepts;
@@ -10,6 +15,10 @@ import com.xiberty.propongo.contrib.api.MessageManager;
 import com.xiberty.propongo.contrib.api.OAuthCollection;
 import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.credentials.CredentialService;
+import com.xiberty.propongo.db.AppDatabase;
+import com.xiberty.propongo.db.Commission;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -79,4 +88,6 @@ public class MainPresenter implements MainContract.Presenter {
 
         }
     }
+
+
 }

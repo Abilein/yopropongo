@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.stetho.Stetho;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
@@ -18,6 +19,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        /**
+         * Manage Stetho for debugging android Database
+         * **/
+        Stetho.initializeWithDefaults(this);
+
 
         /**
          * Manage the Database

@@ -1,8 +1,9 @@
-package com.xiberty.propongo.commission;
+package com.xiberty.propongo.commission.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.commission.adapter.CommissionAdapter;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.council.CouncilService;
-import com.xiberty.propongo.council.responses.Commission;
+import com.xiberty.propongo.db.Commission;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ import java.util.List;
  */
 
 public class CommissionFragment extends Fragment implements CommissionContract.CommissionView{
+    private static final String TAG = CommissionFragment.class.getSimpleName();
     CouncilService mService;
     CommissionPresenter presenter;
     View rootView=null;
@@ -51,17 +54,15 @@ public class CommissionFragment extends Fragment implements CommissionContract.C
         if(rootView!=null) {
             mService = WS.makeService(CouncilService.class, Store.getCredential(this.getContext()));
             presenter = new CommissionPresenter(mService,this);
-            presenter.getCommissions(this.getContext());
-
-
+            presenter.getCommissionsFromDB();
         }
         return rootView;
     }
 
     @Override
     public void loadCommissions(List<Commission> commissions) {
-        //TODO Load Commissions from DBflow
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
+        Log.e(TAG,"COMISIONES"+ commissions);
         listView.setAdapter(new CommissionAdapter(getActivity(), commissions));
     }
 }

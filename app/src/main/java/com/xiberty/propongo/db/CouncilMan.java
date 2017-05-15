@@ -1,9 +1,12 @@
-package com.xiberty.propongo.council.responses;
+package com.xiberty.propongo.db;
 
 import android.content.Context;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xiberty.propongo.R;
 
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ import java.util.ArrayList;
  * Created by growcallisaya on 2/5/17.
  */
 
-public class CouncilMan {
+public class CouncilMan extends BaseModel {
 
     /*
     *    Example
@@ -34,15 +37,15 @@ public class CouncilMan {
     /**
      * ATTRIBUTES
      **/
-    @SerializedName("id") @Expose public int id;
-    @SerializedName("first_name") @Expose public String first_name;
-    @SerializedName("last_name") @Expose public String last_name;
-    @SerializedName("email") @Expose public String email;
-    @SerializedName("avatar") @Expose public String avatar;
-    @SerializedName("bio") @Expose public String bio;
-    @SerializedName("town_council") @Expose public int town_council;
-    @SerializedName("agrupation") @Expose public String agrupation;
-    @SerializedName("macrodistrict") @Expose public int macrodistrict;
+    @PrimaryKey @SerializedName("id") @Expose public int id;
+    @Column @SerializedName("first_name") @Expose public String first_name;
+    @Column @SerializedName("last_name") @Expose public String last_name;
+    @Column @SerializedName("email") @Expose public String email;
+    @Column @SerializedName("avatar") @Expose public String avatar;
+    @Column @SerializedName("bio") @Expose public String bio;
+    @Column @SerializedName("town_council") @Expose public int town_council;
+    @Column @SerializedName("agrupation") @Expose public String agrupation;
+    @Column @SerializedName("macrodistrict") @Expose public int macrodistrict;
 
     /**
      * OBJECT GETTERS
@@ -117,5 +120,41 @@ public class CouncilMan {
         }
     }
 
+    //Setters
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setTown_council(int town_council) {
+        this.town_council = town_council;
+    }
+
+    public void setAgrupation(String agrupation) {
+        this.agrupation = agrupation;
+    }
+
+    public void setMacrodistrict(int macrodistrict) {
+        this.macrodistrict = macrodistrict;
+    }
 }
