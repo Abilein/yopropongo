@@ -12,11 +12,14 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        FlowManager.init(this);
 
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
