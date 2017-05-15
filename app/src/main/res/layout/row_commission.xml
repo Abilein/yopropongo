@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+    android:padding="@dimen/activity_half_quarter_margin">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/divider"
+        android:id="@+id/imgCover"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:src="@drawable/avatar"
+        android:scaleType="centerCrop"
+        android:layout_gravity="top" />
+
+        <TextView
+            android:id="@+id/lblName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_half_quarter_margin"
+            android:paddingRight="@dimen/activity_half_quarter_margin"
+            android:text="COMISIÓN DE DESARROLLO PRODUCTIVO"
+            android:textSize="14sp"
+            android:textColor="@color/Black" />
+
+</LinearLayout>
+
+

@@ -43,18 +43,17 @@ public class CouncilDetailPresenter implements CouncilDetailContract.Presenter {
 
                     //TODO Make it in CouncilDetailRepository
                     //Settings the Database
-                    Council_T table_council =  new Council_T();
-                    table_council.name="Concejo Municipal de La Paz | Base";
-                    table_council.department="LA_PAZ";
-                    table_council.creation_date="2017-05-03";
-                    table_council.president=1;
-                    table_council.vice_president=2;
-                    table_council.secretary=3;
-                    table_council.vocal_a=4;
-                    table_council.vocal_b=5;
-                    table_council.logo="";
-                    table_council.save();
-
+//                    Council_T table_council =  new Council_T();
+//                    table_council.name="Concejo Municipal de La Paz | Base";
+//                    table_council.department="LA_PAZ";
+//                    table_council.creation_date="2017-05-03";
+//                    table_council.president=1;
+//                    table_council.vice_president=2;
+//                    table_council.secretary=3;
+//                    table_council.vocal_a=4;
+//                    table_council.vocal_b=5;
+//                    table_council.logo="";
+//                    table_council.save();
 
                     Log.e("CouncilDetailPresenter", response.message());
                     List<Council> items = response.body();

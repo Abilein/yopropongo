@@ -28,13 +28,13 @@ public class Commission {
      **/
     @SerializedName("id") @Expose               public int id;
     @SerializedName("name") @Expose             public String name;
+    @SerializedName("description")@Expose       public String description;
     @SerializedName("creation_date")@Expose     public String creation_date;
     @SerializedName("cover")  @Expose           public String cover;
-    @SerializedName("description")@Expose       public String description;
     @SerializedName("town_council")@Expose      public int town_council;
     @SerializedName("president")@Expose         public int president;
     @SerializedName("secretary")@Expose         public int secretary;
-    @SerializedName("vocal")@Expose         public int vocal;
+    @SerializedName("vocal")@Expose             public int vocal;
 
     public int id() {
         return id;

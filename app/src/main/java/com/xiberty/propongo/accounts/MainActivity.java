@@ -21,10 +21,12 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
+import com.xiberty.propongo.commission.CommissionFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.council.fragments.CouncilDetailFragment;
@@ -103,7 +105,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         } else if(identifier==Menues.COUNCIL.getID()){
             setContainer(new CouncilDetailFragment());
         } else if(identifier==Menues.COMISSIONS.getID()){
-            setContainer(new AboutFragment());
+            CommissionFragment commissions = new CommissionFragment();
+            Bundle bcomm = new Bundle();
+            bcomm.putBoolean(Constants.KEY_IS_ALONE, true);
+            commissions.setArguments(bcomm);
+            setContainer(commissions);
         } else if(identifier==Menues.PROPOSAL.getID()){
             setContainer(new AboutFragment());
         } else if(identifier==Menues.SETTINGS.getID()){

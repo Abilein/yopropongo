@@ -52,11 +52,11 @@ public class Constants {
 
     // Council
     public static final String COUNCIL_ENDPOINT = "/api/council/";
-    public static final String COMISSIONS_ENDPOINT = "/api/council/commissions";
-    public static final String COUNCILMEN_ENDPOINT = "/api/council/councilmen";
-    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/council/councilmen/inbox";
-    public static final String PROPOSALS_ENDPOINT = "/api/council/proposals";
-    public static final String CONTACTS_ENDPOINT = "/api/council/contacts";
+    public static final String COMISSIONS_ENDPOINT = "/api/council/commissions/";
+    public static final String COUNCILMEN_ENDPOINT = "/api/council/councilmen/";
+    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/council/councilmen/inbox/";
+    public static final String PROPOSALS_ENDPOINT = "/api/council/proposals/";
+    public static final String CONTACTS_ENDPOINT = "/api/council/contacts/";
 
     /**
      * KEYS BETWEEN UI

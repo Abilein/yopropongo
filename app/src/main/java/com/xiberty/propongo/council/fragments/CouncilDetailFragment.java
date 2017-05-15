@@ -76,28 +76,14 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
 
         ButterKnife.bind(this, rootView);
         setToolbar();
-
+        setTabs();
         CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
         presenter = new CouncilDetailPresenter(this, service);
         presenter.getCouncils(context);
         return rootView;
     }
 
-    private void setToolbar() {
-        toolbar.setBackground(getResources().getDrawable(R.drawable.background_toolbar_invisible));
-        toolbar.setVisibility(View.GONE);
-        toolbar.setTitle("");
-    }
-
-
-    /**
-     * Methods from CouncilDetailContract.View
-     * **/
-    @Override
-    public void showCouncils(List<Council> councils) {
-
-
-
+    private void setTabs() {
         //Creating Directive Fragment
         DirectiveFragment directiveFragment = new DirectiveFragment();
 
@@ -117,11 +103,23 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
             paginator.setAdapter(adapter);
             tabs.setViewPager(paginator);
         }
+    }
+
+    private void setToolbar() {
+        toolbar.setBackground(getResources().getDrawable(R.drawable.background_toolbar_invisible));
+        toolbar.setVisibility(View.GONE);
+        toolbar.setTitle("");
+    }
+
+    /**
+     * Methods from CouncilDetailContract.View
+     * **/
+    @Override
+    public void showCouncils(List<Council> councils) {
         for (int i = 0; i< councils.size();i++){
             Council council= councils.get(i);
             Log.e("Council",council.getName());
         }
-
     }
 
     private Bundle makeDirectiveBundle(Council council){

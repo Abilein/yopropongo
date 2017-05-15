@@ -5,7 +5,6 @@ import com.xiberty.propongo.council.responses.Commission;
 import com.xiberty.propongo.council.responses.Council;
 import com.xiberty.propongo.council.responses.CouncilMan;
 import com.xiberty.propongo.council.responses.Proposal;
-import com.xiberty.propongo.credentials.responses.UserProfile;
 
 import java.util.List;
 
@@ -30,7 +29,7 @@ public interface CouncilService {
     Call<List<Council>> getCouncils();
 
     @GET(Constants.COMISSIONS_ENDPOINT)
-    Call<Commission> getCommissions();
+    Call<List<Commission>> getCommissions();
 
     @GET(Constants.COUNCILMEN_ENDPOINT)
     Call<CouncilMan> getCouncilMan();
