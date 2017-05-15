@@ -112,8 +112,6 @@
     <string name="success_password_changed">Contraseña actualizada</string>
 
 
-
-
     <!-- Dialogs -->
 
     <string name="dialog_exit_content">¿Deseas salir?</string>
@@ -133,7 +131,6 @@
 
     <!-- TOAST -->
     <string name="toast_permissions_denied">Necesita activar los permisos de CAMARA y ALMACENAMIENTO para que puedas editar tu avatar</string>
-
 
 
     <!-- PREFERENCES -->
@@ -161,5 +158,20 @@
     <string name="credits_phone">+591 72529356</string>
 
 
+    <!--TAB TITLES-->
+    <string name="tab_directive">Directiva</string>
+    <string name="tab_proposals">Propuestas</string>
+    <string name="tab_commissions">Comisiones</string>
+
+    <!--DIRECTIVE LABELS-->
+    <string name="label_president">Presidente</string>
+    <string name="label_vice_president">Vice Presidente</string>
+    <string name="label_secretary">Secretario</string>
+    <string name="label_vocal">Vocal</string>
+
+    <!--COUNCIL GROUPS-->
+    <string name="group_mas">Movimiento al Socialismo</string>
+    <string name="group_sol">Sol.bo</string>
+    <string name="group_un">Unidad Nacional</string>
 
 </resources>

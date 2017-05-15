@@ -12,12 +12,22 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
 
+        /**
+         * Manage the Database
+         * **/
+        FlowManager.init(this);
+
+
+        /**
+         * Manage Glide with Material Drawer
+         * **/
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
             public void set(ImageView imageView, Uri uri, Drawable placeholder, String tag) {

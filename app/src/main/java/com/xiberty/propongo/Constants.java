@@ -29,18 +29,38 @@ public class Constants {
      * ENDPOINTS
      **/
 
-    // Auth
-    public static final String LOGIN_ENDPOINT = "/api/credentials/login/";
-    public static final String LOGOUT_ENDPOINT = "/api/credentials/revoke-token/";
-    public static final String RESET_PASSWORD_ENDPOINT = "/api/credentials/reset-password/";
-    public static final String REGISTER_ENDPOINT = "/api/credentials/register/";
-    public static final String FACEBOOK_LOGIN_ENDPOINT = "/api/credentials/facebook/login/";
+    // Credentials
+    public static final String LOGIN_ENDPOINT = "/api/auth/login/";
+    public static final String LOGOUT_ENDPOINT = "/api/auth/revoke-token/";
+    public static final String RESET_PASSWORD_ENDPOINT = "/api/auth/reset-password/";
+    public static final String REGISTER_ENDPOINT = "/api/auth/register/";
+    public static final String FACEBOOK_LOGIN_ENDPOINT = "/api/auth/facebook/login/";
 
 
     // Account
-    public static final String PROFILE_ENDPOINT = "/api/accounts/profile/";
-    public static final String CHANGE_EMAIL_ENDPOINT = "/api/accounts/change-email/";
-    public static final String CHANGE_PASSWORD_ENDPOINT = "/api/accounts/change-password/";
+    public static final String PROFILE_ENDPOINT = "/api/account/profile/";
+    public static final String CHANGE_EMAIL_ENDPOINT = "/api/account/change-email/";
+    public static final String CHANGE_PASSWORD_ENDPOINT = "/api/account/change-password/";
+
+
+    // Council
+    public static final String COUNCIL_ENDPOINT = "/api/council/";
+    public static final String COMISSIONS_ENDPOINT = "/api/council/commissions";
+    public static final String COUNCILMEN_ENDPOINT = "/api/council/councilmen";
+    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/council/councilmen/inbox";
+    public static final String PROPOSALS_ENDPOINT = "/api/council/proposals";
+    public static final String CONTACTS_ENDPOINT = "/api/council/contacts";
+
+    /**
+     * KEYS BETWEEN UI
+     **/
+    public static final String KEY_PROPOSAL_ID = "proposal_id";
+    public static final String KEY_COUNCILMAN_ID = "councilman_id";
+    public static final String KEY_COMMISSION_ID = "commission_id";
+    public static final String KEY_COUNCIL_ID = "council_id";
+
+
+    public static final String KEY_IS_ALONE = "is_alone";
 
 
 }

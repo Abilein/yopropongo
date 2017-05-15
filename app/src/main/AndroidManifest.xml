@@ -2,25 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiberty.propongo">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-sdk xmlns:tools="http://schemas.android.com/tools"
         tools:overrideLibrary="android.support.v14.preference" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_pro"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.xiberty.propongo.App" >
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
-        <activity android:name="com.xiberty.propongo.onset.StartActivity"
+        <activity
+            android:name=".onset.StartActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,37 +29,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.xiberty.propongo.credentials.LoginActivity"
+        <activity
+            android:name=".credentials.LoginActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".credentials.ResetPassActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".credentials.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".accounts.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".accounts.EditProfileActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|screenSize"/>
-
-        <activity android:name="com.xiberty.propongo.credentials.ResetPassActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|screenSize"/>
-
-        <activity android:name="com.xiberty.propongo.credentials.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name="com.xiberty.propongo.accounts.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name="com.xiberty.propongo.accounts.EditProfileActivity"
-
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".council.CouncilManDetailActivity"></activity>
     </application>
 
 </manifest>

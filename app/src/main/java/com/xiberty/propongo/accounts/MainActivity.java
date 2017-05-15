@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ProgressBar;
 
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.login.LoginManager;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -28,6 +27,7 @@ import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
+import com.xiberty.propongo.council.fragments.CouncilDetailFragment;
 import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.credentials.LoginActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
@@ -101,13 +101,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         } else if(identifier==Menues.PROFILE.getID()){
             setContainer(new ProfileFragment());
         } else if(identifier==Menues.COUNCIL.getID()){
-            setContainer(new AboutFragment());
+            setContainer(new CouncilDetailFragment());
         } else if(identifier==Menues.COMISSIONS.getID()){
             setContainer(new AboutFragment());
         } else if(identifier==Menues.PROPOSAL.getID()){
             setContainer(new AboutFragment());
         } else if(identifier==Menues.SETTINGS.getID()){
             setContainer(new SettingsFragment());
+        } else if(identifier==Menues.ABOUT.getID()){
+            setContainer(new AboutFragment());
         } else if(identifier==Menues.LOGOUT.getID()){
             toolbar.setTitle(""); toolbar.setSubtitle("");
             logout();
@@ -159,17 +161,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         PrimaryDrawerItem Menulogout = new PrimaryDrawerItem().withName("Salir").withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
 
 
-        //Warp Menu Items
-        /**
-        PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem()
-                .withName(getString(R.string.menu_profile)).withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
-        PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem()
-                .withName(getString(R.string.menu_settings)).withIdentifier(Menues.SETTINGS.id).withIcon(R.drawable.ic_settings);
-        PrimaryDrawerItem MenuAbout = new PrimaryDrawerItem()
-                .withName(getString(R.string.menu_about)).withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
-        PrimaryDrawerItem Menulogout = new PrimaryDrawerItem()
-                .withName(getString(R.string.menu_logout)).withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
-        **/
+
 
         try{
             if (profile.is_councilman()) {

@@ -90,4 +90,34 @@
         <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
     </style>
 
+    <!-- COUNCIL -->
+    <style name="Council">
+        <item name="android:textColor">@color/DarkBlue</item>
+    </style>
+
+
+    <style name="Council.Name" parent="Council">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Council.Position" parent="Council">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="LabelSlider">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">16sp</item>
+        <item name="android:paddingRight">16sp</item>
+        <item name="android:paddingTop">12sp</item>
+        <item name="android:paddingBottom">12sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LabelSlider.Dark" parent="LabelSlider">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:background">@color/primary</item>
+    </style>
+
 </resources>

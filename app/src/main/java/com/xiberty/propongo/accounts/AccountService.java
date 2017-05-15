@@ -18,8 +18,6 @@ import retrofit2.http.Part;
 
 public interface AccountService {
 
-
-
     @GET(Constants.PROFILE_ENDPOINT)
     Call<UserProfile> getProfile();
 
@@ -49,7 +47,5 @@ public interface AccountService {
     Call<FormattedResp> changePassword(
             @Field("password") String password,
             @Field("new_password") String new_password);
-
-
 
 }

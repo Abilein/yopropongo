@@ -62,4 +62,7 @@
     <dimen name="card_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
     <dimen name="nav_header_height">16dp</dimen>
+    <dimen name="activity_quarter_margin">4dp</dimen>
+    <dimen name="activity_half_margin">8dp</dimen>
+    <dimen name="activity_half_quarter_margin">12dp</dimen>
 </resources>
