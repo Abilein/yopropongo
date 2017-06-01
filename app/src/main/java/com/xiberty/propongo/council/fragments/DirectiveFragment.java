@@ -11,9 +11,6 @@ import com.xiberty.propongo.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by growcallisaya on 4/5/17.
- */
 
 public class DirectiveFragment  extends Fragment {
     private static final String TAG = DirectiveFragment.class.getSimpleName();
@@ -40,16 +37,16 @@ public class DirectiveFragment  extends Fragment {
 
             Bundle args = getArguments();
 
-            ArrayList<Integer> position = args.getIntegerArrayList("position");
-            ArrayList<String> label = args.getStringArrayList("label");
+//            ArrayList<Integer> position = args.getIntegerArrayList("position");
+//            ArrayList<String> label = args.getStringArrayList("label");
 
-            if( position != null && label !=null && position.size() == label.size() ){
+//            if( position != null && label !=null && position.size() == label.size() ){
                 //TODO Create Directive to set in the List
 //                DirectiveAdapter adapter = new DirectiveAdapter(getActivity().getApplicationContext(),
 //                        CouncilMan.makeDirective(context, position, label));
 //                ListView listView = (ListView) rootView.findViewById(R.id.listView);
 //                listView.setAdapter(adapter);
-            }
+//            }
         }
         return rootView;
     }

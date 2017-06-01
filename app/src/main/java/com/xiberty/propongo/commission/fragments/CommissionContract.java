@@ -4,9 +4,6 @@ import com.xiberty.propongo.db.Commission;
 
 import java.util.List;
 
-/**
- * Created by growcallisaya on 15/5/17.
- */
 
 public class CommissionContract {
 

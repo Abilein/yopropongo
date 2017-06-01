@@ -74,12 +74,13 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
         ButterKnife.bind(this, rootView);
         setToolbar();
         setTabs();
-        CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
-        presenter = new CouncilDetailPresenter(this, service);
-        presenter.getCouncils(context);
-        presenter.getCommissions(context);
-        presenter.getProposals(context);
-        presenter.getCouncilMen(context);
+
+//        CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
+//        presenter = new CouncilDetailPresenter(this, service);
+//        presenter.getCouncils(context);
+//        presenter.getCommissions(context);
+//        presenter.getProposals(context);
+//        presenter.getCouncilMen(context);
 
         return rootView;
     }

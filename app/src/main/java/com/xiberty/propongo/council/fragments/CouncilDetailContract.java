@@ -7,9 +7,6 @@ import com.xiberty.propongo.db.Council;
 
 import java.util.List;
 
-/**
- * Created by growcallisaya on 3/5/17.
- */
 
 public class CouncilDetailContract {
 

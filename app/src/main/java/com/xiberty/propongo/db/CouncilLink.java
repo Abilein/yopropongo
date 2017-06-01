@@ -12,7 +12,7 @@ public class CouncilLink extends BaseModel{
     @PrimaryKey public int id;
     @Column public String type;
     @Column public String url;
-    @ForeignKey public int user;
+    @Column public int user;
 
 
 }

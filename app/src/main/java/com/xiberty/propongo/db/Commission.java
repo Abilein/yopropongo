@@ -8,9 +8,6 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-/**
- * Created by growcallisaya on 2/5/17.
- */
 
 @Table(database = AppDatabase.class)
 public class Commission extends BaseModel {
@@ -31,15 +28,15 @@ public class Commission extends BaseModel {
     /**
      * PROPERTIES
      **/
-    @PrimaryKey @SerializedName("id") @Expose               public int id;
-    @Column @SerializedName("name") @Expose             public String name;
-    @Column @SerializedName("description")@Expose       public String description;
-    @Column @SerializedName("creation_date")@Expose     public String creation_date;
-    @Column @SerializedName("cover")  @Expose           public String cover;
-    @Column @SerializedName("town_council")@Expose      public int town_council;
-    @Column @SerializedName("president")@Expose         public int president;
-    @Column @SerializedName("secretary")@Expose         public int secretary;
-    @Column @SerializedName("vocal")@Expose             public int vocal;
+    @PrimaryKey @SerializedName("id")               public int id;
+    @Column @SerializedName("name")             public String name;
+    @Column @SerializedName("description")      public String description;
+    @Column @SerializedName("creation_date")    public String creation_date;
+    @Column @SerializedName("cover")            public String cover;
+    @Column @SerializedName("town_council")     public int town_council;
+    @Column @SerializedName("president")        public int president;
+    @Column @SerializedName("secretary")        public int secretary;
+    @Column @SerializedName("vocal")            public int vocal;
 
     public int id() {
         return id;

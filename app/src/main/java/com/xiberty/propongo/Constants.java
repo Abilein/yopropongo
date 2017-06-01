@@ -18,7 +18,7 @@ public class Constants {
     public static final int DATABASE_VERSION = 1;
 
 
-    public static final String SERVER_URL = "http://192.168.0.101:9000";
+    public static final String SERVER_URL = "http://192.168.0.100:9000";
     public static final String CLIENT_ID = "bgzxrqgTnmCzHxq5CJTusph5g7WpvhQmHLGQQehH";
     public static final String CLIENT_SECRET = "L7B0YRVoIy62a8PYCZc2r3VGPQscujFW6nwV97WV7UpVlMNVHEsV5PIyCs7bWnEGZV3XKZhoTYjq6fysMWRNhTq8aSBCjFBjwW6v57ccXViWmu0DeTC7111aNlHa0XPU";
 

@@ -15,6 +15,6 @@ public class Attachment extends BaseModel {
     @PrimaryKey public int id;
     @Column public String name;
     @Column public String file;
-    @ForeignKey public int proposal;
+    @Column public int proposal;
 
 }

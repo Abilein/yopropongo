@@ -21,10 +21,6 @@ import com.xiberty.propongo.db.Commission;
 
 import java.util.List;
 
-/**
- * Created by growcallisaya on 15/5/17.
- */
-
 public class CommissionFragment extends Fragment implements CommissionContract.CommissionView{
     private static final String TAG = CommissionFragment.class.getSimpleName();
     CouncilService mService;

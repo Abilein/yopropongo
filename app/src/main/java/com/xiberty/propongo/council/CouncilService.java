@@ -19,9 +19,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
-/**
- * Created by growcallisaya on 2/5/17.
- */
 
 public interface CouncilService {
 

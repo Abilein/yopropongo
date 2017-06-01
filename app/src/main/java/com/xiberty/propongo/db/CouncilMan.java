@@ -9,9 +9,6 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xiberty.propongo.R;
 
-/**
- * Created by growcallisaya on 2/5/17.
- */
 
 public class CouncilMan extends BaseModel {
 
@@ -35,15 +32,15 @@ public class CouncilMan extends BaseModel {
     /**
      * ATTRIBUTES
      **/
-    @PrimaryKey @SerializedName("id") @Expose public int id;
-    @Column @SerializedName("first_name") @Expose public String first_name;
-    @Column @SerializedName("last_name") @Expose public String last_name;
-    @Column @SerializedName("email") @Expose public String email;
-    @Column @SerializedName("avatar") @Expose public String avatar;
-    @Column @SerializedName("bio") @Expose public String bio;
-    @Column @SerializedName("town_council") @Expose public int town_council;
-    @Column @SerializedName("agrupation") @Expose public String agrupation;
-    @Column @SerializedName("macrodistrict") @Expose public int macrodistrict;
+    @PrimaryKey @SerializedName("id") public int id;
+    @Column @SerializedName("first_name") public String first_name;
+    @Column @SerializedName("last_name") public String last_name;
+    @Column @SerializedName("email") public String email;
+    @Column @SerializedName("avatar") public String avatar;
+    @Column @SerializedName("bio") public String bio;
+    @Column @SerializedName("town_council") public int town_council;
+    @Column @SerializedName("agrupation") public String agrupation;
+    @Column @SerializedName("macrodistrict") public int macrodistrict;
 
     /**
      * OBJECT GETTERS

@@ -10,15 +10,15 @@ public class Proposal extends BaseModel{
 
     public static final String TAG = Proposal.class.getSimpleName();
 
-    @PrimaryKey @SerializedName("id") @Expose public int id;
-    @Column @SerializedName("title") @Expose public String title;
-    @Column @SerializedName("summary") @Expose public String summary;
-    @Column @SerializedName("commissions") @Expose public String commissions;
-    @Column @SerializedName("councilmen") @Expose public String councilmen;
-    @Column @SerializedName("views") @Expose public int views;
-    @Column @SerializedName("attachs") @Expose public int attachs;
-    @Column @SerializedName("average") @Expose public double average;
-    @Column @SerializedName("rate") @Expose public int rate;
+    @PrimaryKey @SerializedName("id") public int id;
+    @Column @SerializedName("title") public String title;
+    @Column @SerializedName("summary") public String summary;
+    @Column @SerializedName("commissions") public String commissions;
+    @Column @SerializedName("councilmen") public String councilmen;
+    @Column @SerializedName("views") public int views;
+    @Column @SerializedName("attachs") public int attachs;
+    @Column @SerializedName("average") public double average;
+    @Column @SerializedName("rate") public int rate;
 
     public static String getTAG() {
         return TAG;

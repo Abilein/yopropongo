@@ -10,6 +10,22 @@ public class Macrodistrict extends BaseModel {
 
     @PrimaryKey public int id;
     @Column private String name;
-    @ForeignKey private int user;
+//    @ForeignKey private int user;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

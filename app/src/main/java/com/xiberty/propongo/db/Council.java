@@ -7,25 +7,21 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-/**
- * Created by growcallisaya on 2/5/17.
- */
-
 @Table(database = AppDatabase.class)
 public class Council extends BaseModel{
 
     @PrimaryKey
-    @SerializedName("id") @Expose public int id;
+    @SerializedName("id") public int id;
 
-    @Column @SerializedName("name") @Expose public String name;
-    @Column @SerializedName("department") @Expose public String department;
-    @Column @SerializedName("creation_date") @Expose public String creation_date;
-    @Column @SerializedName("president") @Expose public int president;
-    @Column @SerializedName("vice_president") @Expose public int vice_president;
-    @Column @SerializedName("secretary") @Expose public int secretary;
-    @Column @SerializedName("vocal_a") @Expose public int vocal_a;
-    @Column @SerializedName("vocal_b") @Expose public int vocal_b;
-    @Column @SerializedName("logo") @Expose public String logo;
+    @Column @SerializedName("name") public String name;
+    @Column @SerializedName("department") public String department;
+    @Column @SerializedName("creation_date") public String creation_date;
+    @Column @SerializedName("president") public int president;
+    @Column @SerializedName("vice_president") public int vice_president;
+    @Column @SerializedName("secretary") public int secretary;
+    @Column @SerializedName("vocal_a") public int vocal_a;
+    @Column @SerializedName("vocal_b") public int vocal_b;
+    @Column @SerializedName("logo") public String logo;
 
     public int getId() {
         return id;

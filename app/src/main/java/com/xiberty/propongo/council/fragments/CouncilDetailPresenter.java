@@ -24,9 +24,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by growcallisaya on 3/5/17.
- */
 
 public class CouncilDetailPresenter implements CouncilDetailContract.Presenter {
     private CouncilService mService;
