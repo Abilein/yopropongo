@@ -30,6 +30,8 @@ import com.xiberty.propongo.commission.fragments.CommissionFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.council.fragments.CouncilDetailFragment;
+import com.xiberty.propongo.councilman.fragments.InboxFragment;
+import com.xiberty.propongo.councilman.fragments.ProposalFragment;
 import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.credentials.LoginActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
@@ -100,19 +102,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void showMenu(long identifier) {
         if(identifier==Menues.INBOX.getID()){
-            setContainer(new ProfileFragment());
+            setContainer(new InboxFragment());
         } else if(identifier==Menues.PROFILE.getID()){
             setContainer(new ProfileFragment());
         } else if(identifier==Menues.COUNCIL.getID()){
             setContainer(new CouncilDetailFragment());
         } else if(identifier==Menues.COMISSIONS.getID()){
+
             CommissionFragment commissions = new CommissionFragment();
             Bundle bcomm = new Bundle();
             bcomm.putBoolean(Constants.KEY_IS_ALONE, true);
             commissions.setArguments(bcomm);
             setContainer(commissions);
+
         } else if(identifier==Menues.PROPOSAL.getID()){
-            setContainer(new AboutFragment());
+            setContainer(new ProposalFragment());
         } else if(identifier==Menues.SETTINGS.getID()){
             setContainer(new SettingsFragment());
         } else if(identifier==Menues.ABOUT.getID()){

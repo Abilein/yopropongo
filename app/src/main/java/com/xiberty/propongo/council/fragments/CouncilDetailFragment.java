@@ -19,6 +19,7 @@ import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
+import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.council.CouncilService;
 import com.xiberty.propongo.council.adapters.PageAdapter;
@@ -31,11 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-/**
- * Created by growcallisaya on 3/5/17.
- */
-
-public class CouncilDetailFragment extends Fragment implements CouncilDetailContract.View{
+public class CouncilDetailFragment extends ToolbarBaseFragment implements CouncilDetailContract.View{
     private static final String TAG = CouncilDetailFragment.class.getSimpleName();
     private SparseArray<UIUtils.PageItem> pages = new SparseArray<UIUtils.PageItem>();
 
@@ -72,7 +69,7 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
         context = rootView.getContext();
 
         ButterKnife.bind(this, rootView);
-        setToolbar();
+        setToolbar(null, null);
         setTabs();
 
 //        CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
@@ -92,7 +89,7 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
         if (savedInstanceState == null) {
             //SET TABS
             pages.append(CouncilDetailFragment.COMMISSIONS_FRAGMENT, new UIUtils.PageItem(
-//                    new CommissionFragment(),
+//                    new InboxFragment(),
                     new ProfileFragment(),
                     getResources().getString(R.string.tab_commissions)));
             pages.append(CouncilDetailFragment.DIRECTIVE_FRAGMENT, new UIUtils.PageItem(
@@ -107,11 +104,6 @@ public class CouncilDetailFragment extends Fragment implements CouncilDetailCont
         }
     }
 
-    private void setToolbar() {
-        toolbar.setBackground(getResources().getDrawable(R.drawable.background_toolbar_invisible));
-        toolbar.setVisibility(View.GONE);
-        toolbar.setTitle("");
-    }
 
     /**
      * Methods from CouncilDetailContract.View

@@ -26,9 +26,9 @@ import retrofit2.Response;
 
 
 public class CouncilDetailPresenter implements CouncilDetailContract.Presenter {
+
     private CouncilService mService;
     private CouncilDetailFragment mView;
-    private CouncilDetailRepository mRepository;
     private String TAG = CouncilDetailPresenter.class.getSimpleName();
 
     public CouncilDetailPresenter(CouncilDetailFragment mView, CouncilService mService) {
