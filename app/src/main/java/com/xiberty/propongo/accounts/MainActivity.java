@@ -26,12 +26,12 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
-import com.xiberty.propongo.commission.fragments.CommissionFragment;
+import com.xiberty.propongo.councils.fragments.CommissionsFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
-import com.xiberty.propongo.council.fragments.CouncilDetailFragment;
-import com.xiberty.propongo.councilman.fragments.InboxFragment;
-import com.xiberty.propongo.councilman.fragments.ProposalFragment;
+import com.xiberty.propongo.councils.fragments.DirectiveFragment;
+import com.xiberty.propongo.councils.fragments.InboxFragment;
+import com.xiberty.propongo.councils.fragments.ProposalsFragment;
 import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.credentials.LoginActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
@@ -106,17 +106,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         } else if(identifier==Menues.PROFILE.getID()){
             setContainer(new ProfileFragment());
         } else if(identifier==Menues.COUNCIL.getID()){
-            setContainer(new CouncilDetailFragment());
+            setContainer(new DirectiveFragment());
         } else if(identifier==Menues.COMISSIONS.getID()){
 
-            CommissionFragment commissions = new CommissionFragment();
+            CommissionsFragment commissions = new CommissionsFragment();
             Bundle bcomm = new Bundle();
             bcomm.putBoolean(Constants.KEY_IS_ALONE, true);
             commissions.setArguments(bcomm);
             setContainer(commissions);
 
         } else if(identifier==Menues.PROPOSAL.getID()){
-            setContainer(new ProposalFragment());
+            setContainer(new ProposalsFragment());
         } else if(identifier==Menues.SETTINGS.getID()){
             setContainer(new SettingsFragment());
         } else if(identifier==Menues.ABOUT.getID()){
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         //YoPropongo Menu Items
         PrimaryDrawerItem MenuInbox = new PrimaryDrawerItem().withName("Buzon de Entrada").withIdentifier(Menues.INBOX.id).withIcon(R.drawable.ic_inbox);
         PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem().withName("Perfil").withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
-        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Consejo").withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
+        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Directiva").withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
         PrimaryDrawerItem MenuComissions = new PrimaryDrawerItem().withName("Comisiones").withIdentifier(Menues.COMISSIONS.id).withIcon(R.drawable.ic_commissions);
         PrimaryDrawerItem MenuProposals = new PrimaryDrawerItem().withName("Propuestas").withIdentifier(Menues.PROPOSAL.id).withIcon(R.drawable.ic_proposals);
         PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem().withName("Ajustes").withIdentifier(Menues.SETTINGS.id).withIcon(R.drawable.ic_settings);

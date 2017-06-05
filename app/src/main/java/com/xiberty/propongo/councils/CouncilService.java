@@ -1,4 +1,4 @@
-package com.xiberty.propongo.council;
+package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.db.Commission;

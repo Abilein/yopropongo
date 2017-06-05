@@ -1,7 +1,7 @@
-package com.xiberty.propongo.councilman.fragments;
+package com.xiberty.propongo.councils.fragments;
 
 
-public class ProposalContract {
+public class ProposalsContract {
 
     public interface Presenter{
 //        void getCommissionsFromDB();

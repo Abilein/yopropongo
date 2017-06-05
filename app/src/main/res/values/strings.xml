@@ -87,6 +87,15 @@
     <string name="menu_email">Email</string>
 
 
+    <!-- SIDEBAR MENUES -->
+    <string name="menu_inbox">Inbox</string>
+    <string name="menu_directive">Directiva</string>
+    <string name="menu_commisions">Comisiones</string>
+    <string name="menu_proposals">Propuestas</string>
+
+
+
+
     <!-- Errors -->
     <string name="error_default">Error inesperado</string>
     <string name="error_invalid_application">Aplicación inválida</string>
@@ -149,6 +158,9 @@
     <string name="pref_every_half">Dos veces al día</string>
     <string name="pref_every_day">Cada día</string>
     <string name="pref_every_week">Cada semana</string>
+
+
+
 
 
     <!-- CREDITS -->

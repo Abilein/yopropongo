@@ -63,7 +63,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".council.CouncilManDetailActivity" />
+        <activity android:name=".councils.CouncilManDetailActivity" />
 
         <service android:name=".sync.AppAuthenticatorService">
             <intent-filter>
@@ -88,7 +88,7 @@
                 android:resource="@xml/sync_adapter" />
         </service>
 
-        <activity android:name=".commission.CommissionDetailActivity"></activity>
+        <activity android:name=".councils.CommissionDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.xiberty.propongo.councilman.fragments;
+package com.xiberty.propongo.councils.fragments;
 
 import com.xiberty.propongo.db.Commission;
 

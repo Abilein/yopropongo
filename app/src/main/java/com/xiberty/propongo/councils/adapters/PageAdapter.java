@@ -1,4 +1,4 @@
-package com.xiberty.propongo.council.adapters;
+package com.xiberty.propongo.councils.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

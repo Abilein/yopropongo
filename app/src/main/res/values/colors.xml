@@ -9,23 +9,24 @@
   <color name="colorAccentAltern">#448AFF</color>
   <color name="colorAccentAlternLight">#33B5E5</color>
 
-    <color name="primaryText">#212121</color>
-    <color name="textIcons">#FFF</color>
-    <color name="secondaryText">#757575</color>
-    <color name="divider">#BDBDBD</color>
-    <color name="floralWhite">#fffffaf0</color>
+  <color name="primaryText">#212121</color>
+  <color name="textIcons">#FFF</color>
+  <color name="secondaryText">#757575</color>
+  <color name="divider">#BDBDBD</color>
+  <color name="floralWhite">#fffffaf0</color>
 
 
 <!-- Social Networks -->
-    <color name="facebook_default">#3b5998</color>
-    <color name="facebook_focus">#6183d2</color>
+  <color name="facebook_default">#3b5998</color>
+  <color name="facebook_focus">#6183d2</color>
 
 
-    <color name="google">#dd4b39</color>
-    <color name="twitter">#55acee</color>
+  <color name="google">#dd4b39</color>
+  <color name="twitter">#55acee</color>
 
 
 
+  <color name="black">#000000</color>
   <color name="darken">#2E2E2E</color>
   <color name="blue_light">#33B5E5</color>
   <color name="purple_light">#AA66CC</color>

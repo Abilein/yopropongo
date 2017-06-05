@@ -1,10 +1,6 @@
-package com.xiberty.propongo.councilman.fragments;
+package com.xiberty.propongo.councils.fragments;
 
-import com.raizlabs.android.dbflow.sql.language.SQLite;
-import com.xiberty.propongo.council.CouncilService;
-import com.xiberty.propongo.db.Commission;
-
-import java.util.List;
+import com.xiberty.propongo.councils.CouncilService;
 
 
 public class InboxPresenter implements InboxContract.Presenter {

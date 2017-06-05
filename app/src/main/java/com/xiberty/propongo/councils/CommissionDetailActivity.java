@@ -1,4 +1,4 @@
-package com.xiberty.propongo.commission;
+package com.xiberty.propongo.councils;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

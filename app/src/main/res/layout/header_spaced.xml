@@ -5,6 +5,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/paddingBlock"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/LabelSlider.Dark"
         android:layout_width="match_parent"
@@ -15,7 +21,6 @@
             android:id="@+id/headerTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CONCEJO MUNICIPAL"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -25,7 +30,6 @@
             android:id="@+id/headerSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MUNICIPIOS"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="12sp"

@@ -1,8 +1,7 @@
-package com.xiberty.propongo.councilman.fragments;
+package com.xiberty.propongo.councils.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,13 +11,13 @@ import android.view.ViewGroup;
 
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
-import com.xiberty.propongo.council.CouncilService;
+import com.xiberty.propongo.councils.CouncilService;
 
 import butterknife.ButterKnife;
 
 
-public class ProposalFragment extends ToolbarBaseFragment implements InboxContract.CommissionView{
-    private static final String TAG = ProposalFragment.class.getSimpleName();
+public class ProposalsFragment extends ToolbarBaseFragment implements InboxContract.CommissionView {
+    private static final String TAG = ProposalsFragment.class.getSimpleName();
     CouncilService mService;
     InboxPresenter presenter;
     View rootView=null;
@@ -41,11 +40,10 @@ public class ProposalFragment extends ToolbarBaseFragment implements InboxContra
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
+        rootView = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, rootView);
 
-        //Toolbar
-        setToolbar(null, "Propuestas");
+        setHeader(rootView, getString(R.string.menu_proposals).toUpperCase(), "CONCEJO MUNICIPAL DE LA PAZ");
 
         return rootView;
     }

@@ -1,4 +1,4 @@
-package com.xiberty.propongo.council.models;
+package com.xiberty.propongo.councils.models;
 
 import com.xiberty.propongo.db.CouncilMan;
 
