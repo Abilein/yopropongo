@@ -9,9 +9,21 @@ import android.content.Context;
 import android.content.SyncResult;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.api.WS;
+import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.database.Commission;
+import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.CouncilMan;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
 
 public class AppSyncAdapter extends AbstractThreadedSyncAdapter {
     public static final String TAG = AppSyncAdapter.class.getSimpleName();
@@ -29,6 +41,34 @@ public class AppSyncAdapter extends AbstractThreadedSyncAdapter {
 
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
+
+        CouncilService councilService = WS.makeService(CouncilService.class);
+
+        Log.e("COUNCIL>>>>", "RUN PERFORM");
+
+
+        try {
+            int pageNumber = 1;
+            Call<List<Council>> call = councilService.getCouncils();
+            List<Council> councils = call.execute().body();
+
+            for (Council council: councils) {
+                Log.e("COUNCIL>>>>", council.toString());
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        Call<List<Commission>> getCommissions();
+//
+//
+//        Call<List<CouncilMan>> getCouncilMan();
+
+
 
 //        Log.e(TAG, "->>> Starting SYNC <<<-");
 //        ArrayList<PageResponse> pages;

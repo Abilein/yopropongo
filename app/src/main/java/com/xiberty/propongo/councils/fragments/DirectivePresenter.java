@@ -1,28 +1,7 @@
 package com.xiberty.propongo.councils.fragments;
 
 
-import android.content.Context;
-import android.util.Log;
-
-import com.raizlabs.android.dbflow.config.FlowManager;
-import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
-import com.raizlabs.android.dbflow.structure.database.transaction.ProcessModelTransaction;
-import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
-import com.xiberty.propongo.contrib.api.FormattedResp;
-import com.xiberty.propongo.contrib.api.MessageManager;
-import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
-import com.xiberty.propongo.db.AppDatabase;
-import com.xiberty.propongo.db.Commission;
-import com.xiberty.propongo.db.Council;
-import com.xiberty.propongo.db.CouncilMan;
-import com.xiberty.propongo.db.Proposal;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class DirectivePresenter implements DirectiveContract.Presenter {

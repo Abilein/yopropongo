@@ -14,11 +14,22 @@ public class Constants {
     public static final String OAUTH_CREDENTIAL = "oauth_credential";
     public static final String CREDENTIAL_COLLECTION = "credential_collection";
     public static final String USER_PROFILE = APPLICATION_PREFIX  + "_user";
+
     public static final String DATABASE_NAME = "propongo";
     public static final int DATABASE_VERSION = 1;
 
+    public static final int DEFAULT_COUNCIL = 1;
 
-    public static final String SERVER_URL = "http://192.168.0.100:9000";
+    /**
+     * PREFERENCE KEYS
+     **/
+
+    public static final String COUNCIL_COLLECTION = "councils";
+    public static final String COUNCIL_SINGLE = "council";
+
+
+    public static final String SERVER_URL = "http://192.168.43.190:9000";
+//    public static final String SERVER_URL = "http://192.168.0.100:9000";
     public static final String CLIENT_ID = "bgzxrqgTnmCzHxq5CJTusph5g7WpvhQmHLGQQehH";
     public static final String CLIENT_SECRET = "L7B0YRVoIy62a8PYCZc2r3VGPQscujFW6nwV97WV7UpVlMNVHEsV5PIyCs7bWnEGZV3XKZhoTYjq6fysMWRNhTq8aSBCjFBjwW6v57ccXViWmu0DeTC7111aNlHa0XPU";
 
@@ -51,12 +62,12 @@ public class Constants {
 
 
     // CouncilOLD
-    public static final String COUNCIL_ENDPOINT = "/api/council/";
-    public static final String COMISSIONS_ENDPOINT = "/api/council/commissions/";
-    public static final String COUNCILMEN_ENDPOINT = "/api/council/councilmen/";
-    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/council/councilmen/inbox/";
-    public static final String PROPOSALS_ENDPOINT = "/api/council/proposals/";
-    public static final String CONTACTS_ENDPOINT = "/api/council/contacts/";
+    public static final String COUNCIL_ENDPOINT = "/api/councils/";
+    public static final String COMISSIONS_ENDPOINT = "/api/councils/commissions/";
+    public static final String COUNCILMEN_ENDPOINT = "/api/councils/councilmen/";
+    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/councils/councilmen/inbox/";
+    public static final String PROPOSALS_ENDPOINT = "/api/councils/proposals/";
+    public static final String CONTACTS_ENDPOINT = "/api/councils/contacts/";
 
     /**
      * KEYS BETWEEN UI

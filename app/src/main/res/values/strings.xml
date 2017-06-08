@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Yo Propongo</string>
-    <string name="sync_account_type" translatable="false">propongo.xiberty.com</string>
+    <string name="sync_account_type" translatable="false">com.xiberty.propongo</string>
     <string name="content_authority">com.xiberty.propongo</string>
 
     <!--Facebook-->
@@ -64,6 +64,7 @@
     <string name="button_yes">Si</string>
     <string name="button_no">No</string>
     <string name="button_save">Guardar</string>
+    <string name="button_select">Seleccionar</string>
 
     <string name="button_cancel">CANCELAR</string>
 
@@ -131,6 +132,7 @@
     <string name="title_exit">Salir</string>
     <string name="title_edit_password">Editar contraseña</string>
     <string name="title_edit_email">Editar correo electrónico</string>
+    <string name="title_select_council">Elije un Concejo Municipal</string>
 
     <!-- VALIDATION -->
     <string name="validation_required">Este campo es requerido</string>

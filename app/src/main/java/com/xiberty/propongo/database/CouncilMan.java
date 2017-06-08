@@ -1,8 +1,7 @@
-package com.xiberty.propongo.db;
+package com.xiberty.propongo.database;
 
 import android.content.Context;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;

@@ -1,9 +1,5 @@
-package com.xiberty.propongo.db;
+package com.xiberty.propongo.database;
 
-
-import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.PrimaryKey;
-import com.raizlabs.android.dbflow.annotation.Table;
 
 //@Table(database = AppDatabase.class)
 public class Suggest {

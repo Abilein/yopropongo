@@ -15,13 +15,11 @@ import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.councils.CouncilManDetailActivity;
 import com.xiberty.propongo.councils.models.DirectiveItem;
-import com.xiberty.propongo.db.CouncilMan;
+import com.xiberty.propongo.database.CouncilMan;
 
 import java.util.ArrayList;
 
-/**
- * Created by growcallisaya on 4/5/17.
- */
+
 
 public class DirectiveAdapter extends BaseAdapter {
     private static final String TAG = DirectiveAdapter.class.getSimpleName();

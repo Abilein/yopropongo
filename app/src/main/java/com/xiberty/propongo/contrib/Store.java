@@ -3,12 +3,18 @@ package com.xiberty.propongo.contrib;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.contrib.api.OAuthCollection;
 import com.xiberty.propongo.credentials.responses.OAuthCredential;
 import com.xiberty.propongo.credentials.responses.UserProfile;
+import com.xiberty.propongo.database.Council;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Store {
 
@@ -149,6 +155,36 @@ public class Store {
         String profileStr = Store.getString(context, Constants.USER_PROFILE);
         return (profileStr.length() > 0);
     }
+
+
+    /**
+    *  SETTINGS MANAGEMENT
+    **/
+
+    public static void saveCouncils(Context context, List<Council> councils){
+        Gson gson = new Gson();
+        String councilsStr = gson.toJson(councils);
+        Store.putString(context, Constants.COUNCIL_COLLECTION, councilsStr);
+    }
+
+    public static ArrayList<Council> getCouncils(Context context){
+        Gson gson = new Gson();
+        String councilsStr = Store.getString(context, Constants.COUNCIL_COLLECTION);
+        return gson.fromJson(councilsStr, new TypeToken<ArrayList<Council>>() {}.getType());
+    }
+
+    public static void setDefaultCouncil(Context context, Council council){
+        Gson gson = new Gson();
+        String councilStr = gson.toJson(council);
+        Store.putString(context, Constants.COUNCIL_SINGLE, councilStr);
+    }
+
+    public static Council getDefaultCouncil(Context context){
+        Gson gson = new Gson();
+        String councilStr = Store.getString(context, Constants.COUNCIL_SINGLE);
+        return gson.fromJson(councilStr, Council.class);
+    }
+
 
 }
 

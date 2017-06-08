@@ -1,6 +1,6 @@
-package com.xiberty.propongo.db;
+package com.xiberty.propongo.database;
 
-import com.google.gson.annotations.Expose;
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -23,83 +23,67 @@ public class Council extends BaseModel{
     @Column @SerializedName("vocal_b") public int vocal_b;
     @Column @SerializedName("logo") public String logo;
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
+    public int id() {return id;}
+    public String name() {
         return name;
     }
-
-    public String getDepartment() {
+    public String department() {
         return department;
     }
-
-    public String getCreation_date() {
+    public String creationDate() {
         return creation_date;
     }
-
-    public int getPresident() {
+    public int president() {
         return president;
     }
-
-    public int getVice_president() {
+    public int vicePresident() {
         return vice_president;
     }
-
-    public int getSecretary() {
+    public int secretary() {
         return secretary;
     }
-
-    public int getVocal_a() {
+    public int vocalA() {
         return vocal_a;
     }
-
-    public int getVocal_b() {
+    public int vocalB() {
         return vocal_b;
     }
-
-    public String getLogo() {
+    public String logo() {
         return logo;
     }
 
-    public void setId(int id) {
+    public void id(int id) {
         this.id = id;
     }
-
-    public void setName(String name) {
+    public void name(String name) {
         this.name = name;
     }
-
-    public void setDepartment(String department) {
+    public void department(String department) {
         this.department = department;
     }
-
-    public void setCreation_date(String creation_date) {
+    public void creationDate(String creation_date) {
         this.creation_date = creation_date;
     }
-
-    public void setPresident(int president) {
+    public void president(int president) {
         this.president = president;
     }
-
-    public void setVice_president(int vice_president) {
+    public void vicePresident(int vice_president) {
         this.vice_president = vice_president;
     }
-
-    public void setSecretary(int secretary) {
-        this.secretary = secretary;
-    }
-
-    public void setVocal_a(int vocal_a) {
+    public void secretary(int secretary) {this.secretary = secretary;}
+    public void vocalA(int vocal_a) {
         this.vocal_a = vocal_a;
     }
-
-    public void setVocal_b(int vocal_b) {
+    public void vocalB(int vocal_b) {
         this.vocal_b = vocal_b;
     }
-
-    public void setLogo(String logo) {
+    public void logo(String logo) {
         this.logo = logo;
+    }
+
+
+    public String toString(){
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup_window"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center"
+    android:background="@color/white"
+    android:elevation="24dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:background="@color/colorPrimaryLight"
+        android:paddingBottom="16sp"
+        android:paddingTop="16sp"
+        android:text="@string/title_select_council"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spnCouncils"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24sp"
+        android:layout_marginLeft="16sp"
+        android:layout_marginRight="16sp" />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnSelect"
+
+        android:layout_width="match_parent"
+        android:layout_height="46sp"
+        app:fb_defaultColor="@color/colorAccent"
+        app:fb_focusColor="@color/colorAccentLight"
+
+        app:fb_fontIconResource="&#xf058;"
+        app:fb_fontIconSize="@dimen/text_big"
+        app:fb_iconPaddingRight="@dimen/spacing_normal_extra"
+        app:fb_iconPosition="left"
+        app:fb_radius="0sp"
+
+        app:fb_text="@string/button_select"
+        app:fb_textColor="@color/white"
+        app:fb_textSize="@dimen/text_regular"
+        tools:targetApi="lollipop" />
+
+</LinearLayout>

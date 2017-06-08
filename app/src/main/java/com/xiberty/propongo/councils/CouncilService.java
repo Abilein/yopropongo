@@ -1,10 +1,10 @@
 package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
-import com.xiberty.propongo.db.Commission;
-import com.xiberty.propongo.db.Council;
-import com.xiberty.propongo.db.CouncilMan;
-import com.xiberty.propongo.db.Proposal;
+import com.xiberty.propongo.database.Commission;
+import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.CouncilMan;
+import com.xiberty.propongo.database.Proposal;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface CouncilService {
@@ -26,10 +27,10 @@ public interface CouncilService {
     Call<List<Council>> getCouncils();
 
     @GET(Constants.COMISSIONS_ENDPOINT)
-    Call<List<Commission>> getCommissions();
+    Call<List<Commission>> getCommissions(@Query("page") String page);
 
     @GET(Constants.COUNCILMEN_ENDPOINT)
-    Call<List<CouncilMan>> getCouncilMan();
+    Call<List<CouncilMan>> getCouncilMan(@Query("page") String page);
 
     @GET(Constants.COUNCILMEN_INBOX_ENDPOINT)
     Call<Proposal> getCouncilMenInbox();

@@ -2,13 +2,20 @@
 package com.xiberty.propongo.accounts;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.login.LoginManager;
@@ -23,9 +30,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.accounts.forms.CouncilForm;
+import com.xiberty.propongo.accounts.forms.TakePhotoForm;
 import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
+import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.councils.fragments.CommissionsFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
@@ -35,6 +45,11 @@ import com.xiberty.propongo.councils.fragments.ProposalsFragment;
 import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.credentials.LoginActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
+import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.sync.AppSyncAdapter;
+import com.xiberty.propongo.sync.AppSyncService;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,8 +84,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public Drawer drawer;
     MainContract.Presenter presenter;
+
     AccountService accountService;
     CredentialService credentialService;
+    CouncilService councilService;
+
+    CouncilForm councilForm;
 
 
     @Override
@@ -80,11 +99,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
 
         setToolbar();
-        // TODO Validar si la sesion esta vigente
+
+        // Service for account
         accountService = WS.makeService(AccountService.class, Store.getCredential(this));
         credentialService = WS.makeService(CredentialService.class);
-        presenter = new MainPresenter(this, accountService, credentialService);
+        councilService = WS.makeService(CouncilService.class);
+        presenter = new MainPresenter(this, accountService, credentialService, councilService);
+
+        // Service for Syncing
         setUserProfile();
+        setCouncil();
+
     }
 
 
@@ -98,6 +123,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void setUserProfile(){
         UserProfile profile = Store.getProfile(this);
         setDrawer(profile);
+    }
+
+    public void  setCouncil(){
+
+        boolean hasCouncil = false;
+
+        if (!hasCouncil) {
+            presenter.getCouncils(getApplicationContext());
+        } else {
+//            showCouncils();
+        }
+
     }
 
     private void showMenu(long identifier) {
@@ -233,6 +270,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     }
 
+    public void showSpinner(){
+
+    }
+
 
     public void logout() {
         new MaterialDialog.Builder(this)
@@ -261,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void logoutError(String message) {
+    public void showError(String message) {
         Snacky.builder()
                 .setActivty(MainActivity.this)
                 .setText(message)
@@ -269,6 +310,32 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 .error()
                 .show();
     }
+
+
+    @Override
+    public void showCouncils(List<Council> councils) {
+
+        Store.saveCouncils(getBaseContext(), councils);
+
+        View view = getLayoutInflater ().inflate (R.layout.sheet_select_council, null);
+        BottomSheetDialog sheet = new BottomSheetDialog (
+                MainActivity.this, R.style.Theme_Design_BottomSheetDialog);
+
+        councilForm = new CouncilForm(this, view, sheet, councils);
+        councilForm.show();
+    }
+
+
+    @Override
+    public void councilmenSuccess() {
+
+    }
+
+    @Override
+    public void proposalsSuccess() {
+
+    }
+
 
     @Override
     public void showProgress() {

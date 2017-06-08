@@ -1,4 +1,4 @@
-package com.xiberty.propongo.db;
+package com.xiberty.propongo.database;
 
 import com.raizlabs.android.dbflow.annotation.Database;
 import com.xiberty.propongo.Constants;

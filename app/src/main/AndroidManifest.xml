@@ -88,7 +88,7 @@
                 android:resource="@xml/sync_adapter" />
         </service>
 
-        <activity android:name=".councils.CommissionDetailActivity"></activity>
+        <activity android:name=".councils.CommissionDetailActivity"/>
     </application>
 
 </manifest>

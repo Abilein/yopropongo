@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "com.xiberty.warpp"
+        applicationId "com.xiberty.propongo"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1

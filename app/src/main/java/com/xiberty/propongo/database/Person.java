@@ -1,4 +1,4 @@
-package com.xiberty.propongo.db;
+package com.xiberty.propongo.database;
 
 public class Person {
     public int id;

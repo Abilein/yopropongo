@@ -16,9 +16,7 @@ import retrofit2.Response;
 
 import static junit.framework.Assert.assertTrue;
 
-/**
- * Created by growcallisaya on 19/4/17.
- */
+
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
 public class WarppServiceTest extends BaseTest{

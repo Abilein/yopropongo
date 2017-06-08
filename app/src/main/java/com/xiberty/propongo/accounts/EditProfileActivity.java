@@ -241,6 +241,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
         EditProfileActivityPermissionsDispatcher.requestEditPhotoPermissionsWithCheck(this);
         if(ActivityUtils.hasPermissions(this, permissions)){
+
             View view = getLayoutInflater ().inflate (R.layout.sheet_edit_avatar, null);
             BottomSheetDialog sheet = new BottomSheetDialog (
                     EditProfileActivity.this, R.style.Theme_Design_BottomSheetDialog);

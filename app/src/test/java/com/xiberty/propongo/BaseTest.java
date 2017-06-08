@@ -6,9 +6,6 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.Shadows;
 import org.robolectric.shadows.ShadowApplication;
 
-/**
- * Created by growcallisaya on 19/4/17.
- */
 
 public abstract class BaseTest {
 

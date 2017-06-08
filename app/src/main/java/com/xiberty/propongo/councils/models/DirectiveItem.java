@@ -1,10 +1,6 @@
 package com.xiberty.propongo.councils.models;
 
-import com.xiberty.propongo.db.CouncilMan;
-
-/**
- * Created by growcallisaya on 4/5/17.
- */
+import com.xiberty.propongo.database.CouncilMan;
 
 public class DirectiveItem {
     public CouncilMan councilMan;

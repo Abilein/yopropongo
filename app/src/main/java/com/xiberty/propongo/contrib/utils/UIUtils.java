@@ -2,10 +2,6 @@ package com.xiberty.propongo.contrib.utils;
 
 import android.support.v4.app.Fragment;
 
-/**
- * Created by growcallisaya on 3/5/17.
- */
-
 public class UIUtils {
     /**
      * Metho to receive a fragment
