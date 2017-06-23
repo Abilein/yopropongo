@@ -50,7 +50,7 @@
             <com.xiberty.propongo.contrib.views.XEditText
                 style="@style/Input.Auth"
 
-                android:text="grover"
+                android:text="groverto"
                 android:hint="@string/label_user_or_email"
                 android:maxLength="25"
                 android:drawableLeft="@drawable/ic_profile"
@@ -70,7 +70,7 @@
 
             <com.xiberty.propongo.contrib.views.XEditText
                 style="@style/Input.Auth"
-                android:text="grovergrover"
+                android:text="12345678x"
                 android:hint="@string/label_password"
                 android:drawableLeft="@drawable/ic_lock"
                 android:id="@+id/txtPassword"

@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private static final String TAG = MainActivity.class.getSimpleName();
     AccountHeader accountHeader;
 
+
+
     public enum Menues {
         INBOX(1001),
         PROFILE(1002),
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     CouncilService councilService;
 
     CouncilForm councilForm;
-
+    UserProfile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void setUserProfile(){
         UserProfile profile = Store.getProfile(this);
-        setDrawer(profile);
+        setDrawer(profile,null,null);
     }
 
     public void  setCouncil(){
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         boolean hasCouncil = false;
 
         if (!hasCouncil) {
+
             presenter.getCouncils(getApplicationContext());
         } else {
 //            showCouncils();
@@ -178,24 +181,68 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
 
     @Override
-    public void setDrawer(UserProfile profile) {
+    public void setDrawer(UserProfile profile,List<Council> councils, Council defaulCouncil) {
 
-        final IProfile userProfile = new ProfileDrawerItem()
-                .withName(profile.fullName())
-                .withEmail(profile.email());
+        this.profile = profile;
+        List<Council> councils1 = Store.getCouncils(this);
+        Log.e("MainActivity",councils1+"");
+        if (councils == null){
+            IProfile userProfile = new ProfileDrawerItem()
+                    .withName(profile.fullName())
+                    .withEmail(profile.email());
 
-        if(profile.photo() != null && profile.photo().length() > 0){
-            userProfile.withIcon(profile.photo());
-        } else {
-            userProfile.withIcon(R.drawable.avatar);
+            if(profile.photo() != null && profile.photo().length() > 0){
+                userProfile.withIcon(profile.photo());
+            } else {
+                userProfile.withIcon(R.drawable.avatar);
+            }
+
+            accountHeader = new AccountHeaderBuilder()
+                    .withActivity(this)
+                    .withHeaderBackground(R.drawable.coding)
+                    .addProfiles(userProfile)
+                    .build();
+        }else{
+            //TODO getCoucils from Store
+
+            AccountHeaderBuilder header = new AccountHeaderBuilder()
+                    .withActivity(this)
+                    .withHeaderBackground(R.drawable.coding);
+
+
+            IProfile councilProfile = null;
+            for (Council council : councils){
+                councilProfile = new ProfileDrawerItem()
+                        .withName(council.name())
+                        .withEmail(council.department());
+
+                if (council.logo() !=null && council.logo().length()>0)
+                    councilProfile.withIcon(council.logo());
+                else
+                    councilProfile.withIcon(R.drawable.avatar);
+
+                header.addProfiles(councilProfile);
+            }
+
+            accountHeader = header.build();
+
+            //Mark Council Profile that you've chosen
+
+            IProfile selectedCouncilProfile = new ProfileDrawerItem()
+                    .withName(defaulCouncil.name())
+                    .withEmail(defaulCouncil.department());
+
+            if (defaulCouncil.logo() !=null && defaulCouncil.logo().length()>0)
+                councilProfile.withIcon(defaulCouncil.logo());
+            else
+                councilProfile.withIcon(R.drawable.avatar);
+            accountHeader.setActiveProfile(selectedCouncilProfile);
+
         }
 
 
-        accountHeader = new AccountHeaderBuilder()
-                .withActivity(this)
-                .withHeaderBackground(R.drawable.coding)
-                .addProfiles(userProfile)
-                .build();
+
+
 
 
         //YoPropongo Menu Items
@@ -311,6 +358,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 .show();
     }
 
+    @Override
+    public void setCouncilinDrawer(List<Council> councils, Council defaultCouncil) {
+
+        setDrawer(this.profile,councils,defaultCouncil);
+
+    }
 
     @Override
     public void showCouncils(List<Council> councils) {

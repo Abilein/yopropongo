@@ -14,7 +14,7 @@ public class MainContract {
         void showProgress();
         void hideProgress();
 
-        void setDrawer(UserProfile profile);
+        void setDrawer(UserProfile profile,List<Council> councils,Council defaultCouncil);
 
         void logoutSuccess();
 
@@ -25,7 +25,7 @@ public class MainContract {
 
         void showError(String message);
 
-
+        void setCouncilinDrawer(List<Council> councils,Council council);
     }
 
     public interface Presenter {

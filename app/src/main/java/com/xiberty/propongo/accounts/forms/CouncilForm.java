@@ -33,6 +33,7 @@ public class CouncilForm {
     private BottomSheetDialog sheet;
     private MainActivity activity;
     private Council defaultCouncil;
+    private List<Council> councils;
 
 
     @BindView(R.id.spnCouncils) Spinner spnCouncils;
@@ -41,7 +42,6 @@ public class CouncilForm {
     public CouncilForm(MainActivity activity, View view, BottomSheetDialog sheet, List<Council> councils){
         this.view = view; this.sheet = sheet; this.activity = activity;
         ButterKnife.bind(this, view);
-
 
         this.sheet.setContentView (this.view);
         this.populateCouncils(councils);
@@ -53,9 +53,7 @@ public class CouncilForm {
 
     public void populateCouncils(List<Council> items) {
         ArrayList<Council> councils = new ArrayList<Council>(items);
-
-
-
+        this.councils = councils;
         spnCouncils.setAdapter(new CouncilsSpinnerAdapter(activity, councils));
         spnCouncils.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -74,6 +72,7 @@ public class CouncilForm {
     @OnClick(R.id.btnSelect)
     public void selectCouncil(){
         Store.setDefaultCouncil(activity, defaultCouncil);
+        activity.setCouncilinDrawer(councils,defaultCouncil);
         sheet.dismiss();
     }
 

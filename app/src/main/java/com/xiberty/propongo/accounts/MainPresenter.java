@@ -1,6 +1,7 @@
 package com.xiberty.propongo.accounts;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
@@ -30,6 +31,7 @@ public class MainPresenter implements MainContract.Presenter {
     private AccountService aService;
     private CredentialService cService;
     private CouncilService ccService;
+    private int counter = 0;
 
     public MainPresenter(MainContract.View mView, AccountService aService, CredentialService cService, CouncilService ccService) {
         this.mView = mView;
@@ -92,19 +94,18 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void getCouncils(final Context context) {
 
-
+        mView.showProgress();
         Call<List<Council>> councilsCall = ccService.getCouncils();
         councilsCall.enqueue(new Callback<List<Council>>() {
             @Override
             public void onResponse(Call<List<Council>> call, Response<List<Council>> response) {
-                mView.hideProgress();
-                if (response.isSuccessful()) {
 
+                if (response.isSuccessful()) {
+                    mView.hideProgress();
                     List<Council> councils = response.body();
                     mView.showCouncils(councils);
 
                 } else {
-
                     FormattedResp error = ParserError.parse(response);
                     String errorMessage = MessageManager.getMessage(context, error.code());
                     mView.showError(errorMessage);
@@ -114,20 +115,10 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public void onFailure(Call<List<Council>> call, Throwable t) {
                 mView.hideProgress();
-
-                if(Excepts.isConnectionFailure(t)) {
-
-                    // TODO Construir un servicio que elimine los AcessToken PASADOS
-
-                    OAuthCollection oauthCollection = Store.getOAuthCollection(context);
-                    oauthCollection.credentials().add(Store.getAccessToken(context));
-                    Store.saveOAuthCollection(context, oauthCollection);
-
-                    String errorMessage = MessageManager.getMessage(context, MessageManager.WITHOUT_CONNECTION);
-                    Store.removeCredential(context);
-                    mView.showError(errorMessage);
-                    mView.logoutSuccess();
-
+                Log.e("MainPresenter",t.getCause()+"" );
+                if (counter<2){
+                    counter++;
+                    getCouncils(context);
                 }
 
                 // TODO VALIDAR CUANDO EN EL SERVER SALE UN ERROR 500, 403
