@@ -49,6 +49,7 @@ import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.sync.AppSyncAdapter;
 import com.xiberty.propongo.sync.AppSyncService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void setUserProfile(){
         UserProfile profile = Store.getProfile(this);
-        setDrawer(profile,null,null);
+        setDrawer(profile);
     }
 
     public void  setCouncil(){
@@ -181,11 +182,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
 
     @Override
-    public void setDrawer(UserProfile profile,List<Council> councils, Council defaulCouncil) {
+    public void setDrawer(UserProfile profile) {
 
         this.profile = profile;
-        List<Council> councils1 = Store.getCouncils(this);
-        Log.e("MainActivity",councils1+"");
+
+        ArrayList<Council> councils = Store.getCouncils(this);
         if (councils == null){
             IProfile userProfile = new ProfileDrawerItem()
                     .withName(profile.fullName())
@@ -203,39 +204,39 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     .addProfiles(userProfile)
                     .build();
         }else{
-            //TODO getCoucils from Store
+
+            Council defaulCouncil = Store.getDefaultCouncil(this);
 
             AccountHeaderBuilder header = new AccountHeaderBuilder()
                     .withActivity(this)
                     .withHeaderBackground(R.drawable.coding);
 
-
-            IProfile councilProfile = null;
             for (Council council : councils){
-                councilProfile = new ProfileDrawerItem()
-                        .withName(council.name())
-                        .withEmail(council.department());
-
-                if (council.logo() !=null && council.logo().length()>0)
-                    councilProfile.withIcon(council.logo());
-                else
-                    councilProfile.withIcon(R.drawable.avatar);
+                if (!council.name().equals(defaulCouncil.name())){
+                    IProfile councilProfile = new ProfileDrawerItem()
+                            .withName(council.name())
+                            .withEmail(council.department());
+                    if (council.logo() !=null && council.logo().length()>0)
+                        councilProfile.withIcon(council.logo());
+                    else
+                        councilProfile.withIcon(R.drawable.avatar);
 
                 header.addProfiles(councilProfile);
+                }
             }
-
-            accountHeader = header.build();
 
             //Mark Council Profile that you've chosen
 
             IProfile selectedCouncilProfile = new ProfileDrawerItem()
                     .withName(defaulCouncil.name())
                     .withEmail(defaulCouncil.department());
-
             if (defaulCouncil.logo() !=null && defaulCouncil.logo().length()>0)
-                councilProfile.withIcon(defaulCouncil.logo());
+                selectedCouncilProfile.withIcon(defaulCouncil.logo());
             else
-                councilProfile.withIcon(R.drawable.avatar);
+                selectedCouncilProfile.withIcon(R.drawable.avatar);
+
+            header.addProfiles(selectedCouncilProfile);
+            accountHeader = header.build();
             accountHeader.setActiveProfile(selectedCouncilProfile);
 
         }
@@ -317,11 +318,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     }
 
-    public void showSpinner(){
-
-    }
-
-
     public void logout() {
         new MaterialDialog.Builder(this)
                 .title(R.string.title_exit)
@@ -359,10 +355,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void setCouncilinDrawer(List<Council> councils, Council defaultCouncil) {
-
-        setDrawer(this.profile,councils,defaultCouncil);
-
+    public void setCouncilinDrawer() {
+        setDrawer(this.profile);
     }
 
     @Override

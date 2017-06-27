@@ -28,8 +28,7 @@ public class Constants {
     public static final String COUNCIL_SINGLE = "council";
 
 
-//    public static final String SERVER_URL = "http://192.168.43.190:9000";
-    public static final String SERVER_URL = "http://192.168.0.102:9000";
+    public static final String SERVER_URL = "http://192.168.0.102:8000";
     public static final String CLIENT_ID = "bgzxrqgTnmCzHxq5CJTusph5g7WpvhQmHLGQQehH";
     public static final String CLIENT_SECRET = "L7B0YRVoIy62a8PYCZc2r3VGPQscujFW6nwV97WV7UpVlMNVHEsV5PIyCs7bWnEGZV3XKZhoTYjq6fysMWRNhTq8aSBCjFBjwW6v57ccXViWmu0DeTC7111aNlHa0XPU";
 
@@ -62,12 +61,12 @@ public class Constants {
 
 
     // CouncilOLD
-    public static final String COUNCIL_ENDPOINT = "/api/council/";
-    public static final String COMISSIONS_ENDPOINT = "/api/council/commissions/";
-    public static final String COUNCILMEN_ENDPOINT = "/api/council/councilmen/";
-    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/council/councilmen/inbox/";
-    public static final String PROPOSALS_ENDPOINT = "/api/council/proposals/";
-    public static final String CONTACTS_ENDPOINT = "/api/council/contacts/";
+    public static final String COUNCIL_ENDPOINT = "/api/councils/";
+    public static final String COMISSIONS_ENDPOINT = "/api/councils/commissions/";
+    public static final String COUNCILMEN_ENDPOINT = "/api/councils/councilmen/";
+    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/councils/councilmen/inbox/";
+    public static final String PROPOSALS_ENDPOINT = "/api/councils/proposals/";
+    public static final String CONTACTS_ENDPOINT = "/api/councils/contacts/";
 
     /**
      * KEYS BETWEEN UI

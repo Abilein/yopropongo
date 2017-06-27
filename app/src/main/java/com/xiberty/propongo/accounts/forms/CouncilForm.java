@@ -4,6 +4,7 @@ package com.xiberty.propongo.accounts.forms;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.design.widget.BottomSheetDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -71,8 +72,7 @@ public class CouncilForm {
 
     @OnClick(R.id.btnSelect)
     public void selectCouncil(){
-        Store.setDefaultCouncil(activity, defaultCouncil);
-        activity.setCouncilinDrawer(councils,defaultCouncil);
+        activity.setCouncilinDrawer();
         sheet.dismiss();
     }
 
