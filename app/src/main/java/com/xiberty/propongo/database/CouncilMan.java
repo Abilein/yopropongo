@@ -23,7 +23,10 @@ public class CouncilMan extends BaseModel {
     *       town_council (string): Municipio,
     *       agrupation (string) = ['MAS' or 'SOL_BO' or 'UN']: Escoja su partido politico,
     *       links (string),
-    *       macrodistrict (string)
+    *       macrodistrict {
+    *         "id": 8,
+    *         "name": "Zongo - Hampaturi"
+    *       }
     *    }
     * */
 
@@ -39,7 +42,7 @@ public class CouncilMan extends BaseModel {
     @Column @SerializedName("bio") public String bio;
     @Column @SerializedName("town_council") public int town_council;
     @Column @SerializedName("agrupation") public String agrupation;
-    @Column @SerializedName("macrodistrict") public int macrodistrict;
+    @Column @SerializedName("macrodistrict") public Macrodistrict macrodistrict;
 
     /**
      * OBJECT GETTERS
@@ -76,7 +79,7 @@ public class CouncilMan extends BaseModel {
         return agrupation;
     }
 
-    public int getMacrodistrict() {
+    public Macrodistrict getMacrodistrict() {
         return macrodistrict;
     }
 
@@ -148,7 +151,7 @@ public class CouncilMan extends BaseModel {
         this.agrupation = agrupation;
     }
 
-    public void setMacrodistrict(int macrodistrict) {
+    public void setMacrodistrict(Macrodistrict macrodistrict) {
         this.macrodistrict = macrodistrict;
     }
 }

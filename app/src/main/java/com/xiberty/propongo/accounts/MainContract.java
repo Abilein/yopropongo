@@ -26,6 +26,8 @@ public class MainContract {
         void showError(String message);
 
         void setCouncilinDrawer();
+
+
     }
 
     public interface Presenter {
@@ -34,6 +36,7 @@ public class MainContract {
         void getCouncils(Context context);
         void getCouncilmen(Context context);
         void getProposals(Context context);
+        void getCommissions(Context context);
     }
     
 }

@@ -210,6 +210,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }else{
 
             Council defaulCouncil = Store.getDefaultCouncil(this);
+            presenter.getCouncilmen(this);
+            presenter.getCommissions(this);
+            presenter.getProposals(this);
 
             AccountHeaderBuilder header = new AccountHeaderBuilder()
                     .withActivity(this)

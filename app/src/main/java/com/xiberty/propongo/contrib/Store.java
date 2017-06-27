@@ -11,7 +11,9 @@ import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.contrib.api.OAuthCollection;
 import com.xiberty.propongo.credentials.responses.OAuthCredential;
 import com.xiberty.propongo.credentials.responses.UserProfile;
+import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.CouncilMan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,6 +187,39 @@ public class Store {
         return gson.fromJson(councilStr, Council.class);
     }
 
+    /**
+     *  SETTINGS COUNCLIMEN
+     **/
+
+    public static void saveCouncilman(Context context, List<CouncilMan> councilmen){
+        Gson gson = new Gson();
+        String councilmenStr = gson.toJson(councilmen);
+        Store.putString(context, Constants.COUNCILMAN_COLLECTION, councilmenStr);
+    }
+
+    public static ArrayList<CouncilMan> getCouncilman(Context context){
+        Gson gson = new Gson();
+        String councilmenStr = Store.getString(context,Constants.COUNCILMAN_COLLECTION);
+        return gson.fromJson(councilmenStr,new TypeToken<ArrayList<CouncilMan>>() {}.getType());
+
+    }
+
+    /**
+     *  SETTINGS COMMISSIONS
+     **/
+
+    public static void saveCommissions(Context context, List<Commission> commissions){
+        Gson gson = new Gson();
+        String commissionStr = gson.toJson(commissions);
+        Store.putString(context, Constants.COMISSIONS_ENDPOINT, commissionStr);
+    }
+
+    public static ArrayList<Commission> getCommissions(Context context){
+        Gson gson = new Gson();
+        String commissionStr = Store.getString(context,Constants.COMISSIONS_ENDPOINT);
+        return gson.fromJson(commissionStr,new TypeToken<ArrayList<Commission>>() {}.getType());
+
+    }
 
 }
 

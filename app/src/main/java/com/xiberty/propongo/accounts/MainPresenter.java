@@ -14,11 +14,12 @@ import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.credentials.responses.UserProfile;
+import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.Council_Table;
 
 import java.util.List;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,24 +117,62 @@ public class MainPresenter implements MainContract.Presenter {
             public void onFailure(Call<List<Council>> call, Throwable t) {
                 mView.hideProgress();
                 Log.e("MainPresenter",t.getCause()+"" );
-                if (counter<2){
-                    counter++;
-                    getCouncils(context);
-                }
-
-                // TODO VALIDAR CUANDO EN EL SERVER SALE UN ERROR 500, 403
             }
         });
     }
 
     @Override
-    public void getCouncilmen(Context context) {
+    public void getCouncilmen(final Context context) {
+        Council defaultCouncil = Store.getDefaultCouncil(context);
+        Call<List<CouncilMan>> councilmenCall = ccService.getCouncilMan(defaultCouncil.id()+"");
+        councilmenCall.enqueue(new Callback<List<CouncilMan>>() {
+            @Override
+            public void onResponse(Call<List<CouncilMan>> call, Response<List<CouncilMan>> response) {
+                if (response.isSuccessful()){
+                    Log.e("Main Presenter", response.body()+"");
+                    Store.saveCouncilman(context,response.body());
+                }else{
+                    FormattedResp error = ParserError.parse(response);
+                    String errorMessage = MessageManager.getMessage(context, error.code());
+                    mView.showError(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CouncilMan>> call, Throwable t) {
+                Log.e("MainPresenter",t.getCause()+"" );
+            }
+        });
 
     }
 
     @Override
     public void getProposals(Context context) {
 
+    }
+
+    @Override
+    public void getCommissions(final Context context) {
+        Council defaultCouncil = Store.getDefaultCouncil(context);
+        Call<List<Commission>> councilmenCall = ccService.getCommissions(defaultCouncil.id()+"");
+        councilmenCall.enqueue(new Callback<List<Commission>>() {
+            @Override
+            public void onResponse(Call<List<Commission>> call, Response<List<Commission>> response) {
+                if (response.isSuccessful()){
+                    Log.e("Main Presenter", response.body()+"");
+                    Store.saveCommissions(context,response.body());
+                }else{
+                    FormattedResp error = ParserError.parse(response);
+                    String errorMessage = MessageManager.getMessage(context, error.code());
+                    mView.showError(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Commission>> call, Throwable t) {
+                Log.e("MainPresenter",t.getCause()+"" );
+            }
+        });
     }
 
 

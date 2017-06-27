@@ -27,10 +27,10 @@ public interface CouncilService {
     Call<List<Council>> getCouncils();
 
     @GET(Constants.COMISSIONS_ENDPOINT)
-    Call<List<Commission>> getCommissions(@Query("page") String page);
+    Call<List<Commission>> getCommissions(@Path("pk") String pk);
 
     @GET(Constants.COUNCILMEN_ENDPOINT)
-    Call<List<CouncilMan>> getCouncilMan(@Query("page") String page);
+    Call<List<CouncilMan>> getCouncilMan(@Path("pk") String pk);
 
     @GET(Constants.COUNCILMEN_INBOX_ENDPOINT)
     Call<Proposal> getCouncilMenInbox();

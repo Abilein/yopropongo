@@ -25,6 +25,8 @@ public class Constants {
      **/
 
     public static final String COUNCIL_COLLECTION = "councils";
+    public static final String COUNCILMAN_COLLECTION = "councilman";
+    public static final String COMMISSION_COLLECTION = "commission";
     public static final String COUNCIL_SINGLE = "council";
 
 
@@ -62,10 +64,10 @@ public class Constants {
 
     // CouncilOLD
     public static final String COUNCIL_ENDPOINT = "/api/councils/";
-    public static final String COMISSIONS_ENDPOINT = "/api/councils/commissions/";
-    public static final String COUNCILMEN_ENDPOINT = "/api/councils/councilmen/";
-    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/councils/councilmen/inbox/";
-    public static final String PROPOSALS_ENDPOINT = "/api/councils/proposals/";
+    public static final String COMISSIONS_ENDPOINT = "/api/councils/{pk}/commissions/";
+    public static final String COUNCILMEN_ENDPOINT = "/api/councils/{pk}/councilmen/";
+    public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/councils/{pk}/councilmen/inbox/";
+    public static final String PROPOSALS_ENDPOINT = "/api/councils/{pk}/proposals/";
     public static final String CONTACTS_ENDPOINT = "/api/councils/contacts/";
 
     /**

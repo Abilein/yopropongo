@@ -3,6 +3,7 @@ package com.xiberty.propongo.councils.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,15 @@ import android.widget.Toast;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
+import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.contrib.utils.UIUtils;
+import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.CouncilMan;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -54,14 +61,21 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
 
         //Default Council
         Council selectedCouncil = Store.getDefaultCouncil(context);
-
-        Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-        int pk = selectedCouncil.id();
-
         setHeader(rootView, getString(R.string.menu_directive).toUpperCase(), selectedCouncil.name());
 
+        //CoucnilMen to get the Directive
+        List<CouncilMan> councilMen = Store.getCouncilman(context);
+        for (CouncilMan councilMan: councilMen){
+            Log.e("Cosejal", councilMan+"");
+        }
 
-//        CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
+
+
+
+
+
+        //        CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
+
         return rootView;
     }
 
