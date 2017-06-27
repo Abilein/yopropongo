@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         this.profile = profile;
 
-        ArrayList<Council> councils = Store.getCouncils(this);
+        final ArrayList<Council> councils = Store.getCouncils(this);
         if (councils == null){
             IProfile userProfile = new ProfileDrawerItem()
                     .withName(profile.fullName())
@@ -236,6 +236,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 selectedCouncilProfile.withIcon(R.drawable.avatar);
 
             header.addProfiles(selectedCouncilProfile);
+            header.withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                @Override
+                public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                    for (Council council: councils)
+                        if (council.name().equals(profile.getName()))
+                            Store.setDefaultCouncil(MainActivity.this,council);
+                    return false;
+                }
+            });
             accountHeader = header.build();
             accountHeader.setActiveProfile(selectedCouncilProfile);
 
