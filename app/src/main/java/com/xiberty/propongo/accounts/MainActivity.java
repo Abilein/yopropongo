@@ -23,6 +23,7 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     CouncilService councilService;
 
     CouncilForm councilForm;
+
+
+
     UserProfile profile;
 
     @Override
@@ -239,9 +243,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             header.withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                 @Override
                 public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-                    for (Council council: councils)
-                        if (council.name().equals(profile.getName()))
-                            Store.setDefaultCouncil(MainActivity.this,council);
+                    for (Council council: councils) {
+                        if (council.name().equals(profile.getName().toString())) {
+                            Store.setDefaultCouncil(view.getContext(), council);
+                        }else{
+                        }
+                    }
+                    setDrawer(MainActivity.this.getProfile());
                     return false;
                 }
             });
@@ -249,9 +257,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             accountHeader.setActiveProfile(selectedCouncilProfile);
 
         }
-
-
-
 
 
 
@@ -408,5 +413,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         logout();
     }
 
-
+    public UserProfile getProfile() {
+        return profile;
+    }
 }

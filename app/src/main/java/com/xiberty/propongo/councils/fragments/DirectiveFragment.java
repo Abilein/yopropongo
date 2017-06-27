@@ -7,9 +7,14 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.raizlabs.android.dbflow.annotation.Column;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.contrib.utils.UIUtils;
+import com.xiberty.propongo.database.Council;
 
 import butterknife.ButterKnife;
 
@@ -47,7 +52,13 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
 
-        setHeader(rootView, getString(R.string.menu_directive).toUpperCase(), "CONCEJO MUNICIPAL DE LA PAZ");
+        //Default Council
+        Council selectedCouncil = Store.getDefaultCouncil(context);
+
+        Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+        int pk = selectedCouncil.id();
+
+        setHeader(rootView, getString(R.string.menu_directive).toUpperCase(), selectedCouncil.name());
 
 
 //        CouncilService service = WS.makeService(CouncilService.class, Store.getCredential(context));
