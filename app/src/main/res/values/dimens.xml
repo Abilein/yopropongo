@@ -66,6 +66,7 @@
     <dimen name="activity_quarter_margin">4dp</dimen>
     <dimen name="activity_half_margin">8dp</dimen>
     <dimen name="activity_half_quarter_margin">12dp</dimen>
+    <dimen name="activity_half_small_margin">8dp</dimen>
 
     <!--PlaceHolders for Not Found Elements-->
     <dimen name="placeholder_spacing">10dp</dimen>

@@ -10,14 +10,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.councils.adapters.CommissionAdapter;
+import com.xiberty.propongo.councils.adapters.DirectiveAdapter;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,23 +54,38 @@ public class CommissionsFragment extends ToolbarBaseFragment implements Commissi
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-
+        context = rootView.getContext();
 
         //Default Council
         Council selectedCouncil = Store.getDefaultCouncil(context);
-        setHeader(rootView, getString(R.string.menu_directive).toUpperCase(), selectedCouncil.name());
+        setHeader(rootView, getString(R.string.menu_commisions).toUpperCase(), selectedCouncil.name());
 
-
-        context = rootView.getContext();
-        List<Commission> commissions = Store.getCommissions(context);
-        for (Commission commission : commissions){
-            Log.e("Commissiones", commission+"");
-        }
-
-
+        //Setting the Directive
+        setCommissionsCards(rootView,selectedCouncil);
 
 
         return rootView;
     }
+
+    private void setCommissionsCards(View rootView, Council selectedCouncil) {
+        ArrayList<Commission> commissions = Store.getCommissions(context);
+        for (Commission commission: commissions)
+            Log.e("Comission",commission.toString());
+
+        if (commissions!=null){
+            CommissionAdapter adapter = new CommissionAdapter(getActivity().getApplicationContext(), commissions);
+            ListView listView = (ListView) rootView.findViewById(R.id.listView);
+            LinearLayout placeholder= (LinearLayout) rootView.findViewById(R.id.placeholder);
+            TextView placeholder_text= (TextView) rootView.findViewById(R.id.placeholder_text);
+            if (adapter.getCount()==0) {
+                placeholder.setVisibility(View.VISIBLE);
+                placeholder_text.setText("NO EXISTE COMISIONES");
+                listView.setVisibility(View.GONE);
+            } else {
+                listView.setAdapter(adapter);
+            }
+        }
+    }
+
 
 }

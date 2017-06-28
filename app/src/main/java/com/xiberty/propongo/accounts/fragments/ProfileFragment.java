@@ -90,7 +90,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     public void setToolbar() {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
-        toolbar.setBackground(getResources().getDrawable(R.drawable.background_toolbar_translucent));
+        toolbar.setBackground(getResources().getDrawable(R.drawable.background_toolbar_invisible));
         toolbar.setVisibility(android.view.View.VISIBLE);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
