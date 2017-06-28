@@ -30,7 +30,8 @@ public class Constants {
     public static final String COUNCIL_SINGLE = "council";
 
 
-    public static final String SERVER_URL = "http://192.168.0.102:8000";
+    public static final String SERVER_URL = "http://192.168.0.103:8000";
+//    public static final String SERVER_URL = "http://192.168.1.255:8000";
     public static final String CLIENT_ID = "bgzxrqgTnmCzHxq5CJTusph5g7WpvhQmHLGQQehH";
     public static final String CLIENT_SECRET = "L7B0YRVoIy62a8PYCZc2r3VGPQscujFW6nwV97WV7UpVlMNVHEsV5PIyCs7bWnEGZV3XKZhoTYjq6fysMWRNhTq8aSBCjFBjwW6v57ccXViWmu0DeTC7111aNlHa0XPU";
 

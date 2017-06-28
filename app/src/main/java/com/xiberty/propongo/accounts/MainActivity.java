@@ -2,7 +2,6 @@
 package com.xiberty.propongo.accounts;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
@@ -12,9 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -23,7 +20,6 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
@@ -32,7 +28,6 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.forms.CouncilForm;
-import com.xiberty.propongo.accounts.forms.TakePhotoForm;
 import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
@@ -47,12 +42,8 @@ import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.credentials.LoginActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
 import com.xiberty.propongo.database.Council;
-import com.xiberty.propongo.sync.AppSyncAdapter;
-import com.xiberty.propongo.sync.AppSyncService;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.mateware.snacky.Snacky;
@@ -64,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private static final String TAG = MainActivity.class.getSimpleName();
     AccountHeader accountHeader;
-
-
 
     public enum Menues {
         INBOX(1001),
@@ -95,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     CouncilForm councilForm;
 
-
-
     UserProfile profile;
 
     @Override
@@ -116,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         // Service for Syncing
         setUserProfile();
         setCouncil();
+//        Log.e("Default Council",valor.toString());
 
     }
 
@@ -133,11 +121,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     public void  setCouncil(){
-
-        boolean hasCouncil = false;
-
+        boolean hasCouncil= false;
+        if (Store.getDefaultCouncil(this)!=null) {
+            hasCouncil= true;
+        }
         if (!hasCouncil) {
-
             presenter.getCouncils(getApplicationContext());
         } else {
 //            showCouncils();
@@ -332,7 +320,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         }
 
-
     }
 
     public void logout() {
@@ -387,6 +374,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         councilForm = new CouncilForm(this, view, sheet, councils);
         councilForm.show();
+
     }
 
 

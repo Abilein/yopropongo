@@ -33,7 +33,8 @@
     <dimen name="auth_button_spacing">44dp</dimen>
 
     <!-- Profile -->
-    <dimen name="profile_avatar_size">88dp</dimen>
+    <dimen name="profile_avatar_size">50dp</dimen>
+    <dimen name="profile_avatar_spacing">8dp</dimen>
     <dimen name="profile_text_spacing">24dp</dimen>
     <dimen name="profile_line_spacing">36dp</dimen>
 
@@ -65,4 +66,7 @@
     <dimen name="activity_quarter_margin">4dp</dimen>
     <dimen name="activity_half_margin">8dp</dimen>
     <dimen name="activity_half_quarter_margin">12dp</dimen>
+
+    <!--PlaceHolders for Not Found Elements-->
+    <dimen name="placeholder_spacing">10dp</dimen>
 </resources>

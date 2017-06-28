@@ -154,4 +154,6 @@ public class CouncilMan extends BaseModel {
     public void setMacrodistrict(Macrodistrict macrodistrict) {
         this.macrodistrict = macrodistrict;
     }
+
+
 }

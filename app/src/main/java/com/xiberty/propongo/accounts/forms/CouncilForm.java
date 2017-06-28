@@ -1,6 +1,7 @@
 package com.xiberty.propongo.accounts.forms;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.design.widget.BottomSheetDialog;
@@ -35,7 +36,7 @@ public class CouncilForm {
     private MainActivity activity;
     private Council defaultCouncil;
     private List<Council> councils;
-
+    private Context context;
 
     @BindView(R.id.spnCouncils) Spinner spnCouncils;
     @BindView(R.id.btnSelect) FancyButton btnSelect;
@@ -43,6 +44,7 @@ public class CouncilForm {
     public CouncilForm(MainActivity activity, View view, BottomSheetDialog sheet, List<Council> councils){
         this.view = view; this.sheet = sheet; this.activity = activity;
         ButterKnife.bind(this, view);
+        context = view.getContext();
 
         this.sheet.setContentView (this.view);
         this.populateCouncils(councils);
