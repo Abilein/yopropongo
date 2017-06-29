@@ -13,11 +13,9 @@ import com.xiberty.propongo.contrib.api.OAuthCollection;
 import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.credentials.CredentialService;
-import com.xiberty.propongo.credentials.responses.UserProfile;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
-import com.xiberty.propongo.database.Council_Table;
 
 import java.util.List;
 import okhttp3.ResponseBody;

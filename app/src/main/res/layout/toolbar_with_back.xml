@@ -15,16 +15,13 @@
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
     <LinearLayout
+        android:id="@+id/btnGoBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/btnGoBack"
-
-        android:onClick="goToBack"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         tools:ignore="ContentDescription"
-
         android:gravity="center_vertical"
         android:paddingTop="@dimen/spacing_regular_extra"
         android:paddingBottom="@dimen/spacing_regular_extra"
@@ -36,15 +33,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/chevron_left"
+            android:tint="@color/white"
             android:id="@+id/imgBack"
             />
 
         <TextView
             android:textStyle="bold"
-            android:textColor="@color/primaryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_regular"
+            android:textColor="@color/white"
             android:text="Volver"
             />
 

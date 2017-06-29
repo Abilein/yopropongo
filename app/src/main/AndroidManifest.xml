@@ -63,7 +63,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".councils.CouncilManDetailActivity" />
+        <activity android:name=".councils.CouncilManDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service android:name=".sync.AppAuthenticatorService">
             <intent-filter>

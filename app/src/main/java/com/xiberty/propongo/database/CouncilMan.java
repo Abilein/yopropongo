@@ -7,6 +7,10 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.Store;
+import com.xiberty.propongo.councils.CouncilManDetailActivity;
+
+import java.util.List;
 
 
 public class CouncilMan extends BaseModel {
@@ -156,4 +160,12 @@ public class CouncilMan extends BaseModel {
     }
 
 
+    public static CouncilMan getCouncilman(Context context, int ID) {
+        List<CouncilMan> councilMen = Store.getCouncilman(context);
+        for (CouncilMan councilMan: councilMen){
+            if (councilMan.id == ID)
+                return councilMan;
+        }
+        return null;
+    }
 }
