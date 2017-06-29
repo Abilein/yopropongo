@@ -1,6 +1,10 @@
 package com.xiberty.propongo.councils;
 
+import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.Space;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,9 +27,13 @@ import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
+import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
+import com.xiberty.propongo.councils.fragments.BiographyFragment;
+import com.xiberty.propongo.councils.fragments.DirectiveFragment;
 import com.xiberty.propongo.database.CouncilMan;
+import com.xiberty.propongo.database.Macrodistrict;
 
-
+import java.util.List;
 
 
 public class CouncilManDetailActivity extends AppCompatActivity {
@@ -35,8 +43,11 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
     private AppBarLayout mAppBarLayout;
     private ImageView mAvatarImageView,mSpace,mFlag;
-    private TextView mToolbarTextView, mTitleTextView,mBio,mEmail;
+    private TextView mToolbarTextView, mTitleTextView,mEmail,nNameFlag,mNameMacro;
     private Toolbar mToolBar;
+    private TabLayout tabs;
+    private ViewPager pager;
+
 
     private AppBarStateChangeListener mAppBarStateChangeListener;
 
@@ -67,12 +78,24 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         mAvatarImageView = (ImageView) findViewById(R.id.imageView_avatar);
         mTitleTextView = (TextView) findViewById(R.id.textView_title);
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
-        mBio = (TextView) findViewById(R.id.textView_Bio);
         mEmail= (TextView) findViewById(R.id.textView_email);
 
         mToolbarTextView = (TextView) findViewById(R.id.toolbar_title);
         mSpace = (ImageView) findViewById(R.id.toolbar_image);
         mFlag = (ImageView) findViewById(R.id.imgFlag);
+        nNameFlag= (TextView) findViewById(R.id.nameFlag);
+        mNameMacro= (TextView) findViewById(R.id.nameMacro);
+
+        tabs= (TabLayout) findViewById(R.id.tabs);
+        tabs.addTab(tabs.newTab().setText("BIOGRAFIA"));
+        tabs.addTab(tabs.newTab().setText("PROPUESTAS"));
+        tabs.setBackgroundColor(Color.BLACK);
+        tabs.setTabTextColors(Color.WHITE,Color.YELLOW);
+        pager = (ViewPager) findViewById(R.id.pager);
+        setupViewPager(pager);
+        tabs.setupWithViewPager(pager);
+
+
     }
 
     private void setUpViews() {
@@ -158,12 +181,22 @@ public class CouncilManDetailActivity extends AppCompatActivity {
             String full_name = councilmanSelected.first_name + " " + councilmanSelected.last_name;
             mTitleTextView.setText(full_name);
             mToolbarTextView.setText(full_name);
-            mBio.setText(councilmanSelected.bio);
             mEmail.setText(councilmanSelected.email);
-            mFlag.setImageResource(councilmanSelected.getFlag(this));
+            Glide.with(this).load(councilmanSelected.getFlag(this)).into(mFlag);
+            nNameFlag.setText(councilmanSelected.getFlagName());
+            Macrodistrict macrodistrict = councilmanSelected.macrodistrict;
+            mNameMacro.setText(macrodistrict.getName());
         }else{
+            /**Set Default Content**/
             mTitleTextView.setText("Consejal");
+            Glide.with(this).load(R.drawable.code).into(mFlag);
         }
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new BiographyFragment(), "BIOGRAFIA");
+        adapter.addFragment(new BiographyFragment(), "PROPUESTAS");
+        viewPager.setAdapter(adapter);
+    }
 }

@@ -120,6 +120,18 @@ public class CouncilMan extends BaseModel {
                 return R.drawable.ic_council;
         }
     }
+    public String getFlagName(){
+        switch (this.agrupation){
+            case MAS:
+                return "MAS";
+            case SOL:
+                return "SOL.BO";
+            case UN:
+                return "UNIDAD NACIONAL";
+            default:
+                return "Ninguno";
+        }
+    }
 
     //Setters
 
