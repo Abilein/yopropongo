@@ -8,8 +8,8 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 
-@Table(database = AppDatabase.class)
-public class Commission extends BaseModel {
+
+public class Commission {
     /*
     *    Example
     *    {
@@ -27,15 +27,15 @@ public class Commission extends BaseModel {
     /**
      * PROPERTIES
      **/
-    @PrimaryKey @SerializedName("id")               public int id;
-    @Column @SerializedName("name")             public String name;
-    @Column @SerializedName("description")      public String description;
-    @Column @SerializedName("creation_date")    public String creation_date;
-    @Column @SerializedName("cover")            public String cover;
-    @Column @SerializedName("town_council")     public int town_council;
-    @Column @SerializedName("president")        public int president;
-    @Column @SerializedName("secretary")        public int secretary;
-    @Column @SerializedName("vocal")            public int vocal;
+    @SerializedName("id")               public int id;
+     @SerializedName("name")             public String name;
+     @SerializedName("description")      public String description;
+     @SerializedName("creation_date")    public String creation_date;
+     @SerializedName("cover")            public String cover;
+     @SerializedName("town_council")     public int town_council;
+     @SerializedName("president")        public int president;
+     @SerializedName("secretary")        public int secretary;
+     @SerializedName("vocal")            public int vocal;
 
     public int id() {
         return id;

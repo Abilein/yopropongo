@@ -7,7 +7,7 @@ public class Constants {
     /**
      * CONFIGURATION
      **/
-    public static final String APPLICATION_PREFIX = "warpp";
+    public static final String APPLICATION_PREFIX = "yopropongo";
     public static final String PACKAGE_NAME = "com.xiberty.propongo";
     public static final String SYNC_ACCOUNT_TYPE = PACKAGE_NAME;
 
@@ -15,8 +15,8 @@ public class Constants {
     public static final String CREDENTIAL_COLLECTION = "credential_collection";
     public static final String USER_PROFILE = APPLICATION_PREFIX  + "_user";
 
-    public static final String DATABASE_NAME = "propongo";
-    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "yopropongo";
+    public static final int DATABASE_VERSION = 3;
 
     public static final int DEFAULT_COUNCIL = 1;
 
@@ -30,7 +30,7 @@ public class Constants {
     public static final String COUNCIL_SINGLE = "council";
 
 
-    public static final String SERVER_URL = "http://192.168.0.103:8000";
+    public static final String SERVER_URL = "http://192.168.0.102:8000";
 //    public static final String SERVER_URL = "http://192.168.1.225:8000";
     public static final String CLIENT_ID = "bgzxrqgTnmCzHxq5CJTusph5g7WpvhQmHLGQQehH";
     public static final String CLIENT_SECRET = "L7B0YRVoIy62a8PYCZc2r3VGPQscujFW6nwV97WV7UpVlMNVHEsV5PIyCs7bWnEGZV3XKZhoTYjq6fysMWRNhTq8aSBCjFBjwW6v57ccXViWmu0DeTC7111aNlHa0XPU";

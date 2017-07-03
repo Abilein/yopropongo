@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.councils.CommissionDetailActivity;
 import com.xiberty.propongo.councils.CouncilManDetailActivity;
 import com.xiberty.propongo.councils.models.DirectiveItem;
 import com.xiberty.propongo.database.Commission;
@@ -88,7 +89,7 @@ public class CommissionAdapter extends BaseAdapter {
         holder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CouncilManDetailActivity.class);
+                Intent intent = new Intent(context, CommissionDetailActivity.class);
                 intent.putExtra(Constants.KEY_COUNCILMAN_ID, commission.id);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

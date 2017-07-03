@@ -104,6 +104,7 @@
     <style name="Council.Position" parent="Council">
         <item name="android:textSize">13sp</item>
     </style>
+
     <style name="LabelSlider">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
@@ -120,4 +121,14 @@
         <item name="android:background">@color/primary</item>
     </style>
 
+    <!--PROPOSAL-->
+    <style name="Proposal">
+        <item name="android:textColor">@color/DarkGray</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Proposal.Description">
+        <item name="android:textColor">@color/LightSlateGray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

@@ -13,9 +13,14 @@ import com.xiberty.propongo.contrib.api.OAuthCollection;
 import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.credentials.CredentialService;
+import com.xiberty.propongo.database.Attachment;
+import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
+import com.xiberty.propongo.database.Proposal;
+import com.xiberty.propongo.database.ProposalDB;
+import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
 import okhttp3.ResponseBody;
@@ -127,7 +132,6 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public void onResponse(Call<List<CouncilMan>> call, Response<List<CouncilMan>> response) {
                 if (response.isSuccessful()){
-                    Log.e("Main Presenter", response.body()+"");
                     Store.saveCouncilman(context,response.body());
                 }else{
                     FormattedResp error = ParserError.parse(response);
@@ -145,8 +149,51 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getProposals(Context context) {
+    public void getProposals(final Context context) {
+        Council defaultCouncil = Store.getDefaultCouncil(context);
+        Call<List<Proposal>> councilmenCall = ccService.getProposal(defaultCouncil.id()+"");
+        councilmenCall.enqueue(new Callback<List<Proposal>>() {
+            @Override
+            public void onResponse(Call<List<Proposal>> call, Response<List<Proposal>> response) {
+                if (response.isSuccessful()){
+                    /**
+                     * Save in the Database
+                     **/
+                    Log.e("MainPreenter","Database in progress.....");
+                    List<Proposal> proposals = response.body();
+                    for (Proposal proposal : proposals){
+                        ProposalDB proposalDB = new ProposalDB();
+                        proposalDB.id = proposal.getId();
+                        proposalDB.title = proposal.getTitle();
+                        proposalDB.summary = proposal.getSummary();
+                        proposalDB.commissions = proposal.getCommissions();
+                        proposalDB.councilmen = proposal.getCouncilmen();
+                        proposalDB.views = proposal.getViews();
+                        proposalDB.average = proposal.getAverage();
+                        proposalDB.save();
 
+                        List<Attachment> attachments = proposal.getAttachments();
+                        for (Attachment attachment: attachments){
+                            AttachmentDB attachmentDB = new AttachmentDB();
+                            attachmentDB.id = attachment.getId();
+                            attachmentDB.name = attachment.getName();
+                            attachmentDB.file = attachment.getFile();
+                            attachmentDB.proposal = proposal.getId();
+                            attachmentDB.save();
+                        }
+                    }
+                }else{
+                    FormattedResp error = ParserError.parse(response);
+                    String errorMessage = MessageManager.getMessage(context, error.code());
+                    mView.showError(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Proposal>> call, Throwable t) {
+                Log.e("MainPreenter","Database failed, "+t.getCause());
+            }
+        });
     }
 
     @Override

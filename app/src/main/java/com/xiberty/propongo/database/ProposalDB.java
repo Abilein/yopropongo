@@ -1,28 +1,29 @@
 package com.xiberty.propongo.database;
 
 import com.google.gson.annotations.SerializedName;
-import com.raizlabs.android.dbflow.annotation.*;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import java.util.List;
+@Table(database = AppDatabase.class)
+public class ProposalDB extends BaseModel{
 
-public class Proposal {
+    public static final String TAG = ProposalDB.class.getSimpleName();
 
-    public static final String TAG = Proposal.class.getSimpleName();
+    @PrimaryKey public int id;
+    @Column public String title;
+    @Column public String summary;
+    @Column public String commissions;
+    @Column public String councilmen;
+    @Column public int views;
+    @Column public double average;
+    @Column public int rate;
+    @Column public String type;
+    @Column public boolean is_valid;
+    @Column public String creation_date;
 
-    @SerializedName("id") public int id;
-    @SerializedName("title") public String title;
-    @SerializedName("summary") public String summary;
-    @SerializedName("commissions") public String commissions;
-    @SerializedName("councilmen") public String councilmen;
-    @SerializedName("views") public int views;
-    @SerializedName("average") public double average;
-    @SerializedName("rate") public int rate;
-    @SerializedName("type") public String type;
-    @SerializedName("attachments") public List<Attachment> attachments;
-    @SerializedName("is_valid") public boolean is_valid;
-    @SerializedName("creation_date") public String creation_date;
-
+    //GETTERS
 
     public static String getTAG() {
         return TAG;
@@ -72,11 +73,8 @@ public class Proposal {
         return creation_date;
     }
 
-    public List<Attachment> getAttachments() {
-        return attachments;
-    }
 
-//SETTERS
+    //SETTERS
 
     public void setId(int id) {
         this.id = id;
@@ -121,5 +119,4 @@ public class Proposal {
     public void setCreation_date(String creation_date) {
         this.creation_date = creation_date;
     }
-
 }

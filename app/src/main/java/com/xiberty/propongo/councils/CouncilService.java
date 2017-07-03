@@ -36,7 +36,7 @@ public interface CouncilService {
     Call<Proposal> getCouncilMenInbox();
 
     @GET(Constants.PROPOSALS_ENDPOINT)
-    Call<List<Proposal>> getProposal();
+    Call<List<Proposal>> getProposal(@Path("pk") String pk);
 
     @Multipart
     @POST(Constants.PROPOSALS_ENDPOINT)

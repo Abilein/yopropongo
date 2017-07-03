@@ -29,6 +29,7 @@ import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
+import com.xiberty.propongo.councils.fragments.CouncilProposalsFragment;
 import com.xiberty.propongo.councils.fragments.DirectiveFragment;
 import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.Macrodistrict;
@@ -195,8 +196,18 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BiographyFragment(), "BIOGRAFIA");
-        adapter.addFragment(new BiographyFragment(), "PROPUESTAS");
+
+        BiographyFragment biographyFragment = new BiographyFragment();
+        CouncilProposalsFragment councilProposalsFragment = new CouncilProposalsFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID",councilmanSelected.id);
+
+        biographyFragment.setArguments(bundle);
+        councilProposalsFragment.setArguments(bundle);
+
+        adapter.addFragment(biographyFragment, "BIOGRAFIA");
+        adapter.addFragment(councilProposalsFragment, "PROPUESTAS");
         viewPager.setAdapter(adapter);
     }
 }

@@ -13,7 +13,7 @@ import com.xiberty.propongo.councils.CouncilManDetailActivity;
 import java.util.List;
 
 
-public class CouncilMan extends BaseModel {
+public class CouncilMan {
 
     /*
     *    Example
@@ -38,15 +38,15 @@ public class CouncilMan extends BaseModel {
     /**
      * ATTRIBUTES
      **/
-    @PrimaryKey @SerializedName("id") public int id;
-    @Column @SerializedName("first_name") public String first_name;
-    @Column @SerializedName("last_name") public String last_name;
-    @Column @SerializedName("email") public String email;
-    @Column @SerializedName("avatar") public String avatar;
-    @Column @SerializedName("bio") public String bio;
-    @Column @SerializedName("town_council") public int town_council;
-    @Column @SerializedName("agrupation") public String agrupation;
-    @Column @SerializedName("macrodistrict") public Macrodistrict macrodistrict;
+    @SerializedName("id") public int id;
+    @SerializedName("first_name") public String first_name;
+    @SerializedName("last_name") public String last_name;
+    @SerializedName("email") public String email;
+    @SerializedName("avatar") public String avatar;
+    @SerializedName("bio") public String bio;
+    @SerializedName("town_council") public int town_council;
+    @SerializedName("agrupation") public String agrupation;
+    @SerializedName("macrodistrict") public Macrodistrict macrodistrict;
 
     /**
      * OBJECT GETTERS

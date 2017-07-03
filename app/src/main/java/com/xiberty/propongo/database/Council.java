@@ -7,21 +7,20 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-@Table(database = AppDatabase.class)
-public class Council extends BaseModel{
 
-    @PrimaryKey
+public class Council {
+
     @SerializedName("id") public int id;
 
-    @Column @SerializedName("name") public String name;
-    @Column @SerializedName("department") public String department;
-    @Column @SerializedName("creation_date") public String creation_date;
-    @Column @SerializedName("president") public int president;
-    @Column @SerializedName("vice_president") public int vice_president;
-    @Column @SerializedName("secretary") public int secretary;
-    @Column @SerializedName("vocal_a") public int vocal_a;
-    @Column @SerializedName("vocal_b") public int vocal_b;
-    @Column @SerializedName("logo") public String logo;
+     @SerializedName("name") public String name;
+     @SerializedName("department") public String department;
+     @SerializedName("creation_date") public String creation_date;
+     @SerializedName("president") public int president;
+     @SerializedName("vice_president") public int vice_president;
+     @SerializedName("secretary") public int secretary;
+     @SerializedName("vocal_a") public int vocal_a;
+     @SerializedName("vocal_b") public int vocal_b;
+     @SerializedName("logo") public String logo;
 
     public int id() {return id;}
     public String name() {

@@ -70,4 +70,7 @@
 
     <!--PlaceHolders for Not Found Elements-->
     <dimen name="placeholder_spacing">10dp</dimen>
+
+    <!--Proposals-->
+    <dimen name="proposal_icon_size">50dp</dimen>
 </resources>
