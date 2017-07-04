@@ -89,7 +89,8 @@
                 android:resource="@xml/sync_adapter" />
         </service>
 
-        <activity android:name=".councils.CommissionDetailActivity"/>
+        <activity android:name=".councils.CommissionDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

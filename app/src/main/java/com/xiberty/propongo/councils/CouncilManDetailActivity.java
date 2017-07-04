@@ -1,53 +1,72 @@
 package com.xiberty.propongo.councils;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.Space;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
-import com.xiberty.propongo.councils.fragments.CouncilProposalsFragment;
-import com.xiberty.propongo.councils.fragments.DirectiveFragment;
+import com.xiberty.propongo.councils.fragments.GeneralProposalsFragment;
 import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.Macrodistrict;
+import com.xiberty.propongo.database.ProposalDB;
+import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class CouncilManDetailActivity extends AppCompatActivity {
 
     private final static float EXPAND_AVATAR_SIZE_DP = 80f;
     private final static float COLLAPSED_AVATAR_SIZE_DP = 32f;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.toolbar_image)
+    ImageView mSpace;
+    @BindView(R.id.toolbar_title)
+    TextView mToolbarTextView;
+    @BindView(R.id.textView_title)
+    TextView mTitleTextView;
+    @BindView(R.id.textView_email)
+    TextView mEmail;
+    @BindView(R.id.imageView_avatar)
+    CircleImageView mAvatarImageView;
+    @BindView(R.id.nameMacro)
+    TextView mNameMacro;
+    @BindView(R.id.imgFlag)
+    ImageView mFlag;
+    @BindView(R.id.nameFlag)
+    TextView nNameFlag;
+    @BindView(R.id.tabs)
+    TabLayout tabs;
+    @BindView(R.id.app_bar)
+    AppBarLayout mAppBarLayout;
+    @BindView(R.id.pager)
+    ViewPager pager;
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
 
-    private AppBarLayout mAppBarLayout;
-    private ImageView mAvatarImageView,mSpace,mFlag;
-    private TextView mToolbarTextView, mTitleTextView,mEmail,nNameFlag,mNameMacro;
-    private Toolbar mToolBar;
-    private TabLayout tabs;
-    private ViewPager pager;
 
 
     private AppBarStateChangeListener mAppBarStateChangeListener;
@@ -62,11 +81,12 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_council_man_detail);
+        ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
         int CouncilManId = bundle.getInt(Constants.KEY_COUNCILMAN_ID);
 
-        councilmanSelected = CouncilMan.getCouncilman(this,CouncilManId);
+        councilmanSelected = CouncilMan.getCouncilman(this, CouncilManId);
 
         findViews();
         setUpViews();
@@ -75,28 +95,10 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     }
 
     private void findViews() {
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
-        mAvatarImageView = (ImageView) findViewById(R.id.imageView_avatar);
-        mTitleTextView = (TextView) findViewById(R.id.textView_title);
-        mToolBar = (Toolbar) findViewById(R.id.toolbar);
-        mEmail= (TextView) findViewById(R.id.textView_email);
-
-        mToolbarTextView = (TextView) findViewById(R.id.toolbar_title);
-        mSpace = (ImageView) findViewById(R.id.toolbar_image);
-        mFlag = (ImageView) findViewById(R.id.imgFlag);
-        nNameFlag= (TextView) findViewById(R.id.nameFlag);
-        mNameMacro= (TextView) findViewById(R.id.nameMacro);
-
-        tabs= (TabLayout) findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("BIOGRAFIA"));
-        tabs.addTab(tabs.newTab().setText("PROPUESTAS"));
         tabs.setBackgroundColor(Color.BLACK);
-        tabs.setTabTextColors(Color.WHITE,Color.YELLOW);
-        pager = (ViewPager) findViewById(R.id.pager);
+        tabs.setTabTextColors(Color.WHITE, Color.YELLOW);
         setupViewPager(pager);
         tabs.setupWithViewPager(pager);
-
-
     }
 
     private void setUpViews() {
@@ -106,35 +108,37 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     }
 
     private void setUpToolbar() {
-        setSupportActionBar(mToolBar);
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
+
     private void setUpAmazingAvatar() {
         mAppBarStateChangeListener = new AppBarStateChangeListener() {
 
             @Override
             public void onStateChanged(AppBarLayout appBarLayout,
-                                       AppBarStateChangeListener.State state) {
+                                       State state) {
 
-                if (state==State.IDLE || state==State.EXPANDED){
+                if (state == State.IDLE || state == State.EXPANDED) {
                     mSpace.setVisibility(View.GONE);
                     mToolbarTextView.setVisibility(View.GONE);
-                }else{
+                } else {
                     mSpace.setVisibility(View.VISIBLE);
                     mToolbarTextView.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
-            public void onOffsetChanged(AppBarStateChangeListener.State state, float offset) {
-                    translationView(offset);
+            public void onOffsetChanged(State state, float offset) {
+                translationView(offset);
             }
         };
         mAppBarLayout.addOnOffsetChangedListener(mAppBarStateChangeListener);
     }
+
     private void translationView(float offset) {
         float xOffset = -(mAvatarPoint[0] - mSpacePoint[0]) * offset;
         float yOffset = -(mAvatarPoint[1] - mSpacePoint[1]) * offset;
@@ -155,14 +159,13 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         mTitleTextView.setTranslationY(yTitleOffset);
 
 
-
     }
 
 
     private void fetchAvatar() {
 
-        if (councilmanSelected!=null) {
-            if (councilmanSelected.avatar !=null){
+        if (councilmanSelected != null) {
+            if (councilmanSelected.avatar != null) {
                 Glide.with(this)
                         .load(councilmanSelected.avatar)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -171,7 +174,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
                         .load(councilmanSelected.avatar)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(mSpace);
-            }else{
+            } else {
                 Glide.with(this)
                         .load(R.drawable.avatar)
                         .into(mAvatarImageView);
@@ -185,7 +188,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
             nNameFlag.setText(councilmanSelected.getFlagName());
             Macrodistrict macrodistrict = councilmanSelected.macrodistrict;
             mNameMacro.setText(macrodistrict.getName());
-        }else{
+        } else {
             /**Set Default Content**/
             mTitleTextView.setText("Consejal");
             Glide.with(this).load(R.drawable.code).into(mFlag);
@@ -196,16 +199,25 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         BiographyFragment biographyFragment = new BiographyFragment();
-        CouncilProposalsFragment councilProposalsFragment = new CouncilProposalsFragment();
+        GeneralProposalsFragment generalProposalsFragment = new GeneralProposalsFragment();
+        List<ProposalDB> proposals = SQLite.select().
+                from(ProposalDB.class).
+                where(ProposalDB_Table.id.is(councilmanSelected.id)).
+                queryList();
+
+        Gson gson = new Gson();
+        String proposalStr = gson.toJson(proposals);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("ID",councilmanSelected.id);
+        bundle.putInt("ID", councilmanSelected.id);
+        bundle.putString("Proposals", proposalStr);
+        bundle.putString("About", councilmanSelected.bio);
 
         biographyFragment.setArguments(bundle);
-        councilProposalsFragment.setArguments(bundle);
+        generalProposalsFragment.setArguments(bundle);
 
         adapter.addFragment(biographyFragment, "BIOGRAFIA");
-        adapter.addFragment(councilProposalsFragment, "PROPUESTAS");
+        adapter.addFragment(generalProposalsFragment, "PROPUESTAS");
         viewPager.setAdapter(adapter);
     }
 }

@@ -51,12 +51,9 @@ public class BiographyFragment extends Fragment {
 
         context = rootView.getContext();
         Bundle bundle = getArguments();
-        try{
-            int CouncilManId = bundle.getInt("ID");
-            CouncilMan councilmanSelected = CouncilMan.getCouncilman(context,CouncilManId);
-            textViewBio.setText(councilmanSelected.bio);
-        }catch (Exception e){
-
+        if (!bundle.isEmpty()){
+            String about = bundle.getString("About");
+            textViewBio.setText(about);
         }
 
         return rootView;

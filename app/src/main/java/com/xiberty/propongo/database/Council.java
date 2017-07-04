@@ -1,11 +1,16 @@
 package com.xiberty.propongo.database;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.xiberty.propongo.councils.models.DirectiveItem;
+
+import java.util.ArrayList;
 
 
 public class Council {
@@ -85,4 +90,27 @@ public class Council {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
+
+    public ArrayList<DirectiveItem> makedirective(Context context) {
+        ArrayList<DirectiveItem> directive = new ArrayList<>();
+        if (this.president != 0) {
+            CouncilMan president = CouncilMan.getCouncilman(context,this.president);
+            if (president != null)
+                directive.add(new DirectiveItem(president, "presidente"));
+        }
+        if (vice_president != 0) {
+            CouncilMan vicepresident = CouncilMan.getCouncilman(context,this.vice_president);
+            if (vicepresident != null)
+                directive.add(new DirectiveItem(vicepresident, "Vice Presidente"));
+        }
+        if (secretary != 0) {
+            CouncilMan secretary = CouncilMan.getCouncilman(context,this.secretary);
+            if (secretary != null)
+                directive.add(new DirectiveItem(secretary, "Secretario"));
+        }
+
+        return directive;
+    }
+
+
 }

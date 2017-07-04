@@ -1,12 +1,19 @@
 package com.xiberty.propongo.database;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.xiberty.propongo.contrib.Store;
+import com.xiberty.propongo.councils.CommissionDetailActivity;
+import com.xiberty.propongo.councils.models.DirectiveItem;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Commission {
@@ -116,5 +123,35 @@ public class Commission {
 
     public void setVocal(int vocal) {
         this.vocal = vocal;
+    }
+
+    public ArrayList<DirectiveItem> makedirective(Context context) {
+        ArrayList<DirectiveItem> directive = new ArrayList<>();
+        if (this.president != 0) {
+            CouncilMan president = CouncilMan.getCouncilman(context,this.president);
+            if (president != null)
+                directive.add(new DirectiveItem(president, "Presidente"));
+        }
+        if (this.secretary != 0) {
+            CouncilMan secretary = CouncilMan.getCouncilman(context,this.secretary);
+            if (secretary != null)
+                directive.add(new DirectiveItem(secretary, "Secretario"));
+        }
+        if (this.vocal != 0) {
+            CouncilMan vocal = CouncilMan.getCouncilman(context,this.vocal);
+            if (vocal != null)
+                directive.add(new DirectiveItem(vocal, "Vocal"));
+        }
+
+        return directive;
+    }
+
+    public static Commission getCommission(Context context, int commissionID) {
+        List<Commission> commissions = Store.getCommissions(context);
+        for (Commission commission : commissions){
+            if (commission.id == commissionID)
+                return commission;
+        }
+        return null;
     }
 }

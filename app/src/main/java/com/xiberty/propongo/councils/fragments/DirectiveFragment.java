@@ -79,7 +79,7 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
 
     private void setDirective(Council selectedCouncil) {
         DirectiveAdapter adapter = new DirectiveAdapter(getActivity().getApplicationContext(),
-                makedirective(selectedCouncil));
+                selectedCouncil.makedirective(context));
         if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTE DIRECTIVA");
@@ -87,36 +87,6 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
         } else {
             listView.setAdapter(adapter);
         }
-    }
-
-    private ArrayList<DirectiveItem> makedirective(Council selectedCouncil) {
-        ArrayList<DirectiveItem> directive = new ArrayList<>();
-        if (selectedCouncil.president != 0) {
-            CouncilMan president = getCouncilMan(selectedCouncil.president);
-            if (president != null)
-                directive.add(new DirectiveItem(president, "presidente"));
-        }
-        if (selectedCouncil.vice_president != 0) {
-            CouncilMan vicepresident = getCouncilMan(selectedCouncil.vice_president);
-            if (vicepresident != null)
-                directive.add(new DirectiveItem(vicepresident, "Vice Presidente"));
-        }
-        if (selectedCouncil.secretary != 0) {
-            CouncilMan secretary = getCouncilMan(selectedCouncil.secretary);
-            if (secretary != null)
-                directive.add(new DirectiveItem(secretary, "Secretario"));
-        }
-
-        return directive;
-    }
-
-    private CouncilMan getCouncilMan(int ID) {
-        List<CouncilMan> councilMen = Store.getCouncilman(context);
-        for (CouncilMan councilMan : councilMen) {
-            if (councilMan.getId() == ID)
-                return councilMan;
-        }
-        return null;
     }
 
 

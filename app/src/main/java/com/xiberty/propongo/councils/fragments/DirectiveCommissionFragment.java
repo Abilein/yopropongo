@@ -14,28 +14,28 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.councils.adapters.DirectiveAdapter;
-import com.xiberty.propongo.councils.adapters.ProposalsAdapter;
-import com.xiberty.propongo.database.CouncilMan;
-import com.xiberty.propongo.database.Proposal;
-import com.xiberty.propongo.database.ProposalDB;
-import com.xiberty.propongo.database.ProposalDB_Table;
+import com.xiberty.propongo.councils.models.DirectiveItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CouncilProposalsFragment extends Fragment {
-    private static final String TAG = CouncilProposalsFragment.class.getSimpleName();
-    CouncilService mService;
+public class DirectiveCommissionFragment extends Fragment {
     InboxPresenter presenter;
     View rootView = null;
     Context context;
+    @BindView(R.id.listView)
+    ListView listView;
+    @BindView(R.id.placeholder_text)
+    TextView placeholderText;
+    @BindView(R.id.placeholder)
+    LinearLayout placeholder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,31 +61,22 @@ public class CouncilProposalsFragment extends Fragment {
 
         context = rootView.getContext();
         Bundle bundle = getArguments();
-        try{
-            int CouncilManId = bundle.getInt("ID");
-            CouncilMan councilmanSelected = CouncilMan.getCouncilman(context,CouncilManId);
-
-            List<ProposalDB> proposals = SQLite.select().
-                    from(ProposalDB.class).
-                    where(ProposalDB_Table.id.is(CouncilManId)).
-                    queryList();
-            setProposals(proposals);
-        }catch (Exception e){
-
+        if (!bundle.isEmpty()) {
+            Gson gson = new Gson();
+            String directiveStr = bundle.getString("Directive");
+            ArrayList<DirectiveItem> directiveItems = gson.fromJson(directiveStr, new TypeToken<ArrayList<DirectiveItem>>() {
+            }.getType());
+            setDirective(directiveItems);
         }
 
         return rootView;
     }
 
-    private void setProposals(List<ProposalDB> proposals) {
-
-        ProposalsAdapter adapter = new ProposalsAdapter(context, proposals);
-        ListView listView = (ListView) rootView.findViewById(R.id.listView);
-        LinearLayout placeholder= (LinearLayout) rootView.findViewById(R.id.placeholder);
-        TextView placeholder_text= (TextView) rootView.findViewById(R.id.placeholder_text);
-        if (adapter.getCount()==0) {
+    private void setDirective(ArrayList<DirectiveItem> items) {
+        DirectiveAdapter adapter = new DirectiveAdapter(context, items);
+        if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);
-            placeholder_text.setText("NO EXISTEN PROPUESTAS");
+            placeholderText.setText("NO EXISTE DIRECTIVA");
             listView.setVisibility(View.GONE);
         } else {
             listView.setAdapter(adapter);
