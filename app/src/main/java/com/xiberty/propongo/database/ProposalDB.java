@@ -4,7 +4,10 @@ import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+
+import java.util.List;
 
 @Table(database = AppDatabase.class)
 public class ProposalDB extends BaseModel{
@@ -119,5 +122,15 @@ public class ProposalDB extends BaseModel{
 
     public void setCreation_date(String creation_date) {
         this.creation_date = creation_date;
+    }
+
+    public static ProposalDB getProposalById(int proposalID) {
+        List<ProposalDB> proposalDB = SQLite.select().
+                from(ProposalDB.class).
+                where(ProposalDB_Table.id.is(proposalID)).
+                queryList();
+        if(!proposalDB.isEmpty())
+            return proposalDB.get(0);
+        return null;
     }
 }

@@ -190,5 +190,8 @@
     <string name="group_mas">Movimiento al Socialismo</string>
     <string name="group_sol">Sol.bo</string>
     <string name="group_un">Unidad Nacional</string>
+    <string name="label_proposed_at">PROPUESTO EL:</string>
+    <string name="label_proposed_by">PROPUESTO POR:</string>
+    <string name="label_all_comments">VER MAS COMENTARIOS</string>
 
 </resources>

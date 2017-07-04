@@ -90,7 +90,7 @@ public class CommissionAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CommissionDetailActivity.class);
-                intent.putExtra(Constants.KEY_COUNCILMAN_ID, commission.id);
+                intent.putExtra(Constants.KEY_COMMISSION_ID, commission.id);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

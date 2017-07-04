@@ -91,6 +91,8 @@
 
         <activity android:name=".councils.CommissionDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".councils.ProposalDetailActivity" />
     </application>
 
 </manifest>

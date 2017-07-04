@@ -7,26 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
-import com.xiberty.propongo.councils.CommissionDetailActivity;
-import com.xiberty.propongo.database.Attachment;
+import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.AttachmentDB_Table;
-import com.xiberty.propongo.database.Commission;
-import com.xiberty.propongo.database.Proposal;
 import com.xiberty.propongo.database.ProposalDB;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -100,8 +90,11 @@ public class ProposalsAdapter extends BaseAdapter {
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CommissionDetailActivity.class);
-                intent.putExtra(Constants.KEY_COUNCILMAN_ID, proposal.getId());
+                Gson gson = new Gson();
+                String proposalStr = gson.toJson(proposal);
+
+                Intent intent = new Intent(context, ProposalDetailActivity.class);
+                intent.putExtra(Constants.KEY_PROPOSAL_ID, proposalStr);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

@@ -121,14 +121,67 @@
         <item name="android:background">@color/primary</item>
     </style>
 
-    <!--PROPOSAL-->
-    <style name="Proposal">
-        <item name="android:textColor">@color/DarkGray</item>
-        <item name="android:textSize">16sp</item>
-    </style>
 
+
+    <!-- PROPOSAL -->
+    <style name="Proposal">
+        <item name="android:textColor">@color/darken</item>
+    </style>
     <style name="Proposal.Description">
         <item name="android:textColor">@color/LightSlateGray</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+
+    <style name="Proposal.Title">
+        <item name="android:textColor">@color/darken</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">@dimen/activity_padding</item>
+        <item name="android:paddingRight">@dimen/activity_padding</item>
+        <item name="android:paddingTop">@dimen/activity_padding</item>
+
+    </style>
+
+    <style name="Proposal.Label">
+        <item name="android:textColor">@color/darken</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">@dimen/activity_padding</item>
+    </style>
+
+    <style name="Proposal.Value">
+        <item name="android:textColor">#8e8e8e</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="Proposal.Paragraph">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Proposal.Divider">
+        <item name="android:background">@color/silver</item>
+    </style>
+
+
+    <style name="Proposal.Average">
+        <item name="android:textColor">@color/darken</item>
+        <item name="android:textSize">@dimen/input_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Proposal.BadgeText">
+        <item name="android:textColor">@color/darken</item>
+        <item name="android:textSize">@dimen/input_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Proposal.Summary">
+        <item name="android:textColor">@color/darken</item>
+        <item name="android:textSize">@dimen/input_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
 </resources>

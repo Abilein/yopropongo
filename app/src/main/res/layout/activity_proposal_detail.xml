@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/progressbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="20sp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Titulo de la propuesta"
+                android:id="@+id/lblTitle"
+                style="@style/Proposal.Title" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/label_proposed_at"
+                    style="@style/Proposal.Label" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="12 Ago, 2015"
+                    android:id="@+id/lblDate"
+                    style="@style/Proposal.Value"
+                    android:paddingLeft="@dimen/activity_padding" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/label_proposed_by"
+                style="@style/Proposal.Label"
+                android:paddingTop="@dimen/activity_padding" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="FULANITO DE TAL"
+                android:id="@+id/lblProposers"
+                style="@style/Proposal.Value"
+                android:paddingLeft="@dimen/activity_padding"
+                android:paddingRight="@dimen/activity_padding"
+                android:paddingBottom="@dimen/activity_padding" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                style="@style/Proposal.Divider"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_padding"
+                android:paddingTop="@dimen/activity_quarter_margin"
+                android:paddingBottom="@dimen/activity_quarter_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="3.2"
+                    android:id="@+id/lblAverage"
+                    android:textSize="35sp"
+                    />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/activity_quarter_margin">
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="17sp"
+                        android:isIndicator="true"
+                        android:progressDrawable="@drawable/app_ratingbar_selector_minor"
+                        android:id="@+id/ratingAverage" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="300"
+                            android:id="@+id/lblViewers"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="13sp"
+                            android:layout_height="13sp"
+                            android:id="@+id/imageView2"
+                            android:src="@drawable/ic_account_minor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_selector"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="@dimen/activity_padding"
+                        android:clickable="true"
+                        android:layout_gravity="right"
+                        android:paddingLeft="@dimen/activity_padding"
+                        android:id="@+id/blockAttachs">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="200"
+                            android:textColor="@color/SkyBlue"
+                            android:id="@+id/lblAttacchs"
+                            android:paddingRight="@dimen/activity_quarter_margin"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView3"
+                            android:src="@drawable/file" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                style="@style/Proposal.Divider"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt "
+                android:id="@+id/lblDescription"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/activity_padding"
+                style="@style/Proposal.Paragraph" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                style="@style/Proposal.Divider"
+                />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="72sp"
+                android:id="@+id/ratingAction"
+                android:numStars="5"
+                android:progressDrawable="@drawable/app_ratingbar_selector"
+                android:layout_gravity="top|center" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                style="@style/Proposal.Divider"
+                android:layout_marginBottom="16sp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listComments"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:id="@+id/btnComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:text="@string/label_all_comments" />
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_comment"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        />
+</RelativeLayout>

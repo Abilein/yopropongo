@@ -73,4 +73,18 @@
 
     <!--Proposals-->
     <dimen name="proposal_icon_size">50dp</dimen>
+
+    <!--ACTIVITY-->
+    <dimen name="activity_padding">16dp</dimen>
+
+    <dimen name="headline_font_size">24sp</dimen>
+    <dimen name="title_text_size">20sp</dimen>
+    <dimen name="subhead_text_size">16sp</dimen>
+    <dimen name="body_text_size">14sp</dimen>
+    <dimen name="caption_text_size">12sp</dimen>
+    <dimen name="sub_caption_text_size">10sp</dimen>
+    <dimen name="button_text_size">14sp</dimen>
+    <dimen name="input_text_size">18sp</dimen>
+    <dimen name="badge_text_size">10sp</dimen>
+    <dimen name="comment_avatar_size">50dp</dimen>
 </resources>

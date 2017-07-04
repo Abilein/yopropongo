@@ -46,7 +46,7 @@ public class CommissionDetailActivity extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        int commissionID = bundle.getInt(Constants.KEY_COUNCILMAN_ID);
+        int commissionID = bundle.getInt(Constants.KEY_COMMISSION_ID);
         Commission commissionSelected = Commission.getCommission(this,commissionID);
         if (commissionSelected !=null){
             if (commissionSelected.cover !=null)
