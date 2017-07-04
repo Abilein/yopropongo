@@ -84,14 +84,14 @@ public class ProposalsAdapter extends BaseAdapter {
         holder.cardTitle.setText(proposal.title);
         String textAbout = proposal.summary.substring(0,30)+"...";
         holder.cardSummary.setText(textAbout);
-        holder.cardView.setText(proposal.views+"");
-        holder.cardRate.setText(proposal.rate+"");
+        holder.cardView.setText(proposal.views+" vistas");
+        holder.cardRate.setText(proposal.rate+" puntos");
         List<AttachmentDB> attachments = SQLite.select().
                 from(AttachmentDB.class).
                 where(AttachmentDB_Table.proposal.is(proposal.getId())).
                 queryList();
 
-        holder.cardFiles.setText(attachments.size()+"");
+        holder.cardFiles.setText(attachments.size()+" archivos");
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override

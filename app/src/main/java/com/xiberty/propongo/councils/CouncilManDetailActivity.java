@@ -121,11 +121,9 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
                 if (state==State.IDLE || state==State.EXPANDED){
                     mSpace.setVisibility(View.GONE);
-//                    mSpace.animate().alpha(3.0f);
                     mToolbarTextView.setVisibility(View.GONE);
                 }else{
                     mSpace.setVisibility(View.VISIBLE);
-//                    mSpace.animate().alpha(0.0f);
                     mToolbarTextView.setVisibility(View.VISIBLE);
                 }
             }

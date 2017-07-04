@@ -97,15 +97,18 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
         ArrayList<DirectiveItem>  directive = new ArrayList<>();
         if (selectedCouncil.president != 0 ) {
             CouncilMan president = getCouncilMan(selectedCouncil.president);
-            directive.add(new DirectiveItem(president,"presidente"));
+            if (president!=null)
+                directive.add(new DirectiveItem(president,"presidente"));
         }
         if (selectedCouncil.vice_president != 0 ) {
             CouncilMan vicepresident = getCouncilMan(selectedCouncil.vice_president);
+            if (vicepresident!=null)
             directive.add(new DirectiveItem(vicepresident,"Vice Presidente"));
         }
         if (selectedCouncil.secretary != 0 ) {
             CouncilMan secretary = getCouncilMan(selectedCouncil.secretary);
-            directive.add(new DirectiveItem(secretary,"Secretario"));
+            if (secretary!=null)
+                directive.add(new DirectiveItem(secretary,"Secretario"));
         }
 
         return directive;
@@ -114,7 +117,7 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
     private CouncilMan getCouncilMan(int ID) {
         List<CouncilMan> councilMen = Store.getCouncilman(context);
         for (CouncilMan councilMan: councilMen){
-            if (councilMan.id == ID)
+            if (councilMan.getId() == ID)
                 return councilMan;
         }
         return null;
