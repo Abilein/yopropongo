@@ -170,6 +170,7 @@ public class MainPresenter implements MainContract.Presenter {
                         proposalDB.councilmen = proposal.getCouncilmen();
                         proposalDB.views = proposal.getViews();
                         proposalDB.average = proposal.getAverage();
+                        proposalDB.council = proposal.council;
                         proposalDB.save();
 
                         List<Attachment> attachments = proposal.getAttachments();

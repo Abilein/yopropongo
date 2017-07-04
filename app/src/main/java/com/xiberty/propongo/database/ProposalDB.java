@@ -22,6 +22,7 @@ public class ProposalDB extends BaseModel{
     @Column public String type;
     @Column public boolean is_valid;
     @Column public String creation_date;
+    @Column public int council;
 
     //GETTERS
 

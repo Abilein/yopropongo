@@ -22,6 +22,8 @@ public class Proposal {
     @SerializedName("attachments") public List<Attachment> attachments;
     @SerializedName("is_valid") public boolean is_valid;
     @SerializedName("creation_date") public String creation_date;
+    @SerializedName("council") public int  council;
+
 
 
     public static String getTAG() {
