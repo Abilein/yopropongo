@@ -194,5 +194,9 @@
     <string name="label_proposed_by">PROPUESTO POR:</string>
     <string name="label_all_comments">VER MAS COMENTARIOS</string>
     <string name="hint_comment">Comentario</string>
+    <string name="comment_title">Comenta ya!</string>
+    <string name="positive">LISTO</string>
+    <string name="close">CERRAR</string>
+    <string name="list_title">Documentos</string>
 
 </resources>

@@ -2,7 +2,6 @@ package com.xiberty.propongo.councils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
@@ -21,6 +21,7 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.councils.adapters.CommentAdapter;
+import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.AttachmentDB_Table;
 import com.xiberty.propongo.database.Comment;
@@ -71,6 +72,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     @BindView(R.id.btnComments)
     Button btnComments;
 
+    private List<AttachmentDB> attachments=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +99,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
             String proposalStr = bundle.getString(Constants.KEY_PROPOSAL_ID);
             Gson gson = new Gson();
             ProposalDB proposal = gson.fromJson(proposalStr, ProposalDB.class);
-            List<AttachmentDB> attachments = SQLite.select()
+            attachments = SQLite.select()
                     .from(AttachmentDB.class)
                     .where(AttachmentDB_Table.proposal.is(proposal.getId()))
                     .queryList();
@@ -164,6 +166,21 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @OnClick(R.id.floatBtnComment)
     public void commentNow(View view){
+        boolean wrapInScrollView = true;
+        new MaterialDialog.Builder(this)
+                .title(R.string.comment_title)
+                .customView(R.layout.popup_comment, wrapInScrollView)
+                .positiveText(R.string.positive)
+                .show();
+    }
+    @OnClick(R.id.blockAttachs)
+    public void viewFiles(View view){
+        if (attachments!=null){
+            new MaterialDialog.Builder(this)
+                    .title(R.string.list_title)
+                    .adapter(new AttachmentAdapter(this,attachments), null)
+                    .show();
+        }
 
     }
 }
