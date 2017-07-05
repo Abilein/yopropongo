@@ -92,7 +92,12 @@
         <activity android:name=".councils.CommissionDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".councils.ProposalDetailActivity" />
+        <activity android:name=".councils.ProposalDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".councils.CommentsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

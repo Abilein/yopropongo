@@ -52,7 +52,6 @@ public class CommentAdapter  extends BaseAdapter{
     public View getView(int position, View rowView, ViewGroup viewGroup) {
 
         if (rowView ==null){
-            Log.e("1",rowView+"");
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -64,9 +63,7 @@ public class CommentAdapter  extends BaseAdapter{
             holder.fullname = (TextView) rowView.findViewById(R.id.lblFullName);
             holder.avatar = (ImageView) rowView.findViewById(R.id.imgAvatar);
             rowView.setTag(holder);
-            Log.e("2",rowView+"");
         }
-        Log.e("3",rowView+"");
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
         final Comment comment = items.get(position);
@@ -79,7 +76,6 @@ public class CommentAdapter  extends BaseAdapter{
             Glide.with(context).load(R.drawable.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.avatar);
 
         return rowView;
-
 
     }
 

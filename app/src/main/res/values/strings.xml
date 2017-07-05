@@ -193,5 +193,6 @@
     <string name="label_proposed_at">PROPUESTO EL:</string>
     <string name="label_proposed_by">PROPUESTO POR:</string>
     <string name="label_all_comments">VER MAS COMENTARIOS</string>
+    <string name="hint_comment">Comentario</string>
 
 </resources>

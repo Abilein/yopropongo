@@ -79,8 +79,10 @@ public class Constants {
     public static final String KEY_COUNCILMAN_ID = "councilman_id";
     public static final String KEY_COMMISSION_ID = "commission_id";
     public static final String KEY_COUNCIL_ID = "council_id";
+    public static final String KEY_COMMENTS = "comments_list";
 
 
     public static final String KEY_IS_ALONE = "is_alone";
+
 
 }
