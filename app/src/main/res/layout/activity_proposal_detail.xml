@@ -119,7 +119,9 @@
                             android:layout_width="13sp"
                             android:layout_height="13sp"
                             android:id="@+id/imageView2"
-                            android:src="@drawable/ic_account_minor" />
+                            android:src="@drawable/view"
+                            android:layout_marginLeft="@dimen/activity_quarter_margin"
+                            android:tint="@color/DarkGray"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -194,7 +196,7 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:id="@+id/listComments"
                 android:layout_gravity="center_horizontal" />
             <Button

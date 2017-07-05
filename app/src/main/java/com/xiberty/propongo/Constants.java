@@ -69,6 +69,7 @@ public class Constants {
     public static final String COUNCILMEN_ENDPOINT = "/api/councils/{pk}/councilmen/";
     public static final String COUNCILMEN_INBOX_ENDPOINT = "/api/councils/{pk}/councilmen/inbox/";
     public static final String PROPOSALS_ENDPOINT = "/api/councils/{pk}/proposals/";
+    public static final String PROPOSAL_ROOT_ENDPOINT = "/api/councils/proposals/";
     public static final String CONTACTS_ENDPOINT = "/api/councils/contacts/";
 
     /**

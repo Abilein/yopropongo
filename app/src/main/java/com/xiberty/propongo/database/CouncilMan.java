@@ -180,4 +180,8 @@ public class CouncilMan {
         }
         return null;
     }
+
+    public String getFullName() {
+        return first_name+" "+last_name;
+    }
 }

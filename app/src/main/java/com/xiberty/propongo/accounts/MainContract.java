@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.xiberty.propongo.credentials.responses.UserProfile;
 import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.Proposal;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class MainContract {
         void showError(String message);
 
         void setCouncilinDrawer();
+
 
 
     }

@@ -20,7 +20,6 @@ import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.Proposal;
 import com.xiberty.propongo.database.ProposalDB;
-import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
 import okhttp3.ResponseBody;
@@ -151,15 +150,16 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void getProposals(final Context context) {
         Council defaultCouncil = Store.getDefaultCouncil(context);
-        Call<List<Proposal>> councilmenCall = ccService.getProposal(defaultCouncil.id()+"");
-        councilmenCall.enqueue(new Callback<List<Proposal>>() {
+        String id = String.valueOf(defaultCouncil.id);
+        Call<List<Proposal>> proposalCall = ccService.getProposal(id);
+        proposalCall.enqueue(new Callback<List<Proposal>>() {
             @Override
             public void onResponse(Call<List<Proposal>> call, Response<List<Proposal>> response) {
                 if (response.isSuccessful()){
                     /**
                      * Save in the Database
                      **/
-                    Log.e("MainPreenter","Database in progress.....");
+                    Log.e("MainPreenter","Proposal Database in progress.....");
                     List<Proposal> proposals = response.body();
                     for (Proposal proposal : proposals){
                         ProposalDB proposalDB = new ProposalDB();
@@ -170,6 +170,7 @@ public class MainPresenter implements MainContract.Presenter {
                         proposalDB.councilmen = proposal.getCouncilmen();
                         proposalDB.views = proposal.getViews();
                         proposalDB.average = proposal.getAverage();
+                        proposalDB.creation_date= proposal.getCreation_date();
                         proposalDB.council = proposal.council;
                         proposalDB.save();
 
@@ -190,22 +191,25 @@ public class MainPresenter implements MainContract.Presenter {
                 }
             }
 
+
+
             @Override
             public void onFailure(Call<List<Proposal>> call, Throwable t) {
-                Log.e("MainPreenter","Database failed, "+t.getCause());
+                Log.e("MainPreenter","WTF! Failed 'cause "+t.getCause());
             }
         });
     }
 
+
+
     @Override
     public void getCommissions(final Context context) {
         Council defaultCouncil = Store.getDefaultCouncil(context);
-        Call<List<Commission>> councilmenCall = ccService.getCommissions(defaultCouncil.id()+"");
-        councilmenCall.enqueue(new Callback<List<Commission>>() {
+        Call<List<Commission>> commissionCall = ccService.getCommissions(defaultCouncil.id()+"");
+        commissionCall.enqueue(new Callback<List<Commission>>() {
             @Override
             public void onResponse(Call<List<Commission>> call, Response<List<Commission>> response) {
                 if (response.isSuccessful()){
-                    Log.e("Main Presenter", response.body()+"");
                     Store.saveCommissions(context,response.body());
                 }else{
                     FormattedResp error = ParserError.parse(response);
@@ -216,10 +220,12 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onFailure(Call<List<Commission>> call, Throwable t) {
-                Log.e("MainPresenter",t.getCause()+"" );
+                Log.e("MainPresenter.class",String.valueOf(t.getCause()));
             }
         });
     }
+
+
 
 
 }

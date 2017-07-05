@@ -1,6 +1,7 @@
 package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
+import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
@@ -46,22 +47,22 @@ public interface CouncilService {
                                   @Part MultipartBody.Part attached_file);
 
 
-    @GET(Constants.PROPOSALS_ENDPOINT+"/{pk}/up")
+    @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/up/")
     Call<Proposal> activeProposal(@Path("pk") String pk);
 
-    @GET(Constants.PROPOSALS_ENDPOINT+"/{pk}/halt")
+    @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/halt/")
     Call<Proposal> deleteProposal(@Path("pk") String pk);
 
-    @GET(Constants.PROPOSALS_ENDPOINT+"/{pk}/comments")
-    Call<Proposal> getProposalComments(@Path("pk") String pk);
+    @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/comments/")
+    Call<List<Comment>> getProposalComments(@Path("pk") String pk);
 
     @FormUrlEncoded
-    @POST(Constants.PROPOSALS_ENDPOINT+"/{pk}/rate")
+    @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/rate")
     Call<Proposal> rateProposal(@Field("pk") String pk,
                                 @Field("rating") String rating);
 
     @FormUrlEncoded
-    @POST(Constants.PROPOSALS_ENDPOINT+"/{pk}/comment")
+    @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/comment")
     Call<Proposal> commentProposal(@Field("pk") String pk,
                                    @Field("comment") String comment);
 

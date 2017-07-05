@@ -1,22 +1,22 @@
 package com.xiberty.propongo.database;
 
 
+import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 
-@Table(database = AppDatabase.class)
-public class Comment extends BaseModel{
+
+public class Comment {
 
     public static final String TAG = Comment.class.getSimpleName();
 
-    @PrimaryKey public int id;
-
-    @Column public String content;
-    @Column public String date;
-    @Column public String full_name;
-    @Column public String avatar;
+    @SerializedName("id")       public int id;
+    @SerializedName("content")  public String content;
+    @SerializedName("date")     public String date;
+    @SerializedName("full_name")public String full_name;
+    @SerializedName("avatar")   public String avatar;
 
 }
