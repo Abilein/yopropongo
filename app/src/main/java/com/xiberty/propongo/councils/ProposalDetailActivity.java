@@ -3,6 +3,8 @@ package com.xiberty.propongo.councils;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -58,21 +59,23 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     TextView lblAttacchs;
     @BindView(R.id.imageView3)
     ImageView imageView3;
-    @BindView(R.id.blockAttachs)
-    LinearLayout blockAttachs;
     @BindView(R.id.lblDescription)
     TextView lblDescription;
     @BindView(R.id.ratingAction)
     RatingBar ratingAction;
     @BindView(R.id.listComments)
     ListView listComments;
-    ProposalDetailPresenter presenter;
-    CouncilService ccService;
-    List<Comment> comments;
+    @BindView(R.id.blockAttachs)
+    LinearLayout blockAttachs;
     @BindView(R.id.btnComments)
     Button btnComments;
 
+    ProposalDetailPresenter presenter;
+    CouncilService ccService;
+    List<Comment> comments;
+
     private List<AttachmentDB> attachments=null;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +117,10 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                 lblViewers.setText(String.valueOf(proposal.views));
                 lblAttacchs.setText(String.valueOf(attachments.size()));
                 presenter.getComments(this, String.valueOf(proposal.getId()));
-
             }
+            if (attachments.isEmpty())
+                blockAttachs.setClickable(false);
+
         }
     }
 
