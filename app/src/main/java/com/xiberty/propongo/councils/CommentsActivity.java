@@ -34,9 +34,6 @@ public class CommentsActivity extends AppCompatActivity {
     @BindView(R.id.placeholder)
     LinearLayout placeholder;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
