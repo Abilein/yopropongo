@@ -1,6 +1,7 @@
 package com.xiberty.propongo.credentials;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
@@ -53,9 +54,10 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
                 } else {
                     FormattedResp error = ParserError.parse(response);
-
+                    Log.e("ERROR LOGIN",error+"");
 
                     String errorMessage = MessageManager.getMessage(context, error.code());
+                    Log.e("ERROR LOGIN",errorMessage+"");
                     mView.signupError(errorMessage);
                 }
             }

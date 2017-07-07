@@ -1,6 +1,7 @@
 
 package com.xiberty.propongo.accounts;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.BottomSheetDialog;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private static final String TAG = MainActivity.class.getSimpleName();
     AccountHeader accountHeader;
 
+
+
     public enum Menues {
         INBOX(1001),
         PROFILE(1002),
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     public Drawer drawer;
-    MainContract.Presenter presenter;
+    public MainContract.Presenter presenter;
 
     AccountService accountService;
     CredentialService credentialService;
@@ -407,4 +410,5 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public UserProfile getProfile() {
         return profile;
     }
+
 }

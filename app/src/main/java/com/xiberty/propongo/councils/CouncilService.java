@@ -1,6 +1,7 @@
 package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
+import com.xiberty.propongo.councils.models.RateResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
@@ -58,8 +59,8 @@ public interface CouncilService {
 
     @FormUrlEncoded
     @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/rate")
-    Call<Proposal> rateProposal(@Field("pk") String pk,
-                                @Field("rating") String rating);
+    Call<RateResponse> rateProposal(@Field("pk") String pk,
+                                    @Field("rating") int rating);
 
     @FormUrlEncoded
     @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/comment")

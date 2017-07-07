@@ -198,5 +198,11 @@
     <string name="positive">LISTO</string>
     <string name="close">CERRAR</string>
     <string name="list_title">Documentos</string>
+    <string name="hint_proposal_title">Propuesta</string>
+    <string name="hint_proposal_summary">Descripción</string>
+    <string name="hint_choose_councilman">Escoge un Consejal</string>
+    <string name="hint_proposal_attachs">Añade Archivos</string>
+    <string name="send_proposal">Enviar Propuestas</string>
+    <string name="update_icon">Actualizar</string>
 
 </resources>

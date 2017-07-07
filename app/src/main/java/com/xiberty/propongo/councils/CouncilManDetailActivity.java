@@ -220,4 +220,10 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         adapter.addFragment(generalProposalsFragment, "PROPUESTAS");
         viewPager.setAdapter(adapter);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

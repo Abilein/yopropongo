@@ -98,6 +98,9 @@
         <activity android:name=".councils.CommentsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".councils.NewProposalActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

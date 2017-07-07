@@ -116,7 +116,7 @@
             app:layout_scrollFlags="scroll|snap"
             android:orientation="horizontal"
             android:padding="@dimen/activity_half_quarter_margin"
-            android:background="@color/colorPrimaryDark">
+            android:background="@color/colorPrimary">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"

@@ -227,5 +227,4 @@ public class MainPresenter implements MainContract.Presenter {
 
 
 
-
 }
