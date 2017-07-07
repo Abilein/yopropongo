@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar_with_back"/>
+    <include layout="@layout/toolbar_with_back"
+        android:id="@+id/toolbar_comments"/>
 
     <ListView
         android:id="@+id/listView"
+        android:layout_below="@+id/toolbar_comments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

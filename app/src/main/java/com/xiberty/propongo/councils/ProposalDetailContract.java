@@ -2,7 +2,7 @@ package com.xiberty.propongo.councils;
 
 import android.content.Context;
 
-import com.xiberty.propongo.councils.models.RateResponse;
+import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.database.Comment;
 
 import java.util.List;
@@ -24,6 +24,11 @@ public class ProposalDetailContract {
         void showErrorComments (String error);
         void updateRating(String average);
 
-        void errorRating(RateResponse body);
+        void errorRating(DetailResponse body);
+
+        void showDetailResponse(String detail);
+
+        void showErrorToMakeComment(String error
+        );
     }
 }

@@ -1,17 +1,12 @@
 package com.xiberty.propongo.councils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
-import com.xiberty.propongo.contrib.api.FormattedResp;
-import com.xiberty.propongo.contrib.api.MessageManager;
-import com.xiberty.propongo.contrib.api.ParserError;
-import com.xiberty.propongo.councils.models.RateResponse;
+import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Proposal;
 import com.xiberty.propongo.database.ProposalDB;
-import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
 
@@ -57,20 +52,38 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
     }
 
     @Override
-    public void setComment(Context context, String id, String comment) {
-        Call<Proposal> proposalCall = ccService.commentProposal(id,comment);
+    public void setComment(final Context context, final String id, String comment) {
+        Call<DetailResponse> proposalCall = ccService.
+                commentProposal(id,comment);
+        proposalCall.enqueue(new Callback<DetailResponse>() {
+            @Override
+            public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
+                if (response.isSuccessful()){
+                    DetailResponse detailResponse = response.body();
+                    mView.showDetailResponse(detailResponse.detail);
+                    getComments(context,id);
+                }else{
+                    mView.showErrorToMakeComment("Error al crear Comentario");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DetailResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
     public void rateProposal(Context context, String proposalId, final String average) {
         int averageInt = (int)Double.parseDouble(average);
-        Call<RateResponse> proposalCall = ccService.rateProposal(proposalId,averageInt);
-        proposalCall.enqueue(new Callback<RateResponse>() {
+        Call<DetailResponse> proposalCall = ccService.rateProposal(proposalId,averageInt);
+        proposalCall.enqueue(new Callback<DetailResponse>() {
             @Override
-            public void onResponse(Call<RateResponse> call, Response<RateResponse> response) {
+            public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
                 if (response.isSuccessful()){
-                    RateResponse rateResponse = response.body();
-                    if (rateResponse.detail.equals("Ranking actualizado!")){
+                    DetailResponse detailResponse = response.body();
+                    if (detailResponse.detail.equals("Ranking actualizado!")){
                         updateDatabase(average);
                         mView.updateRating(average);
                     }
@@ -81,7 +94,7 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
             }
 
             @Override
-            public void onFailure(Call<RateResponse> call, Throwable t) {
+            public void onFailure(Call<DetailResponse> call, Throwable t) {
                 Log.e(TAG, "OMG! Rating was not successfull");
             }
         });

@@ -3,12 +3,9 @@ package com.xiberty.propongo.councils;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +16,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -29,13 +25,12 @@ import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.councils.adapters.CommentAdapter;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
-import com.xiberty.propongo.councils.models.RateResponse;
+import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.AttachmentDB_Table;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.ProposalDB;
-import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,8 +170,18 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     }
 
     @Override
-    public void errorRating(RateResponse body) {
+    public void errorRating(DetailResponse body) {
         Toast.makeText(context,"Error al rankear",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showDetailResponse(String detail) {
+        Toast.makeText(context, detail, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorToMakeComment(String error) {
+        Toast.makeText(context,error, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -204,7 +209,6 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         String comment = input.toString();
-
                         presenter.setComment(context,proposalId,comment);
                     }
                 }).show();

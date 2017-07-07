@@ -1,7 +1,7 @@
 package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
-import com.xiberty.propongo.councils.models.RateResponse;
+import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
@@ -20,7 +20,6 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 
 public interface CouncilService {
@@ -58,13 +57,13 @@ public interface CouncilService {
     Call<List<Comment>> getProposalComments(@Path("pk") String pk);
 
     @FormUrlEncoded
-    @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/rate")
-    Call<RateResponse> rateProposal(@Field("pk") String pk,
-                                    @Field("rating") int rating);
+    @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/rate/")
+    Call<DetailResponse> rateProposal(@Path("pk") String pk,
+                                      @Field("rating") int rating);
 
     @FormUrlEncoded
-    @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/comment")
-    Call<Proposal> commentProposal(@Field("pk") String pk,
+    @POST(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/comment/")
+    Call<DetailResponse> commentProposal(@Path("pk") String pk,
                                    @Field("comment") String comment);
 
     @GET(Constants.CONTACTS_ENDPOINT)
