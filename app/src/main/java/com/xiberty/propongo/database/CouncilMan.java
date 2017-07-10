@@ -184,4 +184,13 @@ public class CouncilMan {
     public String getFullName() {
         return first_name+" "+last_name;
     }
+
+    public static String getCouncilmanByName(Context context, String full_name) {
+        List<CouncilMan> councilMen = Store.getCouncilman(context);
+        for (CouncilMan councilMan: councilMen){
+            if (councilMan.getFullName().equals(full_name))
+                return String.valueOf(councilMan.id);
+        }
+        return "";
+    }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ import com.xiberty.propongo.database.AttachmentDB_Table;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.ProposalDB;
+import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,7 @@ import butterknife.OnClick;
 
 public class ProposalDetailActivity extends AppCompatActivity implements ProposalDetailContract.View, RatingBar.OnRatingBarChangeListener {
 
+    private static final String TAG = ProposalDetailActivity.class.getSimpleName();
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.lblTitle)
@@ -79,6 +82,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     Context context;
     String  proposalId;
     Double proposalRate;
+    int proposalViews;
 
     private List<AttachmentDB> attachments=null;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -91,17 +95,10 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
         context = this;
         ccService = WS.makeService(CouncilService.class);
         presenter = new ProposalDetailPresenter(this, ccService);
-        updateNumberOfViews();
         setContent();
 
     }
 
-
-    private void updateNumberOfViews() {
-        // Increase the Numbers of View
-        // Update Database
-        // Send the endpoint
-    }
 
     private void setContent() {
         Bundle bundle = getIntent().getExtras();
@@ -122,10 +119,15 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                 lblDate.setText(UIUtils.convertToDate(proposal.creation_date));
                 lblAverage.setText(String.valueOf(proposal.average));
                 lblViewers.setText(String.valueOf(proposal.views));
+
                 lblAttacchs.setText(String.valueOf(attachments.size()));
+
                 proposalId =String.valueOf(proposal.getId());
                 proposalRate =proposal.getAverage();
+
                 presenter.getComments(this, proposalId);
+                presenter.getViews(this,proposalId);
+
                 ratingAction.setOnRatingBarChangeListener(this);
             }
             if (attachments.isEmpty())
@@ -184,6 +186,16 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
         Toast.makeText(context,error, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void updateViewers(int view) {
+        ProposalDB proposalDB = SQLite.select().
+                from(ProposalDB.class)
+                .where(ProposalDB_Table.id.is(Integer.parseInt(proposalId))).querySingle();
+        proposalDB.setViews(view);
+
+        Log.e(TAG,String.valueOf(view));
+        lblViewers.setText(String.valueOf(view));
+    }
 
     @OnClick(R.id.btnComments)
     public void showMoreComments(View view) {
@@ -227,7 +239,6 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
         double currentRate = (double)rating;
         double averageRate = (currentRate + proposalRate)/2;
         presenter.rateProposal(this,proposalId,String.valueOf(averageRate));

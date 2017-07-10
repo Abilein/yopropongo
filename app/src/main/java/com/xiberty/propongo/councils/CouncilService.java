@@ -2,6 +2,8 @@ package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.councils.models.DetailResponse;
+import com.xiberty.propongo.councils.models.NewProposalRespse;
+import com.xiberty.propongo.councils.models.ViewResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Commission;
 import com.xiberty.propongo.database.Council;
@@ -40,11 +42,12 @@ public interface CouncilService {
     Call<List<Proposal>> getProposal(@Path("pk") String pk);
 
     @Multipart
-    @POST(Constants.PROPOSALS_ENDPOINT)
-    Call<Proposal> createProposal(@Part("title") RequestBody title,
-                                  @Part("summary") RequestBody summary,
-                                  @Part("for_councilman") RequestBody for_councilman,
-                                  @Part MultipartBody.Part attached_file);
+    @POST(Constants.PROPOSAL_ROOT_ENDPOINT)
+    Call<NewProposalRespse> createProposal(@Part("title") RequestBody title,
+                                           @Part("summary") RequestBody summary,
+                                           @Part("for_councilman") RequestBody for_councilman,
+                                           @Part("council") RequestBody council,
+                                           @Part MultipartBody.Part attached_file);
 
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/up/")
@@ -74,4 +77,6 @@ public interface CouncilService {
                                  @Field("email") String email,
                                  @Field("message") String message);
 
+    @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/view/")
+    Call<ViewResponse> getView(@Path("pk") String pk);
 }

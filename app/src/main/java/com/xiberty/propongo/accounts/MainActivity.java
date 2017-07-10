@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         // Service for Syncing
         setUserProfile();
         setCouncil();
-//        Log.e("Default Council",valor.toString());
 
     }
 

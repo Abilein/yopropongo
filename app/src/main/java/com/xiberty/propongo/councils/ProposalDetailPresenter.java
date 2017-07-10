@@ -2,8 +2,10 @@ package com.xiberty.propongo.councils;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import com.xiberty.propongo.councils.models.DetailResponse;
+import com.xiberty.propongo.councils.models.ViewResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Proposal;
 import com.xiberty.propongo.database.ProposalDB;
@@ -47,6 +49,28 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
                     Log.e(TAG,"OMG! Failed 'cause "+t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getViews(Context context, String pk) {
+        Call<ViewResponse> proposalCall = ccService.getView(pk);
+        proposalCall.enqueue(new Callback<ViewResponse>() {
+            @Override
+            public void onResponse(Call<ViewResponse> call, Response<ViewResponse> response) {
+                if (response.isSuccessful()){
+                    ViewResponse viewResponse = response.body();
+                    mView.updateViewers(viewResponse.view);
+                }else{
+                    Log.e(TAG,"OMG! Error viewers 'cause "+response.body());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ViewResponse> call, Throwable t) {
+                Log.e(TAG,"OMG! Error viewers fatality 'cause "+t.getMessage());
             }
         });
     }
@@ -105,4 +129,6 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
         ProposalDB proposal = new ProposalDB();
         proposal.setAverage(Double.parseDouble(rate));
     }
+
+
 }

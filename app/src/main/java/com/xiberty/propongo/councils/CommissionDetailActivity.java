@@ -43,8 +43,6 @@ public class CommissionDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commission_detail);
         ButterKnife.bind(this);
 
-
-
         Bundle bundle = getIntent().getExtras();
         int commissionID = bundle.getInt(Constants.KEY_COMMISSION_ID);
         Commission commissionSelected = Commission.getCommission(this,commissionID);

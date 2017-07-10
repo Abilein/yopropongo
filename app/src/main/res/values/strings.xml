@@ -204,5 +204,6 @@
     <string name="hint_proposal_attachs">Añade Archivos</string>
     <string name="send_proposal">Enviar Propuestas</string>
     <string name="update_icon">Actualizar</string>
+    <string name="button_selectfile">Seleccionar..</string>
 
 </resources>

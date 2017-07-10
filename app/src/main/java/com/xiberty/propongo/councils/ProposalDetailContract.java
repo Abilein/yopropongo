@@ -15,6 +15,8 @@ public class ProposalDetailContract {
 
     public interface Presenter{
         void getComments(Context context, String id);
+        void getViews(Context context, String proposalId);
+
         void setComment(Context context,String id, String comment);
         void rateProposal(Context context, String proposalId, String average);
     }
@@ -30,5 +32,7 @@ public class ProposalDetailContract {
 
         void showErrorToMakeComment(String error
         );
+
+        void updateViewers(int view);
     }
 }

@@ -1,6 +1,7 @@
 package com.xiberty.propongo.councils.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,10 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.councils.NewProposalActivity;
 import com.xiberty.propongo.councils.adapters.ProposalsAdapter;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.ProposalDB;
@@ -47,6 +50,8 @@ public class ProposalsFragment extends ToolbarBaseFragment implements InboxContr
     @BindView(R.id.btnAdd)
     FloatingActionButton btnAdd;
 
+    private Council selectedCouncil;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +67,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements InboxContr
         ButterKnife.bind(this, rootView);
 
         //Default Council
-        Council selectedCouncil = Store.getDefaultCouncil(context);
+        selectedCouncil = Store.getDefaultCouncil(context);
         setHeader(rootView, getString(R.string.menu_proposals).toUpperCase(), selectedCouncil.name());
 
         List<ProposalDB> proposals = SQLite.select().
@@ -115,6 +120,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements InboxContr
 
     @OnClick(R.id.btnAdd)
     public void AddProposals(View view){
-        Toast.makeText(context, "Añadira Propuestas", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, NewProposalActivity.class);
+        context.startActivity(intent);
     }
 }

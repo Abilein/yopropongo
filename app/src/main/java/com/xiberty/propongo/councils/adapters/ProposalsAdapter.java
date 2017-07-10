@@ -90,6 +90,7 @@ public class ProposalsAdapter extends BaseAdapter {
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Gson gson = new Gson();
                 String proposalStr = gson.toJson(proposal);
 

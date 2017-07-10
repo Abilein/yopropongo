@@ -78,6 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="@dimen/activity_margin"
+                    android:layout_marginBottom="@dimen/activity_margin"
                     android:background="@color/silver" />
 
                 <TextView
@@ -86,10 +87,27 @@
                     android:text="@string/hint_proposal_attachs"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/path_attach"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_half_margin"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_add_attach"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_selectfile"
+                        android:textSize="12dp"
+                        android:textColor="@color/white"
+                        android:background="@color/colorAccent" />
+                    <TextView
+                        android:id="@+id/path_attach"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
