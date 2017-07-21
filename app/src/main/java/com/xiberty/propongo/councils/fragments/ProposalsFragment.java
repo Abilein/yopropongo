@@ -20,6 +20,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
+import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.councils.NewProposalActivity;
@@ -35,10 +36,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ProposalsFragment extends ToolbarBaseFragment implements InboxContract.CommissionView {
+public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsContract.View {
     private static final String TAG = ProposalsFragment.class.getSimpleName();
-    CouncilService mService;
-    InboxPresenter presenter;
     View rootView = null;
     Context context;
     @BindView(R.id.listView)
@@ -51,6 +50,9 @@ public class ProposalsFragment extends ToolbarBaseFragment implements InboxContr
     FloatingActionButton btnAdd;
 
     private Council selectedCouncil;
+
+    ProposalsPresenter presenter;
+    CouncilService service;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +77,9 @@ public class ProposalsFragment extends ToolbarBaseFragment implements InboxContr
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
                 queryList();
         setProposals(proposals);
+
+        service = WS.makeService(CouncilService.class);
+        presenter = new ProposalsPresenter(service,this);
 
         return rootView;
     }
@@ -115,12 +120,25 @@ public class ProposalsFragment extends ToolbarBaseFragment implements InboxContr
     }
 
     private void updateProposalDB() {
+        
         //TODO update proposals
+        presenter.getProposals(context);
+        List<ProposalDB> proposals = SQLite.select().
+                from(ProposalDB.class).
+                where(ProposalDB_Table.council.is(selectedCouncil.id)).
+                queryList();
+        setProposals(proposals);
+        Toast.makeText(context, "Actualizando...", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btnAdd)
     public void AddProposals(View view){
         Intent intent = new Intent(context, NewProposalActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void showError(String errorMessage) {
+        Toast.makeText(context, "Error al Actualizar", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,13 +1,16 @@
 package com.xiberty.propongo.councils.fragments;
 
 
+import android.content.Context;
+
 public class ProposalsContract {
 
     public interface Presenter{
-//        void getCommissionsFromDB();
+        void getProposals(final Context context);
     }
 
-    public interface CommissionView{
+    public interface View{
+        void showError(String errorMessage);
 //        void loadCommissions(List<Commission> commissions);
     }
 }
