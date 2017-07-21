@@ -27,6 +27,7 @@ import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.councils.adapters.CommentAdapter;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
+import com.xiberty.propongo.councils.fragments.ProposalsFragment;
 import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.AttachmentDB_Table;
@@ -208,10 +209,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @OnClick(R.id.btnGoBack)
     public void goBack(View view) {
-        Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
-        intent.putExtra(Constants.MENU_STATE,5);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        GoBackInBothCases();
     }
 
 
@@ -250,9 +248,19 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
-        intent.putExtra(Constants.MENU_STATE,5);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        GoBackInBothCases();
+    }
+
+    public void GoBackInBothCases(){
+        Bundle bundle = getIntent().getExtras();
+        String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
+        if (TAG.equals(ProposalsFragment.class.getSimpleName())){
+            Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
+            intent.putExtra(Constants.MENU_STATE,5);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else{
+            finish();
+        }
     }
 }

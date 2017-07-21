@@ -85,7 +85,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
     }
 
     private void setProposals(List<ProposalDB> proposals) {
-        ProposalsAdapter adapter = new ProposalsAdapter(context, proposals);
+        ProposalsAdapter adapter = new ProposalsAdapter(context, proposals,TAG);
         if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTEN PROPUESTAS");

@@ -21,13 +21,14 @@ import java.util.List;
 
 
 public class ProposalsAdapter extends BaseAdapter {
-    private static final String TAG = ProposalsAdapter.class.getSimpleName();
     private Context context;
     private List<ProposalDB> items;
+    private String TAG ;
 
-    public ProposalsAdapter(Context context, List<ProposalDB> items) {
+    public ProposalsAdapter(Context context, List<ProposalDB> items,String TAG) {
         this.context = context;
         this.items = items;
+        this.TAG = TAG;
     }
 
     @Override
@@ -96,6 +97,7 @@ public class ProposalsAdapter extends BaseAdapter {
 
                 Intent intent = new Intent(context, ProposalDetailActivity.class);
                 intent.putExtra(Constants.KEY_PROPOSAL_ID, proposalStr);
+                intent.putExtra(Constants.KEY_BASE_CLASS, TAG);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
