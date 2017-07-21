@@ -204,7 +204,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         GeneralProposalsFragment generalProposalsFragment = new GeneralProposalsFragment();
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
-                where(ProposalDB_Table.id.is(councilmanSelected.id)).
+                where(ProposalDB_Table.councilmen.is(String.valueOf(councilmanSelected.id))).
                 queryList();
 
         Gson gson = new Gson();
