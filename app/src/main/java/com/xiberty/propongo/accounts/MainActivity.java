@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     AccountHeader accountHeader;
 
 
-
     public enum Menues {
         INBOX(1001),
         PROFILE(1002),
@@ -88,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     CouncilForm councilForm;
 
     UserProfile profile;
+
+    int state = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,20 +139,23 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private void showMenu(long identifier) {
         if(identifier==Menues.INBOX.getID()){
             setContainer(new InboxFragment());
+            state=1;
         } else if(identifier==Menues.PROFILE.getID()){
             setContainer(new ProfileFragment());
+            state=2;
         } else if(identifier==Menues.COUNCIL.getID()){
             setContainer(new DirectiveFragment());
+            state=3;
         } else if(identifier==Menues.COMISSIONS.getID()){
-
             CommissionsFragment commissions = new CommissionsFragment();
             Bundle bcomm = new Bundle();
             bcomm.putBoolean(Constants.KEY_IS_ALONE, true);
             commissions.setArguments(bcomm);
             setContainer(commissions);
-
+            state=4;
         } else if(identifier==Menues.PROPOSAL.getID()){
             setContainer(new ProposalsFragment());
+            state=5;
         } else if(identifier==Menues.SETTINGS.getID()){
             setContainer(new SettingsFragment());
         } else if(identifier==Menues.ABOUT.getID()){
@@ -313,7 +317,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                             }
                         })
                         .build();
-                drawer.setSelection(Menues.PROFILE.getID());
+
+
+                Bundle bundle = getIntent().getExtras();
+                if (bundle != null){
+                    switch (bundle.getInt(Constants.MENU_STATE)){
+                        case 2:drawer.setSelection(Menues.PROFILE.getID());break;
+                        case 3:drawer.setSelection(Menues.COUNCIL.getID());break;
+                        case 4:drawer.setSelection(Menues.COMISSIONS.getID());break;
+                        case 5:drawer.setSelection(Menues.PROPOSAL.getID());break;
+                        default:drawer.setSelection(Menues.COMISSIONS.getID());break;
+                    }
+                }else{
+                    drawer.setSelection(Menues.PROFILE.getID());
+                }
+
                 drawer.getRecyclerView().setVerticalScrollBarEnabled(false);
 
             }

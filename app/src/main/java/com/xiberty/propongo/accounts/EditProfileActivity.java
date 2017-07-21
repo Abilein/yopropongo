@@ -23,6 +23,7 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
+import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.forms.ChangeEmailForm;
 import com.xiberty.propongo.accounts.forms.ChangePasswordForm;
@@ -32,6 +33,7 @@ import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.ActivityUtils;
 import com.xiberty.propongo.contrib.utils.ImageUtils;
 import com.xiberty.propongo.contrib.views.XEditText;
+import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
 
 import android.widget.*;
@@ -349,4 +351,12 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         EditProfileActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+        intent.putExtra(Constants.MENU_STATE,2);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 }

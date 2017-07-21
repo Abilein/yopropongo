@@ -1,5 +1,6 @@
 package com.xiberty.propongo.councils;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
 import com.xiberty.propongo.councils.fragments.GeneralProposalsFragment;
@@ -96,5 +98,12 @@ public class CommissionDetailActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(CommissionDetailActivity.this, MainActivity.class);
+        intent.putExtra(Constants.MENU_STATE,4);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 }

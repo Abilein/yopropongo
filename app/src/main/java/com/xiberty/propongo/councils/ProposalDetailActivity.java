@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.councils.adapters.CommentAdapter;
@@ -208,7 +209,10 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @OnClick(R.id.btnGoBack)
     public void goBack(View view) {
-        finish();
+        Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
+        intent.putExtra(Constants.MENU_STATE,5);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 
@@ -242,5 +246,14 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
         double currentRate = (double)rating;
         double averageRate = (currentRate + proposalRate)/2;
         presenter.rateProposal(this,proposalId,String.valueOf(averageRate));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
+        intent.putExtra(Constants.MENU_STATE,3);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

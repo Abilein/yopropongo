@@ -1,5 +1,6 @@
 package com.xiberty.propongo.councils;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
@@ -224,6 +226,10 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+        Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
+        intent.putExtra(Constants.MENU_STATE,3);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
         return true;
     }
 }

@@ -85,4 +85,5 @@ public class Constants {
     public static final String KEY_IS_ALONE = "is_alone";
 
 
+    public static final String MENU_STATE ="menu_state";
 }
