@@ -119,9 +119,8 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                 lblProposers.setText(councilMan.getFullName());
                 lblDate.setText(UIUtils.convertToDate(proposal.creation_date));
                 lblAverage.setText(String.valueOf(proposal.average));
-                lblViewers.setText(String.valueOf(proposal.views));
-
                 lblAttacchs.setText(String.valueOf(attachments.size()));
+                lblViewers.setText(String.valueOf(proposal.views));
 
                 proposalId =String.valueOf(proposal.getId());
                 proposalRate =proposal.getAverage();
@@ -188,14 +187,14 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     }
 
     @Override
-    public void updateViewers(int view) {
+    public void updateViewers(int numberOfViews) {
         ProposalDB proposalDB = SQLite.select().
                 from(ProposalDB.class)
                 .where(ProposalDB_Table.id.is(Integer.parseInt(proposalId))).querySingle();
-        proposalDB.setViews(view);
+        proposalDB.setViews(numberOfViews);
 
-        Log.e(TAG,String.valueOf(view));
-        lblViewers.setText(String.valueOf(view));
+        Log.e(TAG,String.valueOf(numberOfViews));
+        lblViewers.setText(String.valueOf(numberOfViews));
     }
 
     @OnClick(R.id.btnComments)
@@ -211,7 +210,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     public void goBack(View view) {
         Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
         intent.putExtra(Constants.MENU_STATE,5);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -252,8 +251,8 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(ProposalDetailActivity.this, MainActivity.class);
-        intent.putExtra(Constants.MENU_STATE,3);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra(Constants.MENU_STATE,5);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

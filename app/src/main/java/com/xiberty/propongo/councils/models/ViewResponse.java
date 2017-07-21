@@ -10,7 +10,7 @@ public class ViewResponse {
 
     @SerializedName("id") public int id;
     @SerializedName("title") public String title;
-    @SerializedName("view") public int view;
+    @SerializedName("views") public int views;
     @SerializedName("creation_date") public String creation_date;
 
 }

@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DirectiveCommissionFragment extends Fragment {
+    private static final String TAG = DirectiveCommissionFragment.class.getSimpleName() ;
     InboxPresenter presenter;
     View rootView = null;
     Context context;
@@ -73,7 +74,7 @@ public class DirectiveCommissionFragment extends Fragment {
     }
 
     private void setDirective(ArrayList<DirectiveItem> items) {
-        DirectiveAdapter adapter = new DirectiveAdapter(context, items);
+        DirectiveAdapter adapter = new DirectiveAdapter(context, items, TAG);
         if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTE DIRECTIVA");

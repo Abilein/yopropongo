@@ -25,6 +25,8 @@ import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
+import com.xiberty.propongo.councils.fragments.DirectiveCommissionFragment;
+import com.xiberty.propongo.councils.fragments.DirectiveFragment;
 import com.xiberty.propongo.councils.fragments.GeneralProposalsFragment;
 import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.Macrodistrict;
@@ -165,7 +167,6 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
 
     private void fetchAvatar() {
-
         if (councilmanSelected != null) {
             if (councilmanSelected.avatar != null) {
                 Glide.with(this)
@@ -226,10 +227,18 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
-        intent.putExtra(Constants.MENU_STATE,3);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+
+        Bundle bundle = getIntent().getExtras();
+        String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
+        if (TAG.equals(DirectiveFragment.class.getSimpleName())){
+            Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
+            intent.putExtra(Constants.MENU_STATE,3);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }else{
+            finish();
+        }
+
         return true;
     }
 }

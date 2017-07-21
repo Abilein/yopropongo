@@ -61,7 +61,7 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
             public void onResponse(Call<ViewResponse> call, Response<ViewResponse> response) {
                 if (response.isSuccessful()){
                     ViewResponse viewResponse = response.body();
-                    mView.updateViewers(viewResponse.view);
+                    mView.updateViewers(viewResponse.views);
                 }else{
                     Log.e(TAG,"OMG! Error viewers 'cause "+response.body());
                 }

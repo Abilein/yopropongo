@@ -78,8 +78,8 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
     }
 
     private void setDirective(Council selectedCouncil) {
-        DirectiveAdapter adapter = new DirectiveAdapter(getActivity().getApplicationContext(),
-                selectedCouncil.makedirective(context));
+        DirectiveAdapter adapter = new DirectiveAdapter(context,
+                selectedCouncil.makedirective(context),TAG);
         if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTE DIRECTIVA");

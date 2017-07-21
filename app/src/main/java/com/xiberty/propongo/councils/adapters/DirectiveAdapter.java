@@ -1,5 +1,6 @@
 package com.xiberty.propongo.councils.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -22,13 +24,14 @@ import java.util.ArrayList;
 
 
 public class DirectiveAdapter extends BaseAdapter {
-    private static final String TAG = DirectiveAdapter.class.getSimpleName();
     private Context context;
     private ArrayList<DirectiveItem> items;
+    private String TAG;
 
-    public DirectiveAdapter(Context context, ArrayList<DirectiveItem> items) {
+    public DirectiveAdapter(Context context, ArrayList<DirectiveItem> items,String TAG) {
         this.context = context;
         this.items = items;
+        this.TAG = TAG;
     }
 
     @Override
@@ -85,6 +88,7 @@ public class DirectiveAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(context, CouncilManDetailActivity.class);
                 intent.putExtra(Constants.KEY_COUNCILMAN_ID, councilMan.id);
+                intent.putExtra(Constants.KEY_BASE_CLASS, TAG);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
