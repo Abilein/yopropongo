@@ -12,17 +12,18 @@ public class Proposal {
 
     @SerializedName("id") public int id;
     @SerializedName("title") public String title;
-    @SerializedName("summary") public String summary;
-    @SerializedName("commissions") public String commissions;
-    @SerializedName("councilmen") public String councilmen;
+    @SerializedName("description") public String description;
+    @SerializedName("excerpt") public String excerpt;
+    @SerializedName("attachments") public List<Attachment> attachments;
     @SerializedName("views") public int views;
     @SerializedName("average") public double average;
     @SerializedName("rate") public int rate;
     @SerializedName("type") public String type;
-    @SerializedName("attachments") public List<Attachment> attachments;
-    @SerializedName("is_valid") public boolean is_valid;
-    @SerializedName("creation_date") public String creation_date;
-    @SerializedName("council") public int  council;
+    @SerializedName("status") public String status;
+    @SerializedName("datetime") public String datetime;
+    @SerializedName("commissions") public List<Commission> commissions;
+    @SerializedName("councilmen") public List<CouncilMan> councilmen;
+    @SerializedName("council") public Council  council;
 
 
 
@@ -38,16 +39,16 @@ public class Proposal {
         return title;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getDescription() {
+        return description;
     }
 
-    public String getCommissions() {
-        return commissions;
+    public String getExcerpt() {
+        return excerpt;
     }
 
-    public String getCouncilmen() {
-        return councilmen;
+    public List<Attachment> getAttachments() {
+        return attachments;
     }
 
     public int getViews() {
@@ -66,19 +67,28 @@ public class Proposal {
         return type;
     }
 
-    public boolean getIs_valid() {
-        return is_valid;
+    public String getStatus() {
+        return status;
     }
 
-    public String getCreation_date() {
-        return creation_date;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public List<Attachment> getAttachments() {
-        return attachments;
+    public List<Commission> getCommissions() {
+        return commissions;
     }
 
-//SETTERS
+    public List<CouncilMan> getCouncilmen() {
+        return councilmen;
+    }
+
+    public Council getCouncil() {
+        return council;
+    }
+
+    //SETTERS
+
 
     public void setId(int id) {
         this.id = id;
@@ -88,16 +98,16 @@ public class Proposal {
         this.title = title;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setCommissions(String commissions) {
-        this.commissions = commissions;
+    public void setExcerpt(String excerpt) {
+        this.excerpt = excerpt;
     }
 
-    public void setCouncilmen(String councilmen) {
-        this.councilmen = councilmen;
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     public void setViews(int views) {
@@ -116,12 +126,23 @@ public class Proposal {
         this.type = type;
     }
 
-    public void setIs_valid(boolean is_valid) {
-        this.is_valid = is_valid;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setCreation_date(String creation_date) {
-        this.creation_date = creation_date;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
+    public void setCommissions(List<Commission> commissions) {
+        this.commissions = commissions;
+    }
+
+    public void setCouncilmen(List<CouncilMan> councilmen) {
+        this.councilmen = councilmen;
+    }
+
+    public void setCouncil(Council council) {
+        this.council = council;
+    }
 }

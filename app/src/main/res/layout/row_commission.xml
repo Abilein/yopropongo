@@ -21,8 +21,8 @@
                 <ImageView
                     android:id="@+id/imgCover"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/comision_cover"
                     android:scaleType="centerCrop"/>
                 <View
                     android:layout_width="match_parent"
@@ -53,7 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="58dp"
                 android:text="@string/lorem_ipsum"
-                android:textColor="@color/black"
+                android:textColor="@color/Gray"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-condensed"
                 android:padding="@dimen/activity_half_quarter_margin"/>
             <View
                 android:layout_width="match_parent"

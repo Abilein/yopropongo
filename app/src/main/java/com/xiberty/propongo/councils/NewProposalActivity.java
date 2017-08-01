@@ -1,24 +1,23 @@
 package com.xiberty.propongo.councils;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.obsez.android.lib.filechooser.ChooserDialog;
+import com.pchmn.materialchips.ChipsInput;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
-import com.xiberty.propongo.database.Commission;
+import com.xiberty.propongo.councils.models.CouncilManChip;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
 
@@ -31,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class NewProposalActivity extends AppCompatActivity  implements NewProposalContract.View, AdapterView.OnItemSelectedListener {
+public class NewProposalActivity extends AppCompatActivity implements NewProposalContract.View {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -39,25 +38,24 @@ public class NewProposalActivity extends AppCompatActivity  implements NewPropos
     EditText txtProposalTitle;
     @BindView(R.id.txtProposalSummary)
     EditText txtProposalSummary;
-    @BindView(R.id.spinnerCouncilman)
-    Spinner spinnerCouncilman;
-    @BindView(R.id.txtComissions)
-    TextView txtComissions;
     @BindView(R.id.path_attach)
     TextView pathAttach;
     @BindView(R.id.scrollContent)
     ScrollView scrollContent;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.chips_input)
+    ChipsInput chipsInput;
 
-    private int councilId=0;
-    private String commissionId="";
-    private int for_cuncilman=0;
+    private int councilId = 0;
     private File proposal_file;
     private List<CouncilMan> councilsMenList = new ArrayList<>();
+    private String councilsMenIDs= "";
 
     NewProposalPresenter presenter;
     CouncilService mService;
+
+    public Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,30 +64,27 @@ public class NewProposalActivity extends AppCompatActivity  implements NewPropos
         ButterKnife.bind(this);
         toolbar.setTitle("Nueva Propuesta");
 
-        mService = WS.makeService(CouncilService.class,Store.getCredential(this));
-        presenter = new NewProposalPresenter(this,mService);
+        context = getApplicationContext();
+
+        mService = WS.makeService(CouncilService.class, Store.getCredential(this));
+        presenter = new NewProposalPresenter(this, mService);
 
         Council council = Store.getDefaultCouncil(this);
         councilId = council.id;
 
-        //Filling the CouncilMen for Spinner
+        //Filling the CouncilMen for ChipsInput
         councilsMenList = Store.getCouncilman(this);
 
-        List<String> namesCouncilMen = new ArrayList<>();
-        for (CouncilMan councilMan:councilsMenList){
-            namesCouncilMen.add(councilMan.getFullName());
+        List<CouncilManChip> contactList = new ArrayList<>();
+        for (CouncilMan councilMan : councilsMenList) {
+            contactList.add(new CouncilManChip(this, councilMan));
         }
-        //Setup Spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, namesCouncilMen);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCouncilman.setAdapter(dataAdapter);
-        spinnerCouncilman.setOnItemSelectedListener(this);
+        chipsInput.setFilterableList(contactList);
 
     }
 
     @OnClick(R.id.btn_add_attach)
-    public void addAttach(View view){
+    public void addAttach(View view) {
         String path = Environment.getExternalStorageDirectory().toString();
         new ChooserDialog().with(this)
                 .withStartFile(path)
@@ -103,28 +98,21 @@ public class NewProposalActivity extends AppCompatActivity  implements NewPropos
                 })
                 .build()
                 .show();
-
     }
 
     @OnClick(R.id.btnSendProposal)
-    public void publishProposal(View view){
-        String title = txtProposalTitle.getText().toString();
-        String summary = txtProposalSummary.getText().toString();
-        presenter.createProposal(this,title,summary,for_cuncilman,councilId,proposal_file);
-    }
+    public void publishProposal(View view) {
 
-    /**
-     * For Spinner of CouncilMan
-     * **/
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        CouncilMan councilMan= councilsMenList.get(position);
-        for_cuncilman = councilMan.getId();
-    }
+        // get the list
+        List<CouncilManChip> councilmenSelected = (List<CouncilManChip>) chipsInput.getSelectedChipList();
+        for (CouncilManChip chip: councilmenSelected)
+            councilsMenIDs+=CouncilMan.getCouncilmanByName(context,chip.getLabel())+",";
+        councilsMenIDs= councilsMenIDs.substring(0,councilsMenIDs.length()-1);
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+        Toast.makeText(context, "CADENA" + councilsMenIDs, Toast.LENGTH_SHORT).show();
+//        String title = txtProposalTitle.getText().toString();
+//        String summary = txtProposalSummary.getText().toString();
+//        presenter.createProposal(this,title,summary,for_cuncilman,councilId,proposal_file);
     }
 
     @Override
@@ -135,6 +123,6 @@ public class NewProposalActivity extends AppCompatActivity  implements NewPropos
 
     @Override
     public void showErrorUploadProposal(String error) {
-        Toast.makeText(this, "OMG! Error 'cause "+ error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "OMG! Error 'cause " + error, Toast.LENGTH_SHORT).show();
     }
 }

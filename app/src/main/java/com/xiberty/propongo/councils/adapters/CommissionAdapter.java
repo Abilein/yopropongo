@@ -15,10 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.councils.CommissionDetailActivity;
-import com.xiberty.propongo.councils.CouncilManDetailActivity;
-import com.xiberty.propongo.councils.models.DirectiveItem;
 import com.xiberty.propongo.database.Commission;
-import com.xiberty.propongo.database.CouncilMan;
 
 import java.util.ArrayList;
 
@@ -82,7 +79,7 @@ public class CommissionAdapter extends BaseAdapter {
                     .into(holder.cardImage);
         else
             Glide.with(context)
-                    .load(R.drawable.avatar)
+                    .load(R.drawable.comision_cover)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.cardImage);
 

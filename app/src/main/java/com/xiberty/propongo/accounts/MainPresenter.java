@@ -165,13 +165,13 @@ public class MainPresenter implements MainContract.Presenter {
                         ProposalDB proposalDB = new ProposalDB();
                         proposalDB.id = proposal.getId();
                         proposalDB.title = proposal.getTitle();
-                        proposalDB.summary = proposal.getSummary();
-                        proposalDB.commissions = proposal.getCommissions();
-                        proposalDB.councilmen = proposal.getCouncilmen();
-                        proposalDB.views = proposal.getViews();
-                        proposalDB.average = proposal.getAverage();
-                        proposalDB.creation_date= proposal.getCreation_date();
-                        proposalDB.council = proposal.council;
+//                        proposalDB.summary = proposal.getSummary();
+//                        proposalDB.commissions = proposal.getCommissions();
+//                        proposalDB.councilmen = proposal.getCouncilmen();
+//                        proposalDB.views = proposal.getViews();
+//                        proposalDB.average = proposal.getAverage();
+//                        proposalDB.creation_date= proposal.getCreation_date();
+//                        proposalDB.council = proposal.council;
                         proposalDB.save();
 
                         List<Attachment> attachments = proposal.getAttachments();

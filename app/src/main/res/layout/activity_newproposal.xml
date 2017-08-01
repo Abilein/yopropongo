@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/progressbar" />
@@ -24,6 +25,33 @@
                 android:paddingBottom="60sp"
                 android:paddingLeft="@dimen/activity_padding"
                 android:paddingRight="@dimen/activity_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_proposal_who"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.pchmn.materialchips.ChipsInput
+                    android:id="@+id/chips_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hint="Escribe un nombre"
+                    app:hintColor="@color/colorAccent"
+                    app:textColor="@color/colorAccent"
+                    app:maxRows="3"
+                    app:chip_labelColor="@color/Gray"
+                    app:chip_hasAvatarIcon="true"
+                    app:chip_backgroundColor="@color/white"
+                    app:chip_deletable="true"
+                    app:chip_deleteIconColor="@color/red"
+                    app:chip_detailed_textColor="@color/Gray"
+                    app:chip_detailed_backgroundColor="@color/white"
+                    app:chip_detailed_deleteIconColor="@color/orange_dark"
+                    app:filterable_list_backgroundColor="@color/white"
+                    app:filterable_list_textColor="@color/Gray" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -56,34 +84,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_half_margin"
-                    android:text="@string/hint_choose_councilman"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/spinnerCouncilman"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_half_margin" />
-
-                <TextView
-                    android:id="@+id/txtComissions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_half_margin"
-                    android:paddingLeft="@dimen/activity_half_margin"
-                    android:paddingRight="@dimen/activity_half_margin" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/activity_margin"
-                    android:layout_marginBottom="@dimen/activity_margin"
-                    android:background="@color/silver" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:text="@string/hint_proposal_attachs"
                     android:textStyle="bold" />
 
@@ -106,6 +106,7 @@
                         android:id="@+id/path_attach"
                         android:layout_width="0dp"
                         android:layout_weight="2"
+                        android:layout_marginLeft="@dimen/activity_half_margin"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
