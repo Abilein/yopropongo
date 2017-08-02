@@ -45,7 +45,8 @@ public class ProposalsPresenter implements ProposalsContract.Presenter {
                      * Save in the Database
                      **/
                     Log.e("MainPreenter","Proposal Database in progress.....");
-                    List<Proposal> proposals = response.body();
+
+                    /**List<Proposal> proposals = response.body();
                     for (Proposal proposal : proposals){
                         ProposalDB proposalDB = new ProposalDB();
                         proposalDB.id = proposal.getId();
@@ -69,6 +70,7 @@ public class ProposalsPresenter implements ProposalsContract.Presenter {
                             attachmentDB.save();
                         }
                     }
+                     **/
                 }else{
                     FormattedResp error = ParserError.parse(response);
                     String errorMessage = MessageManager.getMessage(context, error.code());

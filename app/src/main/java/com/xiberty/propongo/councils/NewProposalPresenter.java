@@ -54,7 +54,7 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
                     ProposalDB proposalDB = new ProposalDB();
                     proposalDB.id = proposal.id;
                     proposalDB.title = proposal.title;
-                    proposalDB.summary = proposal.summary;
+                    proposalDB.description = proposal.summary;
 //                    proposalDB.commissions = proposal.commission;
                     proposalDB.commissions = "1";
                     String councilManID = CouncilMan.getCouncilmanByName(context,proposal.receiver.full_name);
@@ -64,7 +64,7 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
                     proposalDB.views = 0;
                     proposalDB.average = 0;
 //                    proposalDB.creation_date= proposal.getCreation_date();
-                    proposalDB.creation_date= "9999-09-09";
+                    proposalDB.datetime= "9999-09-09";
                     proposalDB.council = proposal.council.id;
                     proposalDB.save();
 

@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         // Service for account
         accountService = WS.makeService(AccountService.class, Store.getCredential(this));
         credentialService = WS.makeService(CredentialService.class);
-        councilService = WS.makeService(CouncilService.class);
+        councilService = WS.makeService(CouncilService.class, Store.getCredential(this));
         presenter = new MainPresenter(this, accountService, credentialService, councilService);
 
         // Service for Syncing
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             Council defaulCouncil = Store.getDefaultCouncil(this);
             presenter.getCouncilmen(this);
             presenter.getCommissions(this);
-//            presenter.getProposals(this);
+            presenter.getProposals(this);
 
             AccountHeaderBuilder header = new AccountHeaderBuilder()
                     .withActivity(this)

@@ -73,10 +73,10 @@ public class ProposalsAdapter extends BaseAdapter {
         final ProposalDB proposal = items.get(position);
 
         holder.cardTitle.setText(proposal.title);
-        String textAbout = proposal.summary;
+        String textAbout = proposal.description;
 
-        if (proposal.summary.length()>40)
-            textAbout = proposal.summary.substring(0,40)+"...";
+        if (proposal.description.length()>40)
+            textAbout = proposal.description.substring(0,40)+"...";
 
         holder.cardSummary.setText(textAbout);
         holder.cardView.setText(proposal.views+" vistas");

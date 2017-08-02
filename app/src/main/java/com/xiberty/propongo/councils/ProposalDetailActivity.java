@@ -115,10 +115,10 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
             if (proposal != null) {
                 lblTitle.setText(proposal.title);
-                lblDescription.setText(proposal.summary);
+                lblDescription.setText(proposal.description);
                 CouncilMan councilMan = CouncilMan.getCouncilman(this, Integer.parseInt(proposal.councilmen));
                 lblProposers.setText(councilMan.getFullName());
-                lblDate.setText(UIUtils.convertToDate(proposal.creation_date));
+                lblDate.setText(UIUtils.convertToDate(proposal.datetime));
                 lblAverage.setText(String.valueOf(proposal.average));
                 lblAttacchs.setText(String.valueOf(attachments.size()));
                 lblViewers.setText(String.valueOf(proposal.views));

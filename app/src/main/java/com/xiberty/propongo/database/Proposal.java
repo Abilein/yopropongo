@@ -3,6 +3,9 @@ package com.xiberty.propongo.database;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.*;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.xiberty.propongo.councils.models.Commission_Proposal;
+import com.xiberty.propongo.councils.models.Council_Proposal;
+import com.xiberty.propongo.councils.models.Councilman_Proposal;
 
 import java.util.List;
 
@@ -21,9 +24,9 @@ public class Proposal {
     @SerializedName("type") public String type;
     @SerializedName("status") public String status;
     @SerializedName("datetime") public String datetime;
-    @SerializedName("commissions") public List<Commission> commissions;
-    @SerializedName("councilmen") public List<CouncilMan> councilmen;
-    @SerializedName("council") public Council  council;
+    @SerializedName("commissions") public List<Commission_Proposal> commissions;
+    @SerializedName("councilmen") public List<Councilman_Proposal> councilmen;
+    @SerializedName("council") public Council_Proposal council;
 
 
 
@@ -75,15 +78,15 @@ public class Proposal {
         return datetime;
     }
 
-    public List<Commission> getCommissions() {
+    public List<Commission_Proposal> getCommissions() {
         return commissions;
     }
 
-    public List<CouncilMan> getCouncilmen() {
+    public List<Councilman_Proposal> getCouncilmen() {
         return councilmen;
     }
 
-    public Council getCouncil() {
+    public Council_Proposal getCouncil() {
         return council;
     }
 
@@ -134,15 +137,15 @@ public class Proposal {
         this.datetime = datetime;
     }
 
-    public void setCommissions(List<Commission> commissions) {
+    public void setCommissions(List<Commission_Proposal> commissions) {
         this.commissions = commissions;
     }
 
-    public void setCouncilmen(List<CouncilMan> councilmen) {
+    public void setCouncilmen(List<Councilman_Proposal> councilmen) {
         this.councilmen = councilmen;
     }
 
-    public void setCouncil(Council council) {
+    public void setCouncil(Council_Proposal council) {
         this.council = council;
     }
 }

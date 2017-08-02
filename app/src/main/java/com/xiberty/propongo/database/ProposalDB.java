@@ -16,16 +16,18 @@ public class ProposalDB extends BaseModel{
 
     @PrimaryKey public int id;
     @Column public String title;
-    @Column public String summary;
-    @Column public String commissions;
-    @Column public String councilmen;
+    @Column public String description;
+    @Column public String excerpt;
     @Column public int views;
     @Column public double average;
     @Column public int rate;
     @Column public String type;
-    @Column public boolean is_valid;
-    @Column public String creation_date;
+    @Column public String status;
+    @Column public String datetime;
+    @Column public String commissions;
+    @Column public String councilmen;
     @Column public int council;
+
 
     //GETTERS
 
@@ -41,16 +43,12 @@ public class ProposalDB extends BaseModel{
         return title;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getDescription() {
+        return description;
     }
 
-    public String getCommissions() {
-        return commissions;
-    }
-
-    public String getCouncilmen() {
-        return councilmen;
+    public String getExcerpt() {
+        return excerpt;
     }
 
     public int getViews() {
@@ -69,16 +67,29 @@ public class ProposalDB extends BaseModel{
         return type;
     }
 
-    public boolean getIs_valid() {
-        return is_valid;
+    public String getStatus() {
+        return status;
     }
 
-    public String getCreation_date() {
-        return creation_date;
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public String getCommissions() {
+        return commissions;
+    }
+
+    public String getCouncilmen() {
+        return councilmen;
+    }
+
+    public int getCouncil() {
+        return council;
     }
 
 
     //SETTERS
+
 
     public void setId(int id) {
         this.id = id;
@@ -88,16 +99,12 @@ public class ProposalDB extends BaseModel{
         this.title = title;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setCommissions(String commissions) {
-        this.commissions = commissions;
-    }
-
-    public void setCouncilmen(String councilmen) {
-        this.councilmen = councilmen;
+    public void setExcerpt(String excerpt) {
+        this.excerpt = excerpt;
     }
 
     public void setViews(int views) {
@@ -116,12 +123,24 @@ public class ProposalDB extends BaseModel{
         this.type = type;
     }
 
-    public void setIs_valid(boolean is_valid) {
-        this.is_valid = is_valid;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setCreation_date(String creation_date) {
-        this.creation_date = creation_date;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public void setCommissions(String commissions) {
+        this.commissions = commissions;
+    }
+
+    public void setCouncilmen(String councilmen) {
+        this.councilmen = councilmen;
+    }
+
+    public void setCouncil(int council) {
+        this.council = council;
     }
 
     public static ProposalDB getProposalById(int proposalID) {

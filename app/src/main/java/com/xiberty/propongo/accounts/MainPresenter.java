@@ -2,6 +2,7 @@ package com.xiberty.propongo.accounts;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
@@ -12,6 +13,8 @@ import com.xiberty.propongo.contrib.api.MessageManager;
 import com.xiberty.propongo.contrib.api.OAuthCollection;
 import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.councils.models.Commission_Proposal;
+import com.xiberty.propongo.councils.models.Councilman_Proposal;
 import com.xiberty.propongo.credentials.CredentialService;
 import com.xiberty.propongo.database.Attachment;
 import com.xiberty.propongo.database.AttachmentDB;
@@ -159,21 +162,42 @@ public class MainPresenter implements MainContract.Presenter {
                     /**
                      * Save in the Database
                      **/
-                    Log.e("MainPreenter","Proposal Database in progress.....");
+
+                    Log.e("MainPresenter","Proposal Database in progress.....");
                     List<Proposal> proposals = response.body();
+
                     for (Proposal proposal : proposals){
                         ProposalDB proposalDB = new ProposalDB();
                         proposalDB.id = proposal.getId();
                         proposalDB.title = proposal.getTitle();
-//                        proposalDB.summary = proposal.getSummary();
-//                        proposalDB.commissions = proposal.getCommissions();
-//                        proposalDB.councilmen = proposal.getCouncilmen();
-//                        proposalDB.views = proposal.getViews();
-//                        proposalDB.average = proposal.getAverage();
-//                        proposalDB.creation_date= proposal.getCreation_date();
-//                        proposalDB.council = proposal.council;
+                        proposalDB.description = proposal.getDescription();
+                        proposalDB.excerpt = proposal.getExcerpt();
+                        proposalDB.views = proposal.getViews();
+                        proposalDB.average = proposal.getAverage();
+                        proposalDB.rate = proposal.getRate();
+                        proposalDB.type = proposal.getType();
+                        proposalDB.status = proposal.getStatus();
+                        proposalDB.datetime= proposal.getDatetime();
+
+                        //Commissions IDs (Example. 1,9)
+                        List<Commission_Proposal> commission_proposals = proposal.getCommissions();
+                        String id_Commissions="";
+                        for ( Commission_Proposal commission_proposal : commission_proposals)
+                            id_Commissions+= commission_proposal.id+",";
+                        proposalDB.commissions = id_Commissions.substring(0, id_Commissions.length()-1);
+
+                        //Councilmen IDs (Example. 11,2)
+                        List<Councilman_Proposal> councilman_proposals = proposal.getCouncilmen();
+                        String id_Councilmen="";
+                        for (Councilman_Proposal councilman_proposal : councilman_proposals)
+                            id_Councilmen+= councilman_proposal.id+",";
+                        proposalDB.councilmen = id_Councilmen.substring(0, id_Councilmen.length()-1);
+
+                        //Council ID (Example. 2)
+                        proposalDB.council = proposal.getCouncil().getId();
                         proposalDB.save();
 
+                        //Attachments of a Council
                         List<Attachment> attachments = proposal.getAttachments();
                         for (Attachment attachment: attachments){
                             AttachmentDB attachmentDB = new AttachmentDB();
