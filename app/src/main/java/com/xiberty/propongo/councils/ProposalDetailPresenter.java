@@ -87,7 +87,7 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
             public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
                 if (response.isSuccessful()){
                     DetailResponse detailResponse = response.body();
-                    mView.showDetailResponse(detailResponse.detail);
+                    mView.showDetailResponse("Comentario exitoso!");
                     getComments(context,id);
                 }else{
                     mView.showErrorToMakeComment("Error al crear Comentario");
@@ -110,10 +110,8 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
             public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
                 if (response.isSuccessful()){
                     DetailResponse detailResponse = response.body();
-                    if (detailResponse.detail.equals("Ranking actualizado!")){
-                        updateDatabase(average);
-                        mView.updateRating(average);
-                    }
+                    updateDatabase(average);
+                    mView.updateRating(average);
                 }else {
                         mView.errorRating(response.body());
                     Log.e(TAG, "OMG! No rating 'cause"+ response.body());

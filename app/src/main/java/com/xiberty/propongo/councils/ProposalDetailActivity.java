@@ -168,7 +168,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @Override
     public void updateRating(String average) {
-        Toast.makeText(context,"Exito",Toast.LENGTH_LONG).show();
+        Toast.makeText(context,"Exito al Rankear",Toast.LENGTH_LONG).show();
         lblAverage.setText(average);
     }
 
