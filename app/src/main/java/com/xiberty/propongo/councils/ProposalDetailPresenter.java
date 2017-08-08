@@ -2,17 +2,11 @@ package com.xiberty.propongo.councils;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
-
-import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.councils.models.ViewResponse;
 import com.xiberty.propongo.database.Comment;
-import com.xiberty.propongo.database.Proposal;
 import com.xiberty.propongo.database.ProposalDB;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

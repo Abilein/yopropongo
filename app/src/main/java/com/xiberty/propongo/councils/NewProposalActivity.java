@@ -109,15 +109,14 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
             councilsMenIDs+=CouncilMan.getCouncilmanByName(context,chip.getLabel())+",";
         councilsMenIDs= councilsMenIDs.substring(0,councilsMenIDs.length()-1);
 
-        Toast.makeText(context, "CADENA" + councilsMenIDs, Toast.LENGTH_SHORT).show();
-//        String title = txtProposalTitle.getText().toString();
-//        String summary = txtProposalSummary.getText().toString();
-//        presenter.createProposal(this,title,summary,for_cuncilman,councilId,proposal_file);
+        String title = txtProposalTitle.getText().toString();
+        String description = txtProposalSummary.getText().toString();
+        presenter.createProposal(this,title,description,councilsMenIDs,councilId,proposal_file);
     }
 
     @Override
     public void showSuccessUploadProposal() {
-        Toast.makeText(this, "Exito al crear Propuesta", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Exito al crear Propuesta, tu propuesta será REVISADA!", Toast.LENGTH_SHORT).show();
         finish();
     }
 

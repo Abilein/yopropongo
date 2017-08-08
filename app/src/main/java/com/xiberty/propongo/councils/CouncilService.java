@@ -46,11 +46,12 @@ public interface CouncilService {
 
     @Multipart
     @POST(Constants.PROPOSAL_ROOT_ENDPOINT)
-    Call<NewProposalRespse> createProposal(@Part("title") RequestBody title,
-                                           @Part("summary") RequestBody summary,
-                                           @Part("for_councilman") RequestBody for_councilman,
+    Call<List<NewProposalRespse>> createProposal(@Part("title") RequestBody title,
+                                           @Part("description") RequestBody summary,
+                                           @Part("councilmen") RequestBody for_councilman,
                                            @Part("council") RequestBody council,
-                                           @Part MultipartBody.Part attached_file);
+                                           @Part MultipartBody.Part attached_file,
+                                           @Header("Authorization") String token);
 
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/up/")
