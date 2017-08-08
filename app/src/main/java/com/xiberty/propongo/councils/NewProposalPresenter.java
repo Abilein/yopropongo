@@ -54,7 +54,7 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
                     ProposalDB proposalDB = new ProposalDB();
                     proposalDB.id = proposal.id;
                     proposalDB.title = proposal.title;
-                    proposalDB.description = proposal.summary;
+                    proposalDB.description = proposal.description;
 //                    proposalDB.commissions = proposal.commission;
                     proposalDB.commissions = "1";
                     String councilManID = CouncilMan.getCouncilmanByName(context,proposal.receiver.full_name);

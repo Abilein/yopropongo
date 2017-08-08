@@ -184,7 +184,8 @@ public class MainPresenter implements MainContract.Presenter {
                         String id_Commissions="";
                         for ( Commission_Proposal commission_proposal : commission_proposals)
                             id_Commissions+= commission_proposal.id+",";
-                        proposalDB.commissions = id_Commissions.substring(0, id_Commissions.length()-1);
+                        if (id_Commissions.length()>0)
+                            proposalDB.commissions = id_Commissions.substring(0, id_Commissions.length()-1);
 
                         //Councilmen IDs (Example. 11,2)
                         List<Councilman_Proposal> councilman_proposals = proposal.getCouncilmen();
