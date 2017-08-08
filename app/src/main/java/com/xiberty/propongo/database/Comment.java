@@ -15,8 +15,8 @@ public class Comment {
 
     @SerializedName("id")       public int id;
     @SerializedName("content")  public String content;
-    @SerializedName("date")     public String date;
+    @SerializedName("datetime")     public String datetime;
     @SerializedName("full_name")public String full_name;
-    @SerializedName("avatar")   public String avatar;
+    @SerializedName("photo")   public String photo;
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
+import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.councils.models.ViewResponse;
 import com.xiberty.propongo.database.Comment;
@@ -33,7 +34,9 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
 
     @Override
     public void getComments(final Context context, String id) {
+//        Call<List<Comment>> proposalCall = ccService.getProposalComments(id,"Bearer "+ Store.getAccessToken(context));
         Call<List<Comment>> proposalCall = ccService.getProposalComments(id);
+
         proposalCall.enqueue( new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {

@@ -69,9 +69,9 @@ public class CommentAdapter  extends BaseAdapter{
         final Comment comment = items.get(position);
         holder.fullname.setText(comment.full_name);
         holder.content.setText(comment.content);
-        holder.date.setText(UIUtils.convertToDate(comment.date));
-        if (comment.avatar.length()>0)
-            Glide.with(context).load(comment.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.avatar);
+        holder.date.setText(UIUtils.convertToDate(comment.datetime));
+        if (comment.photo.length()>0)
+            Glide.with(context).load(comment.photo).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.avatar);
         else
             Glide.with(context).load(R.drawable.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.avatar);
 
