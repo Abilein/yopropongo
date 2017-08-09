@@ -39,7 +39,7 @@ public interface CouncilService {
     Call<List<CouncilMan>> getCouncilMan(@Path("pk") String pk);
 
     @GET(Constants.COUNCILMEN_INBOX_ENDPOINT)
-    Call<Proposal> getCouncilMenInbox();
+    Call<List<NewProposalRespse>> getCouncilMenInbox(@Header("Authorization") String token);
 
     @GET(Constants.PROPOSALS_ENDPOINT)
     Call<List<Proposal>> getProposal(@Path("pk") String pk);
