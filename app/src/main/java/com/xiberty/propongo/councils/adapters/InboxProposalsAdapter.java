@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.councils.InboxDetailActivity;
 import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.councils.models.NewProposalRespse;
 import com.xiberty.propongo.database.AttachmentDB;
@@ -97,7 +98,7 @@ public class InboxProposalsAdapter extends BaseAdapter {
                 Gson gson = new Gson();
                 String proposalStr = gson.toJson(proposal);
 
-                Intent intent = new Intent(context, ProposalDetailActivity.class);
+                Intent intent = new Intent(context, InboxDetailActivity.class);
                 intent.putExtra(Constants.KEY_PROPOSAL_ID, proposalStr);
                 intent.putExtra(Constants.KEY_BASE_CLASS, TAG);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

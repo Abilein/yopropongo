@@ -101,7 +101,6 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     }
 
-
     private void setContent() {
         Bundle bundle = getIntent().getExtras();
         if (!bundle.isEmpty()) {

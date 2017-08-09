@@ -102,6 +102,9 @@
         <activity android:name=".councils.NewProposalActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".councils.InboxDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>
