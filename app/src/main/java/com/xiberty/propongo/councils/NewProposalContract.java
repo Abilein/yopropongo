@@ -14,6 +14,9 @@ public class NewProposalContract {
 
         void showSuccessUploadProposal();
         void showErrorUploadProposal(String error);
+
+        void hideProgress();
+        void showProgress();
     }
 
     public interface Presenter{

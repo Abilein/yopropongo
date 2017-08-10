@@ -32,7 +32,7 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
 
     @Override
     public void createProposal(final Context context, String title, String description, String councilmen, int id_council, File file) {
-
+        mView.showProgress();
 
         RequestBody titlePart = RequestBody.create(MediaType.parse("text/plain"), title);
         RequestBody descriptionPart = RequestBody.create(MediaType.parse("text/plain"), description);
@@ -46,7 +46,7 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
             @Override
             public void onResponse(Call<List<NewProposalRespse>> call, Response<List<NewProposalRespse>> response) {
                 if (response.isSuccessful()){
-//                    List<NewProposalRespse> proposals = response.body();
+                    mView.hideProgress();
                     mView.showSuccessUploadProposal();
                 }else{
                     mView.showErrorUploadProposal("1 "+ response.body());

@@ -7,9 +7,10 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 import com.obsez.android.lib.filechooser.ChooserDialog;
 import com.pchmn.materialchips.ChipsInput;
 import com.xiberty.propongo.R;
-import com.xiberty.propongo.accounts.EditProfileActivity;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.ActivityUtils;
@@ -39,8 +39,8 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class NewProposalActivity extends AppCompatActivity implements NewProposalContract.View {
 
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
+    private static final String TAG = NewProposalActivity.class.getSimpleName();
+
     @BindView(R.id.txtProposalTitle)
     EditText txtProposalTitle;
     @BindView(R.id.txtProposalSummary)
@@ -53,11 +53,13 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     Toolbar toolbar;
     @BindView(R.id.chips_input)
     ChipsInput chipsInput;
+    @BindView(R.id.progressBarContent)
+    RelativeLayout progressBarContent;
 
     private int councilId = 0;
     private File proposal_file;
     private List<CouncilMan> councilsMenList = new ArrayList<>();
-    private String councilsMenIDs= "";
+    private String councilsMenIDs = "";
 
     NewProposalPresenter presenter;
     CouncilService mService;
@@ -70,7 +72,6 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
         setContentView(R.layout.activity_newproposal);
         ButterKnife.bind(this);
         toolbar.setTitle("Nueva Propuesta");
-
         context = getApplicationContext();
 
         mService = WS.makeService(CouncilService.class, Store.getCredential(this));
@@ -94,17 +95,17 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     /*
     *  PERMISSIONS
     * */
-    @NeedsPermission(value={Manifest.permission.READ_EXTERNAL_STORAGE})
-    public void requestPermissionToReadFiles(){
+    @NeedsPermission(value = {Manifest.permission.READ_EXTERNAL_STORAGE})
+    public void requestPermissionToReadFiles() {
     }
 
     @OnClick(R.id.btn_add_attach)
     public void addAttach(View view) {
         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
         NewProposalActivityPermissionsDispatcher.requestPermissionToReadFilesWithCheck(this);
-        if(ActivityUtils.hasPermissions(this, permissions)){
+        if (ActivityUtils.hasPermissions(this, permissions)) {
             readFileFromStorage();
-        }else{
+        } else {
             showInfo(getString(R.string.toast_permissions_denied_read));
         }
     }
@@ -136,16 +137,15 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @OnClick(R.id.btnSendProposal)
     public void publishProposal(View view) {
-
         // get the list
         List<CouncilManChip> councilmenSelected = (List<CouncilManChip>) chipsInput.getSelectedChipList();
-        for (CouncilManChip chip: councilmenSelected)
-            councilsMenIDs+=CouncilMan.getCouncilmanByName(context,chip.getLabel())+",";
-        councilsMenIDs= councilsMenIDs.substring(0,councilsMenIDs.length()-1);
+        for (CouncilManChip chip : councilmenSelected)
+            councilsMenIDs += CouncilMan.getCouncilmanByName(context, chip.getLabel()) + ",";
+        councilsMenIDs = councilsMenIDs.substring(0, councilsMenIDs.length() - 1);
 
         String title = txtProposalTitle.getText().toString();
         String description = txtProposalSummary.getText().toString();
-        presenter.createProposal(this,title,description,councilsMenIDs,councilId,proposal_file);
+        presenter.createProposal(this, title, description, councilsMenIDs, councilId, proposal_file);
     }
 
     @Override
@@ -156,12 +156,23 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @Override
     public void showErrorUploadProposal(String error) {
-        Toast.makeText(this, "OMG! Error 'cause " + error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Ocurrio un error, vuelva intentarlo nás tarde", Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "OMG! Error 'cause " + error);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBarContent.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showProgress() {
+        progressBarContent.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        NewProposalActivityPermissionsDispatcher.onRequestPermissionsResult(this,requestCode,grantResults);
+        NewProposalActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 }

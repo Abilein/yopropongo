@@ -8,7 +8,7 @@
     android:id="@+id/layoutMainContainer">
 
 
-    <include layout="@layout/progressbar" />
+    <include layout="@layout/progressbar_horizontal" />
 
     <LinearLayout
         android:id="@+id/linear"
