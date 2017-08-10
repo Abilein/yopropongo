@@ -22,6 +22,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/image_status"
                 android:layout_width="@dimen/proposal_icon_size"
                 android:layout_height="@dimen/proposal_icon_size"
                 android:layout_margin="@dimen/profile_avatar_spacing"

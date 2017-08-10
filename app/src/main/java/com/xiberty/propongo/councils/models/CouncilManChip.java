@@ -53,8 +53,8 @@ public class CouncilManChip implements ChipInterface{
 
     @Override
     public Uri getAvatarUri() {
-        Uri uri = getImageUri(context,bitmap);
-        return uri;
+//        Uri uri = getImageUri(context,bitmap);
+        return null;
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {

@@ -107,7 +107,6 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         setCurrentProfile();
     }
 
-
     public void setCurrentProfile(){
         UserProfile profile = Store.getProfile(getBaseContext());
         txtUsername.setText(profile.username());
@@ -210,16 +209,12 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         validator.validate();
     }
 
-
     @Override
     public void editPassword() {
         View view = getLayoutInflater ().inflate (R.layout.sheet_edit_password, null);
 
-
         BottomSheetDialog sheet = new BottomSheetDialog (
                 EditProfileActivity.this, R.style.Theme_Design_BottomSheetDialog);
-
-
 
         changePasswordForm = new ChangePasswordForm(this, view, sheet, presenter,EditProfileActivity.this);
         changePasswordForm.show();
@@ -239,11 +234,9 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     @Override
     public void editPhoto() {
-
         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
         EditProfileActivityPermissionsDispatcher.requestEditPhotoPermissionsWithCheck(this);
         if(ActivityUtils.hasPermissions(this, permissions)){
-
             View view = getLayoutInflater ().inflate (R.layout.sheet_edit_avatar, null);
             BottomSheetDialog sheet = new BottomSheetDialog (
                     EditProfileActivity.this, R.style.Theme_Design_BottomSheetDialog);

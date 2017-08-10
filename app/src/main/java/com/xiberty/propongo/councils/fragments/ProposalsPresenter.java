@@ -8,6 +8,8 @@ import com.xiberty.propongo.contrib.api.FormattedResp;
 import com.xiberty.propongo.contrib.api.MessageManager;
 import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.councils.models.Commission_Proposal;
+import com.xiberty.propongo.councils.models.Councilman_Proposal;
 import com.xiberty.propongo.database.Attachment;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.Council;
@@ -40,38 +42,58 @@ public class ProposalsPresenter implements ProposalsContract.Presenter {
         proposalCall.enqueue(new Callback<List<Proposal>>() {
             @Override
             public void onResponse(Call<List<Proposal>> call, Response<List<Proposal>> response) {
-                if (response.isSuccessful()){
-                    /**
-                     * Save in the Database
-                     **/
-                    Log.e("MainPreenter","Proposal Database in progress.....");
+             if(response.isSuccessful()){
+                /**
+                 * Save in the Database
+                 **/
 
-                    /**List<Proposal> proposals = response.body();
-                    for (Proposal proposal : proposals){
-                        ProposalDB proposalDB = new ProposalDB();
-                        proposalDB.id = proposal.getId();
-                        proposalDB.title = proposal.getTitle();
-                        proposalDB.summary = proposal.getSummary();
-                        proposalDB.commissions = proposal.getCommissions();
-                        proposalDB.councilmen = proposal.getCouncilmen();
-                        proposalDB.views = proposal.getViews();
-                        proposalDB.average = proposal.getAverage();
-                        proposalDB.creation_date= proposal.getCreation_date();
-                        proposalDB.council = proposal.council;
-                        proposalDB.save();
+                Log.e("MainPresenter","Updating Database .....");
+                List<Proposal> proposals = response.body();
 
-                        List<Attachment> attachments = proposal.getAttachments();
-                        for (Attachment attachment: attachments){
-                            AttachmentDB attachmentDB = new AttachmentDB();
-                            attachmentDB.id = attachment.getId();
-                            attachmentDB.name = attachment.getName();
-                            attachmentDB.file = attachment.getFile();
-                            attachmentDB.proposal = proposal.getId();
-                            attachmentDB.save();
-                        }
+                for (Proposal proposal : proposals){
+                    ProposalDB proposalDB = new ProposalDB();
+                    proposalDB.id = proposal.getId();
+                    proposalDB.title = proposal.getTitle();
+                    proposalDB.description = proposal.getDescription();
+                    proposalDB.excerpt = proposal.getExcerpt();
+                    proposalDB.views = proposal.getViews();
+                    proposalDB.average = proposal.getAverage();
+                    proposalDB.rate = proposal.getRate();
+                    proposalDB.type = proposal.getType();
+                    proposalDB.status = proposal.getStatus();
+                    proposalDB.datetime= proposal.getDatetime();
+
+                    //Commissions IDs (Example. 1,9)
+                    List<Commission_Proposal> commission_proposals = proposal.getCommissions();
+                    String id_Commissions="";
+                    for ( Commission_Proposal commission_proposal : commission_proposals)
+                        id_Commissions+= commission_proposal.id+",";
+                    if (id_Commissions.length()>0)
+                        proposalDB.commissions = id_Commissions.substring(0, id_Commissions.length()-1);
+
+                    //Councilmen IDs (Example. 11,2)
+                    List<Councilman_Proposal> councilman_proposals = proposal.getCouncilmen();
+                    String id_Councilmen="";
+                    for (Councilman_Proposal councilman_proposal : councilman_proposals)
+                        id_Councilmen+= councilman_proposal.id+",";
+                    proposalDB.councilmen = id_Councilmen.substring(0, id_Councilmen.length()-1);
+
+                    //Council ID (Example. 2)
+                    proposalDB.council = proposal.getCouncil().getId();
+                    proposalDB.save();
+
+                    //Attachments of a Council
+                    List<Attachment> attachments = proposal.getAttachments();
+                    for (Attachment attachment: attachments){
+                        AttachmentDB attachmentDB = new AttachmentDB();
+                        attachmentDB.id = attachment.getId();
+                        attachmentDB.name = attachment.getName();
+                        attachmentDB.file = attachment.getFile();
+                        attachmentDB.proposal = proposal.getId();
+                        attachmentDB.save();
                     }
-                     **/
-                }else{
+                }
+            }else{
                     FormattedResp error = ParserError.parse(response);
                     String errorMessage = MessageManager.getMessage(context, error.code());
                     mView.showError(errorMessage);

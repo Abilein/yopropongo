@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -67,6 +68,7 @@ public class InboxProposalsAdapter extends BaseAdapter {
             viewHolder.cardRate = (TextView) rowView.findViewById(R.id.lblRate);
             viewHolder.cardView = (TextView) rowView.findViewById(R.id.lblViews);
             viewHolder.cardFiles = (TextView) rowView.findViewById(R.id.lblFiles);
+            viewHolder.cardImageStatus = (ImageView) rowView.findViewById(R.id.image_status);
 
             rowView.setTag(viewHolder);
         }
@@ -82,14 +84,7 @@ public class InboxProposalsAdapter extends BaseAdapter {
             textAbout = proposal.description.substring(0,40)+"...";
 
         holder.cardSummary.setText(textAbout);
-//        holder.cardView.setText(proposal.views+" vistas");
-//        holder.cardRate.setText(proposal.rate+" puntos");
-//        List<AttachmentDB> attachments = SQLite.select().
-//                from(AttachmentDB.class).
-//                where(AttachmentDB_Table.proposal.is(proposal.getId())).
-//                queryList();
-
-//        holder.cardFiles.setText(attachments.size()+" archivos");
+        holder.cardImageStatus.setImageResource(R.drawable.inboox);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +111,7 @@ public class InboxProposalsAdapter extends BaseAdapter {
         TextView cardRate;
         TextView cardView;
         TextView cardFiles;
+        ImageView cardImageStatus;
     }
 
 }

@@ -145,6 +145,7 @@
 
     <!-- TOAST -->
     <string name="toast_permissions_denied">Necesita activar los permisos de CAMARA y ALMACENAMIENTO para que puedas editar tu avatar</string>
+    <string name="toast_permissions_denied_read">Necesita activar los permisos de lectura de ALMACENAMIENTO para que puedas agregar archivos</string>
 
 
     <!-- PREFERENCES -->

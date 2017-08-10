@@ -2,11 +2,13 @@ package com.xiberty.propongo.councils.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -64,6 +66,7 @@ public class ProposalsAdapter extends BaseAdapter {
             viewHolder.cardRate = (TextView) rowView.findViewById(R.id.lblRate);
             viewHolder.cardView = (TextView) rowView.findViewById(R.id.lblViews);
             viewHolder.cardFiles = (TextView) rowView.findViewById(R.id.lblFiles);
+            viewHolder.cardImageStatus = (ImageView) rowView.findViewById(R.id.image_status);
 
             rowView.setTag(viewHolder);
         }
@@ -81,12 +84,22 @@ public class ProposalsAdapter extends BaseAdapter {
         holder.cardSummary.setText(textAbout);
         holder.cardView.setText(proposal.views+" vistas");
         holder.cardRate.setText(proposal.rate+" puntos");
+
         List<AttachmentDB> attachments = SQLite.select().
                 from(AttachmentDB.class).
                 where(AttachmentDB_Table.proposal.is(proposal.getId())).
                 queryList();
 
         holder.cardFiles.setText(attachments.size()+" archivos");
+        switch (proposal.status){
+            case "ACCEPTED":
+                holder.cardImageStatus.setImageResource(R.drawable.draaft);
+                break;
+            case "PUBLISHED":
+                holder.cardImageStatus.setImageResource(R.drawable.publisheeed);
+                break;
+        }
+
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +126,7 @@ public class ProposalsAdapter extends BaseAdapter {
         TextView cardRate;
         TextView cardView;
         TextView cardFiles;
+        ImageView cardImageStatus;
     }
 
 }

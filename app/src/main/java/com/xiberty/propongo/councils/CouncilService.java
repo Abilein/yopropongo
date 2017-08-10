@@ -2,6 +2,7 @@ package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.contrib.Store;
+import com.xiberty.propongo.councils.models.ActivateResponse;
 import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.councils.models.NewProposalRespse;
 import com.xiberty.propongo.councils.models.ViewResponse;
@@ -55,10 +56,10 @@ public interface CouncilService {
 
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/up/")
-    Call<Proposal> activeProposal(@Path("pk") String pk);
+    Call<ActivateResponse> activeProposal(@Path("pk") String pk);
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/halt/")
-    Call<Proposal> deleteProposal(@Path("pk") String pk);
+    Call<ActivateResponse> deleteProposal(@Path("pk") String pk);
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/comments/")
     Call<List<Comment>> getProposalComments(@Path("pk") String pk);

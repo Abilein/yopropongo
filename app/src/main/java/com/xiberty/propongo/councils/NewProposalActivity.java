@@ -1,8 +1,10 @@
 package com.xiberty.propongo.councils;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,8 +17,10 @@ import android.widget.Toast;
 import com.obsez.android.lib.filechooser.ChooserDialog;
 import com.pchmn.materialchips.ChipsInput;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.accounts.EditProfileActivity;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
+import com.xiberty.propongo.contrib.utils.ActivityUtils;
 import com.xiberty.propongo.councils.models.CouncilManChip;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
@@ -28,8 +32,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.mateware.snacky.Snacky;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 
-
+@RuntimePermissions
 public class NewProposalActivity extends AppCompatActivity implements NewProposalContract.View {
 
     @BindView(R.id.progressBar)
@@ -83,8 +90,26 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     }
 
+
+    /*
+    *  PERMISSIONS
+    * */
+    @NeedsPermission(value={Manifest.permission.READ_EXTERNAL_STORAGE})
+    public void requestPermissionToReadFiles(){
+    }
+
     @OnClick(R.id.btn_add_attach)
     public void addAttach(View view) {
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        NewProposalActivityPermissionsDispatcher.requestPermissionToReadFilesWithCheck(this);
+        if(ActivityUtils.hasPermissions(this, permissions)){
+            readFileFromStorage();
+        }else{
+            showInfo(getString(R.string.toast_permissions_denied_read));
+        }
+    }
+
+    private void readFileFromStorage() {
         String path = Environment.getExternalStorageDirectory().toString();
         new ChooserDialog().with(this)
                 .withStartFile(path)
@@ -97,6 +122,15 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
                     }
                 })
                 .build()
+                .show();
+    }
+
+    public void showInfo(String message) {
+        Snacky.builder()
+                .setActivty(NewProposalActivity.this)
+                .setText(message)
+                .setDuration(Snacky.LENGTH_LONG)
+                .info()
                 .show();
     }
 
@@ -123,5 +157,11 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     @Override
     public void showErrorUploadProposal(String error) {
         Toast.makeText(this, "OMG! Error 'cause " + error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        NewProposalActivityPermissionsDispatcher.onRequestPermissionsResult(this,requestCode,grantResults);
     }
 }

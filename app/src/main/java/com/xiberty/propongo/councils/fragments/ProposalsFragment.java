@@ -75,6 +75,8 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
+                and(ProposalDB_Table.status.is("PUBLISHED")).
+                or(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
 
@@ -126,6 +128,8 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
+                and(ProposalDB_Table.status.is("PUBLISHED")).
+                or(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
         Toast.makeText(context, "Actualizando...", Toast.LENGTH_SHORT).show();

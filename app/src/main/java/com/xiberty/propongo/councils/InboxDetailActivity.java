@@ -19,16 +19,22 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.MainActivity;
+import com.xiberty.propongo.contrib.Store;
+import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
 import com.xiberty.propongo.councils.fragments.ProposalsFragment;
+import com.xiberty.propongo.councils.models.ActivateResponse;
 import com.xiberty.propongo.councils.models.NewProposalRespse;
 import com.xiberty.propongo.database.Attachment;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Proposal;
+import com.xiberty.propongo.database.ProposalDB;
+import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +42,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class InboxDetailActivity extends AppCompatActivity {
@@ -82,6 +91,7 @@ public class InboxDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inbox_detail);
         ButterKnife.bind(this);
         context = this;
+        ccService = WS.makeService(CouncilService.class, Store.getCredential(context));
         setContent();
     }
 
@@ -111,12 +121,17 @@ public class InboxDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnAccept)
     public void AcceptProposal(View view) {
-        Toast.makeText(context, "ACEPTADO", Toast.LENGTH_SHORT).show();
+        acceptEndpoint(proposalId);
+        finish();
     }
+
+
 
     @OnClick(R.id.btnDeny)
     public void DenyProposal(View view) {
         Toast.makeText(context, "RECHAZADO", Toast.LENGTH_SHORT).show();
+        denyEndpoint(proposalId);
+        finish();
     }
 
     @OnClick(R.id.btnGoBack)
@@ -160,5 +175,43 @@ public class InboxDetailActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    private void acceptEndpoint(String proposalID) {
+        Call<ActivateResponse> activateCall = ccService.activeProposal(proposalID);
+        activateCall.enqueue(new Callback<ActivateResponse>() {
+            @Override
+            public void onResponse(Call<ActivateResponse> call, Response<ActivateResponse> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(context, "PROPUESTA ACTIVADA!!", Toast.LENGTH_SHORT).show();
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ActivateResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void denyEndpoint(String proposalID) {
+        Call<ActivateResponse> activateCall = ccService.deleteProposal(proposalID);
+        activateCall.enqueue(new Callback<ActivateResponse>() {
+            @Override
+            public void onResponse(Call<ActivateResponse> call, Response<ActivateResponse> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(context, "PROPUESTA RECHAZADA!!", Toast.LENGTH_SHORT).show();
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ActivateResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
