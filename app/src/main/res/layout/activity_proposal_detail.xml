@@ -77,9 +77,11 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2sp"
+                android:layout_height="1sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 style="@style/Proposal.Divider"
-                />
+                android:layout_marginBottom="16sp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -173,9 +175,11 @@
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2sp"
+                android:layout_height="1sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 style="@style/Proposal.Divider"
-                />
+                android:layout_marginBottom="16sp" />
 
             <com.xiberty.propongo.contrib.views.XTextView
                 android:layout_width="match_parent"
@@ -189,9 +193,11 @@
                 style="@style/Proposal.Paragraph" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2sp"
+                android:layout_height="1sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 style="@style/Proposal.Divider"
-                />
+                android:layout_marginBottom="16sp" />
 
             <RatingBar
                 android:layout_width="wrap_content"
@@ -203,7 +209,9 @@
                 android:layout_gravity="top|center" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2sp"
+                android:layout_height="1sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 style="@style/Proposal.Divider"
                 android:layout_marginBottom="16sp" />
 
@@ -212,7 +220,9 @@
                 android:layout_height="200dp"
                 android:id="@+id/listComments"
                 android:clickable="false"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"/>
             <Button
                 android:id="@+id/btnComments"
                 android:layout_width="match_parent"
