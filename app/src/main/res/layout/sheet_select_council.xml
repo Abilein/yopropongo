@@ -10,12 +10,12 @@
     android:elevation="24dp"
     android:orientation="vertical">
 
-    <TextView
+    <com.xiberty.propongo.contrib.views.XTextViewBold
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16sp"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/colorPrimary"
         android:paddingBottom="16sp"
         android:paddingTop="16sp"
         android:text="@string/title_select_council"
@@ -35,18 +35,15 @@
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnSelect"
-
         android:layout_width="match_parent"
         android:layout_height="46sp"
         app:fb_defaultColor="@color/colorAccent"
         app:fb_focusColor="@color/colorAccentLight"
-
         app:fb_fontIconResource="&#xf058;"
         app:fb_fontIconSize="@dimen/text_big"
         app:fb_iconPaddingRight="@dimen/spacing_normal_extra"
         app:fb_iconPosition="left"
         app:fb_radius="0sp"
-
         app:fb_text="@string/button_select"
         app:fb_textColor="@color/white"
         app:fb_textSize="@dimen/text_regular"

@@ -55,7 +55,7 @@
                     app:civ_border_color="@color/white"
                     />
 
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextViewBold
                     android:id="@+id/toolbar_title"
                     style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                     android:layout_width="match_parent"
@@ -146,7 +146,7 @@
                         android:id="@+id/nameMacro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="13sp"
                         android:text="YO PROPONGO"/>
@@ -181,7 +181,7 @@
                         android:id="@+id/nameFlag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="13sp"
                         android:text="BOLIVIA"/>

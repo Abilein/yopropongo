@@ -73,11 +73,14 @@ public class ProposalsAdapter extends BaseAdapter {
             rowView.setTag(viewHolder);
         }
 
+        final ProposalDB proposal = items.get(position);
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        final ProposalDB proposal = items.get(position);
+        if(proposal.title.length()>30)
+            holder.cardTitle.setText(proposal.title.substring(0,30)+"...");
+        else
+            holder.cardTitle.setText(proposal.title);
 
-        holder.cardTitle.setText(proposal.title);
         String textAbout = proposal.description;
 
         if (proposal.description.length()>40)

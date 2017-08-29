@@ -63,8 +63,9 @@ public class CommissionDetailActivity extends AppCompatActivity {
     }
 
     private void setTabs(Commission commissionSelected) {
-        tabs.setBackgroundColor(Color.BLACK);
-        tabs.setTabTextColors(Color.WHITE, Color.YELLOW);
+        tabs.setBackgroundColor(Color.rgb(46,46,46));
+        tabs.setTabTextColors(Color.WHITE, Color.rgb(254,190,17));
+        tabs.setSelectedTabIndicatorColor(Color.rgb(254,190,17));
         setupViewPager(commissionSelected);
         tabs.setupWithViewPager(pager);
 
@@ -72,7 +73,6 @@ public class CommissionDetailActivity extends AppCompatActivity {
 
     private void setupViewPager(Commission commissionSelected) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
         DirectiveCommissionFragment directiveCommissionFragment = new DirectiveCommissionFragment();
         GeneralProposalsFragment generalProposalsFragment = new GeneralProposalsFragment();
         BiographyFragment biographyFragment = new BiographyFragment();
@@ -80,7 +80,7 @@ public class CommissionDetailActivity extends AppCompatActivity {
         ArrayList<DirectiveItem> directive = commissionSelected.makedirective(this);
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
-                where(ProposalDB_Table.commissions.is(commissionSelected.id + "")).
+                where(ProposalDB_Table.commissions.is(commissionSelected.id +"")).
                 queryList();
 
         Gson gson = new Gson();
@@ -96,9 +96,9 @@ public class CommissionDetailActivity extends AppCompatActivity {
         generalProposalsFragment.setArguments(bundle);
         biographyFragment.setArguments(bundle);
 
-        adapter.addFragment(biographyFragment, "ACERCA DE");
         adapter.addFragment(directiveCommissionFragment, "DIRECTIVA");
         adapter.addFragment(generalProposalsFragment, "PROPUESTAS");
+        adapter.addFragment(biographyFragment, "ACERCA DE");
         pager.setAdapter(adapter);
 
     }

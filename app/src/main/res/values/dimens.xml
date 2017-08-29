@@ -38,6 +38,8 @@
     <dimen name="profile_text_spacing">24dp</dimen>
     <dimen name="profile_line_spacing">36dp</dimen>
 
+    <!--Directive Profle-->
+    <dimen name="directive_avatar_size">100dp</dimen>
 
     <!-- Settings -->
     <dimen name="default_elevation">8dp</dimen>
@@ -61,6 +63,7 @@
 
     <dimen name="detail_backdrop_height">256dp</dimen>
     <dimen name="card_margin">16dp</dimen>
+    <dimen name="list_card_margin">4dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
     <dimen name="nav_header_height">16dp</dimen>
     <dimen name="activity_quarter_margin">4dp</dimen>

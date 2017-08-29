@@ -67,7 +67,12 @@ public class CouncilForm {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(activity, "nothing", Toast.LENGTH_SHORT).show();
+                /**
+                 *  Si no escoge ninguno por defecto será el PRIMER CONSEJO
+                 **/
+                Log.e("CouncilForm","SE SELEECIONO EL PRIMERO POR DEFECTO");
+                defaultCouncil = (Council) adapterView.getItemAtPosition(0);
+                Store.setDefaultCouncil(activity, defaultCouncil);
             }
         });
     }

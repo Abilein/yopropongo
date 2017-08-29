@@ -92,7 +92,7 @@
 
     <!-- COUNCIL -->
     <style name="Council">
-        <item name="android:textColor">@color/DarkBlue</item>
+        <item name="android:textColor">@color/darken</item>
     </style>
 
 

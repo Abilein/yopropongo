@@ -14,22 +14,11 @@ public class MainContract {
     public interface View {
         void showProgress();
         void hideProgress();
-
         void setDrawer(UserProfile profile);
-
         void logoutSuccess();
-
-
         void showCouncils(List<Council> councils);
-        void councilmenSuccess();
-        void proposalsSuccess();
-
         void showError(String message);
-
         void setCouncilinDrawer();
-
-
-
     }
 
     public interface Presenter {

@@ -26,7 +26,6 @@ import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
 import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
-import com.xiberty.propongo.councils.fragments.DirectiveCommissionFragment;
 import com.xiberty.propongo.councils.fragments.DirectiveFragment;
 import com.xiberty.propongo.councils.fragments.GeneralProposalsFragment;
 import com.xiberty.propongo.database.CouncilMan;
@@ -50,7 +49,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_image)
     ImageView mSpace;
     @BindView(R.id.toolbar_title)
-    TextView mToolbarTextView;
+    XTextViewBold mToolbarTextView;
     @BindView(R.id.textView_title)
     XTextViewBold mTitleTextView;
     @BindView(R.id.textView_email)
@@ -93,15 +92,16 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
         councilmanSelected = CouncilMan.getCouncilman(this, CouncilManId);
 
-        findViews();
+        setTabs();
         setUpViews();
         fetchAvatar();
 
     }
 
-    private void findViews() {
-        tabs.setBackgroundColor(Color.BLACK);
-        tabs.setTabTextColors(Color.WHITE, Color.YELLOW);
+    private void setTabs() {
+        tabs.setBackgroundColor(Color.rgb(46,46,46));
+        tabs.setTabTextColors(Color.WHITE, Color.rgb(254,190,17));
+        tabs.setSelectedTabIndicatorColor(Color.rgb(254,190,17));
         setupViewPager(pager);
         tabs.setupWithViewPager(pager);
     }
@@ -220,8 +220,8 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         biographyFragment.setArguments(bundle);
         generalProposalsFragment.setArguments(bundle);
 
-        adapter.addFragment(biographyFragment, "BIOGRAFIA");
         adapter.addFragment(generalProposalsFragment, "PROPUESTAS");
+        adapter.addFragment(biographyFragment, "BIOGRAFIA");
         viewPager.setAdapter(adapter);
     }
 

@@ -9,47 +9,52 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:elevation="4dp"
          >
         <LinearLayout
             android:orientation="horizontal"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/activity_half_margin">
+            android:padding="2dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imgAvatar"
-                android:layout_width="@dimen/profile_avatar_size"
-                android:layout_height="@dimen/profile_avatar_size"
+                android:layout_width="@dimen/directive_avatar_size"
+                android:layout_height="@dimen/directive_avatar_size"
                 android:layout_margin="@dimen/profile_avatar_spacing"
                 android:layout_gravity="bottom"
                 android:src="@drawable/avatar"
                 android:clickable="true"
-                android:layout_marginRight="@dimen/activity_half_quarter_margin" />
+                android:layout_marginRight="@dimen/activity_half_quarter_margin"
+                />
 
             <RelativeLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_margin"
+                >
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/linearLayout2">
+
                     <com.xiberty.propongo.contrib.views.XTextViewBold
                         android:id="@+id/lblFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Grover Callisaya Apaza "
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:textColor="#2e2e2e"
                         android:lineSpacingExtra="-2dp"
-                        android:layout_gravity="center"
-                        style="@style/Council.Name" />
+                        android:layout_gravity="center" />
 
                     <com.xiberty.propongo.contrib.views.XTextView
                         android:layout_width="match_parent"
@@ -57,8 +62,9 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Presidente"
                         android:textSize="12sp"
+                        android:textStyle="italic"
                         android:id="@+id/lblPosition"
-                        style="@style/Council.Position" />
+                        style="@style/Proposal.Description"/>
                 </LinearLayout>
 
                 <ImageView

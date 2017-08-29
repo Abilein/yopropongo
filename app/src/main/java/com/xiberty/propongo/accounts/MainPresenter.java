@@ -105,7 +105,6 @@ public class MainPresenter implements MainContract.Presenter {
         councilsCall.enqueue(new Callback<List<Council>>() {
             @Override
             public void onResponse(Call<List<Council>> call, Response<List<Council>> response) {
-
                 if (response.isSuccessful()) {
                     mView.hideProgress();
                     List<Council> councils = response.body();

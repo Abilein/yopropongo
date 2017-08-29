@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         this.profile = profile;
 
         final ArrayList<Council> councils = Store.getCouncils(this);
+
         if (councils == null){
             IProfile userProfile = new ProfileDrawerItem()
                     .withName(profile.fullName())
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
             accountHeader = new AccountHeaderBuilder()
                     .withActivity(this)
-                    .withHeaderBackground(R.drawable.coding)
+                    .withHeaderBackground(R.drawable.header_cover)
                     .addProfiles(userProfile)
                     .build();
         }else{
@@ -211,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
             AccountHeaderBuilder header = new AccountHeaderBuilder()
                     .withActivity(this)
-                    .withHeaderBackground(R.drawable.coding);
+                    .withHeaderBackground(R.drawable.header_cover);
 
             for (Council council : councils){
                 if (!council.name().equals(defaulCouncil.name())){
@@ -253,25 +254,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             });
             accountHeader = header.build();
             accountHeader.setActiveProfile(selectedCouncilProfile);
-
         }
 
-
-
         //YoPropongo Menu Items
-
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/latoRegular.ttf");
         PrimaryDrawerItem MenuInbox = new PrimaryDrawerItem().withName("Buzon de Entrada").withTypeface(typeface).withIdentifier(Menues.INBOX.id).withIcon(R.drawable.ic_inbox);
         PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem().withName("Perfil").withTypeface(typeface).withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
         PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Directiva").withTypeface(typeface).withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
         PrimaryDrawerItem MenuComissions = new PrimaryDrawerItem().withName("Comisiones").withTypeface(typeface).withIdentifier(Menues.COMISSIONS.id).withIcon(R.drawable.ic_commissions);
         PrimaryDrawerItem MenuProposals = new PrimaryDrawerItem().withName("Propuestas").withTypeface(typeface).withIdentifier(Menues.PROPOSAL.id).withIcon(R.drawable.ic_proposals);
-        PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem().withName("Ajustes").withTypeface(typeface).withIdentifier(Menues.SETTINGS.id).withIcon(R.drawable.ic_settings);
         PrimaryDrawerItem MenuAbout = new PrimaryDrawerItem().withName("Acerca de").withTypeface(typeface).withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
         PrimaryDrawerItem Menulogout = new PrimaryDrawerItem().withName("Salir").withTypeface(typeface).withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
-
-
-
 
         try{
             if (profile.is_councilman()) {
@@ -280,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         .withToolbar(toolbar)
                         .withHeader(R.layout.drawer_header)
                         .withAccountHeader(accountHeader)
-                        .addDrawerItems(MenuInbox ,MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuSettings, MenuAbout, Menulogout)
+                        .addDrawerItems(MenuInbox ,MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuAbout, Menulogout)
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                             @Override
                             public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
@@ -304,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         .withToolbar(toolbar)
                         .withHeader(R.layout.drawer_header)
                         .withAccountHeader(accountHeader)
-                        .addDrawerItems(MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuSettings, MenuAbout, Menulogout)
+                        .addDrawerItems(MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuAbout, Menulogout)
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                             @Override
                             public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
@@ -321,7 +314,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         })
                         .build();
 
-
                 Bundle bundle = getIntent().getExtras();
                 if (bundle != null){
                     switch (bundle.getInt(Constants.MENU_STATE)){
@@ -334,13 +326,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 }else{
                     drawer.setSelection(Menues.PROFILE.getID());
                 }
-
                 drawer.getRecyclerView().setVerticalScrollBarEnabled(false);
-
             }
-
         }catch (Exception e){
-
         }
 
     }
@@ -394,23 +382,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         View view = getLayoutInflater ().inflate (R.layout.sheet_select_council, null);
         BottomSheetDialog sheet = new BottomSheetDialog (
                 MainActivity.this, R.style.Theme_Design_BottomSheetDialog);
-
+        sheet.setCanceledOnTouchOutside(false);
         councilForm = new CouncilForm(this, view, sheet, councils);
         councilForm.show();
-
     }
-
-
-    @Override
-    public void councilmenSuccess() {
-
-    }
-
-    @Override
-    public void proposalsSuccess() {
-
-    }
-
 
     @Override
     public void showProgress() {
