@@ -283,6 +283,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             .setDuration(Snacky.LENGTH_LONG)
             .success()
             .show();
+        finish();
     }
 
     @Override

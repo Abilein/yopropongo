@@ -238,7 +238,6 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         }else{
             finish();
         }
-
         return true;
     }
 }

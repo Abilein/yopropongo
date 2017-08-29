@@ -90,9 +90,9 @@ public class CouncilMan {
     /**
      * OBJECT METHODS
      ***/
-    public static final String MAS = "MAS";
-    public static final String SOL = "SOL_BO";
-    public static final String UN = "UN";
+    public static final String MAS = "Movimiento al Socialismo";
+    public static final String SOL = "Sol.bo";
+    public static final String UN = "Unidad Nacional";
 
     public String getAgrupation(Context context){
         switch (this.agrupation){

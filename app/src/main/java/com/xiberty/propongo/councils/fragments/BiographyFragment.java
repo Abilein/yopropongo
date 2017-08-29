@@ -55,7 +55,6 @@ public class BiographyFragment extends Fragment {
             String about = bundle.getString("About");
             textViewBio.setText(about);
         }
-
         return rootView;
     }
 

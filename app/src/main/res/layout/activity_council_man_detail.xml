@@ -197,7 +197,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         <LinearLayout
             app:layout_scrollFlags="scroll|snap"
@@ -208,7 +208,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="500dp">
 
             </android.support.v4.view.ViewPager>
 
