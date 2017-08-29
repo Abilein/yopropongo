@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 
 public class ToolbarBaseFragment extends Fragment {
 
@@ -34,8 +36,8 @@ public class ToolbarBaseFragment extends Fragment {
 
     public void setHeader(View view, String title, String subtitle) {
         if (view != null) {
-            TextView headerTitle = (TextView) view.findViewById(R.id.headerTitle);
-            TextView headerSubttle = (TextView) view.findViewById(R.id.headerSubtitle);
+            XTextViewBold headerTitle = (XTextViewBold) view.findViewById(R.id.headerTitle);
+            XTextView headerSubttle = (XTextView) view.findViewById(R.id.headerSubtitle);
             if (headerTitle != null) headerTitle.setText(title);
             if (headerSubttle != null) headerSubttle.setText(subtitle);
         }

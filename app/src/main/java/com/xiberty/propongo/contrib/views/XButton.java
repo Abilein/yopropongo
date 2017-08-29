@@ -24,7 +24,7 @@ public class XButton extends AppCompatButton {
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Lato-Light.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/latoLight.ttf");
             setTypeface(tf);
         }
     }

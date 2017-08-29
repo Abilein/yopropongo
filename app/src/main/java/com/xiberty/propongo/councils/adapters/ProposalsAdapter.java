@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.AttachmentDB_Table;
@@ -61,7 +63,7 @@ public class ProposalsAdapter extends BaseAdapter {
 
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.card = (CardView)  rowView.findViewById(R.id.card_view);
-            viewHolder.cardTitle = (TextView) rowView.findViewById(R.id.lblTitle);
+            viewHolder.cardTitle = (XTextView) rowView.findViewById(R.id.lblTitle);
             viewHolder.cardSummary = (TextView) rowView.findViewById(R.id.lblSummary);
             viewHolder.cardRate = (TextView) rowView.findViewById(R.id.lblRate);
             viewHolder.cardView = (TextView) rowView.findViewById(R.id.lblViews);
@@ -121,7 +123,7 @@ public class ProposalsAdapter extends BaseAdapter {
 
     class ViewHolder {
         CardView card;
-        TextView cardTitle;
+        XTextView cardTitle;
         TextView cardSummary;
         TextView cardRate;
         TextView cardView;

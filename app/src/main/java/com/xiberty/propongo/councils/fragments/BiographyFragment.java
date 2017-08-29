@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.views.XTextView;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.database.CouncilMan;
 import butterknife.BindView;
@@ -23,7 +24,7 @@ public class BiographyFragment extends Fragment {
     InboxPresenter presenter;
     View rootView = null;
     @BindView(R.id.textView_Bio)
-    TextView textViewBio;
+    XTextView textViewBio;
 
     Context context;
 

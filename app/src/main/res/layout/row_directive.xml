@@ -41,20 +41,22 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/linearLayout2">
-                    <TextView
+                    <com.xiberty.propongo.contrib.views.XTextViewBold
                         android:id="@+id/lblFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Grover Callisaya Apaza "
+                        android:textSize="14sp"
                         android:lineSpacingExtra="-2dp"
                         android:layout_gravity="center"
                         style="@style/Council.Name" />
 
-                    <TextView
+                    <com.xiberty.propongo.contrib.views.XTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Presidente"
+                        android:textSize="12sp"
                         android:id="@+id/lblPosition"
                         style="@style/Council.Position" />
                 </LinearLayout>

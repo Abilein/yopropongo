@@ -4,6 +4,7 @@ package com.xiberty.propongo.accounts;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -258,14 +259,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
 
         //YoPropongo Menu Items
-        PrimaryDrawerItem MenuInbox = new PrimaryDrawerItem().withName("Buzon de Entrada").withIdentifier(Menues.INBOX.id).withIcon(R.drawable.ic_inbox);
-        PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem().withName("Perfil").withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
-        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Directiva").withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
-        PrimaryDrawerItem MenuComissions = new PrimaryDrawerItem().withName("Comisiones").withIdentifier(Menues.COMISSIONS.id).withIcon(R.drawable.ic_commissions);
-        PrimaryDrawerItem MenuProposals = new PrimaryDrawerItem().withName("Propuestas").withIdentifier(Menues.PROPOSAL.id).withIcon(R.drawable.ic_proposals);
-        PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem().withName("Ajustes").withIdentifier(Menues.SETTINGS.id).withIcon(R.drawable.ic_settings);
-        PrimaryDrawerItem MenuAbout = new PrimaryDrawerItem().withName("Acerca de").withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
-        PrimaryDrawerItem Menulogout = new PrimaryDrawerItem().withName("Salir").withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/latoRegular.ttf");
+        PrimaryDrawerItem MenuInbox = new PrimaryDrawerItem().withName("Buzon de Entrada").withTypeface(typeface).withIdentifier(Menues.INBOX.id).withIcon(R.drawable.ic_inbox);
+        PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem().withName("Perfil").withTypeface(typeface).withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
+        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Directiva").withTypeface(typeface).withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
+        PrimaryDrawerItem MenuComissions = new PrimaryDrawerItem().withName("Comisiones").withTypeface(typeface).withIdentifier(Menues.COMISSIONS.id).withIcon(R.drawable.ic_commissions);
+        PrimaryDrawerItem MenuProposals = new PrimaryDrawerItem().withName("Propuestas").withTypeface(typeface).withIdentifier(Menues.PROPOSAL.id).withIcon(R.drawable.ic_proposals);
+        PrimaryDrawerItem MenuSettings = new PrimaryDrawerItem().withName("Ajustes").withTypeface(typeface).withIdentifier(Menues.SETTINGS.id).withIcon(R.drawable.ic_settings);
+        PrimaryDrawerItem MenuAbout = new PrimaryDrawerItem().withName("Acerca de").withTypeface(typeface).withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
+        PrimaryDrawerItem Menulogout = new PrimaryDrawerItem().withName("Salir").withTypeface(typeface).withIdentifier(Menues.LOGOUT.id).withIcon(R.drawable.ic_logout);
 
 
 

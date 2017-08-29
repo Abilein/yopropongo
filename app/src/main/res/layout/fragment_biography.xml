@@ -26,13 +26,13 @@
                 android:layout_weight="11"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextView
                     android:id="@+id/textView_Bio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_half_quarter_margin"
                     android:text="@string/lorem_ipsum"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     />
 
             </LinearLayout>

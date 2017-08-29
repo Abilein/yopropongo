@@ -23,6 +23,7 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
 import com.xiberty.propongo.councils.fragments.DirectiveCommissionFragment;
@@ -51,17 +52,17 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_title)
     TextView mToolbarTextView;
     @BindView(R.id.textView_title)
-    TextView mTitleTextView;
+    XTextViewBold mTitleTextView;
     @BindView(R.id.textView_email)
     TextView mEmail;
     @BindView(R.id.imageView_avatar)
     CircleImageView mAvatarImageView;
     @BindView(R.id.nameMacro)
-    TextView mNameMacro;
+    XTextViewBold mNameMacro;
     @BindView(R.id.imgFlag)
     ImageView mFlag;
     @BindView(R.id.nameFlag)
-    TextView nNameFlag;
+    XTextViewBold nNameFlag;
     @BindView(R.id.tabs)
     TabLayout tabs;
     @BindView(R.id.app_bar)

@@ -34,7 +34,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/card_margin"
                     android:background="@drawable/triangle"></View>
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextViewBold
                 android:id="@+id/txt_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +45,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_alignParentBottom="true"
+                android:textAllCaps="true"
                  />
             </RelativeLayout>
 

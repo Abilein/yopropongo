@@ -33,7 +33,7 @@
             android:gravity="top"
             android:orientation="horizontal">
 
-            <TextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:id="@+id/lblFullName"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                 android:layout_weight="1"
                 android:lineSpacingExtra="-2dp"
                 android:text="Victor Aguilar"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -51,8 +51,7 @@
                 android:layout_gravity="center"
                 android:lineSpacingExtra="-2dp"
                 android:text="18 Ago, 2015"
-                android:textSize="10sp"
-                android:textStyle="bold"
+                android:textSize="8sp"
                 android:gravity="right" />
         </LinearLayout>
 
@@ -64,6 +63,7 @@
             android:lineSpacingExtra="-2dp"
             android:text="Comentario anonimo Comentario anonimo Comentario anonimo "
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="italic"
             android:textSize="10sp" />
 
     </LinearLayout>

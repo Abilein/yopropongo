@@ -25,6 +25,8 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.UIUtils;
+import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.CommentAdapter;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
 import com.xiberty.propongo.councils.fragments.ProposalsFragment;
@@ -50,25 +52,25 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.lblTitle)
-    TextView lblTitle;
+    XTextViewBold lblTitle;
     @BindView(R.id.lblDate)
     TextView lblDate;
     @BindView(R.id.lblProposers)
     TextView lblProposers;
     @BindView(R.id.lblAverage)
-    TextView lblAverage;
+    XTextViewBold lblAverage;
     @BindView(R.id.ratingAverage)
     RatingBar ratingAverage;
     @BindView(R.id.lblViewers)
-    TextView lblViewers;
+    XTextView lblViewers;
     @BindView(R.id.imageView2)
     ImageView imageView2;
     @BindView(R.id.lblAttacchs)
-    TextView lblAttacchs;
+    XTextView lblAttacchs;
     @BindView(R.id.imageView3)
     ImageView imageView3;
     @BindView(R.id.lblDescription)
-    TextView lblDescription;
+    XTextView lblDescription;
     @BindView(R.id.ratingAction)
     RatingBar ratingAction;
     @BindView(R.id.listComments)

@@ -2,30 +2,29 @@ package com.xiberty.propongo.contrib.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-import android.support.v7.widget.AppCompatTextView;
+public class XTextViewBold extends AppCompatTextView {
 
-public class XTextView extends AppCompatTextView {
-
-    public XTextView(Context context, AttributeSet attrs, int defStyle) {
+    public XTextViewBold(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public XTextView(Context context, AttributeSet attrs) {
+    public XTextViewBold(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public XTextView(Context context) {
+    public XTextViewBold(Context context) {
         super(context);
         init();
     }
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/latoLight.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/latoRegular.ttf");
             setTypeface(tf);
         }
     }

@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
     <include layout="@layout/progressbar_horizontal"/>
 
     <LinearLayout
@@ -22,11 +23,12 @@
             android:layout_height="match_parent"
             android:paddingBottom="20sp">
 
-            <TextView
+            <com.xiberty.propongo.contrib.views.XTextViewBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Titulo de la propuesta"
+                android:textSize="24sp"
                 android:id="@+id/lblTitle"
                 style="@style/Proposal.Title" />
 
@@ -35,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -47,12 +49,13 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="12 Ago, 2015"
+                    android:textStyle="italic"
                     android:id="@+id/lblDate"
                     style="@style/Proposal.Value"
                     android:paddingLeft="@dimen/activity_padding" />
             </LinearLayout>
 
-            <TextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -65,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="FULANITO DE TAL"
+                android:textStyle="italic"
                 android:id="@+id/lblProposers"
                 style="@style/Proposal.Value"
                 android:paddingLeft="@dimen/activity_padding"
@@ -86,7 +90,7 @@
                 android:paddingTop="@dimen/activity_quarter_margin"
                 android:paddingBottom="@dimen/activity_quarter_margin">
 
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextViewBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -113,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <TextView
+                        <com.xiberty.propongo.contrib.views.XTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -148,7 +152,7 @@
                         android:paddingLeft="@dimen/activity_padding"
                         android:id="@+id/blockAttachs">
 
-                        <TextView
+                        <com.xiberty.propongo.contrib.views.XTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -173,11 +177,12 @@
                 style="@style/Proposal.Divider"
                 />
 
-            <TextView
+            <com.xiberty.propongo.contrib.views.XTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt "
+                android:textSize="12sp"
                 android:id="@+id/lblDescription"
                 android:layout_gravity="center_horizontal"
                 android:padding="@dimen/activity_padding"
@@ -193,6 +198,7 @@
                 android:layout_height="72sp"
                 android:id="@+id/ratingAction"
                 android:numStars="5"
+                android:backgroundTint="@color/Aqua"
                 android:progressDrawable="@drawable/app_ratingbar_selector"
                 android:layout_gravity="top|center" />
             <View
@@ -212,7 +218,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:text="@string/label_all_comments" />
+                android:text="@string/label_all_comments"
+                android:textSize="14sp"/>
         </LinearLayout>
     </ScrollView>
 

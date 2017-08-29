@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.CommissionDetailActivity;
 import com.xiberty.propongo.database.Commission;
 
@@ -57,7 +59,7 @@ public class CommissionAdapter extends BaseAdapter {
             rowView = inflater.inflate(R.layout.row_commission, viewGroup, false);
 
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.cardName = (TextView) rowView.findViewById(R.id.txt_name);
+            viewHolder.cardName = (XTextViewBold) rowView.findViewById(R.id.txt_name);
             viewHolder.cardAbout = (TextView) rowView.findViewById(R.id.txt_about);
             viewHolder.cardImage = (ImageView) rowView.findViewById(R.id.imgCover);
             viewHolder.btnMore = (Button) rowView.findViewById(R.id.btn_more);
@@ -97,7 +99,7 @@ public class CommissionAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        TextView cardName;
+        XTextViewBold cardName;
         TextView cardAbout;
         ImageView cardImage;
         Button btnMore;

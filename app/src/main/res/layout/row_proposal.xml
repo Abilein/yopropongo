@@ -44,11 +44,12 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/linearLayout2">
-                    <TextView
+                    <com.xiberty.propongo.contrib.views.XTextView
                         android:id="@+id/lblTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Propuesta de Cambio"
+                        android:textSize="14sp"
                         android:lineSpacingExtra="-2dp"
                         android:layout_gravity="center"
                         style="@style/Proposal" />
@@ -59,6 +60,8 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Un Breve Resumen"
+                        android:textSize="10sp"
+                        android:textStyle="italic"
                         style="@style/Proposal.Description" />
                     <LinearLayout
                         android:layout_width="match_parent"

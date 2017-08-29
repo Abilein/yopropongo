@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
+import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.CouncilManDetailActivity;
 import com.xiberty.propongo.councils.models.DirectiveItem;
 import com.xiberty.propongo.database.CouncilMan;
@@ -61,8 +63,8 @@ public class DirectiveAdapter extends BaseAdapter {
             rowView = inflater.inflate(R.layout.row_directive, viewGroup, false);
 
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.fullName = (TextView) rowView.findViewById(R.id.lblFullName);
-            viewHolder.position = (TextView) rowView.findViewById(R.id.lblPosition);
+            viewHolder.fullName = (XTextViewBold) rowView.findViewById(R.id.lblFullName);
+            viewHolder.position = (XTextView) rowView.findViewById(R.id.lblPosition);
             viewHolder.avatar = (ImageView) rowView.findViewById(R.id.imgAvatar);
             viewHolder.flag = (ImageView) rowView.findViewById(R.id.imgFlag);
 
@@ -98,8 +100,8 @@ public class DirectiveAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        TextView fullName;
-        TextView position;
+        XTextViewBold fullName;
+        XTextView position;
         ImageView avatar;
         ImageView flag;
     }

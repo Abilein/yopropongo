@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.utils.UIUtils;
+import com.xiberty.propongo.contrib.views.XTextView;
 import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Commission;
@@ -60,7 +61,7 @@ public class CommentAdapter  extends BaseAdapter{
             ViewHolder holder = new ViewHolder();
             holder.content = (TextView) rowView.findViewById(R.id.lblComment);
             holder.date = (TextView) rowView.findViewById(R.id.lblDate);
-            holder.fullname = (TextView) rowView.findViewById(R.id.lblFullName);
+            holder.fullname = (XTextView) rowView.findViewById(R.id.lblFullName);
             holder.avatar = (ImageView) rowView.findViewById(R.id.imgAvatar);
             rowView.setTag(holder);
         }
@@ -82,7 +83,7 @@ public class CommentAdapter  extends BaseAdapter{
     class ViewHolder {
         TextView content;
         TextView date;
-        TextView fullname;
+        XTextView fullname;
         ImageView avatar;
 
     }
