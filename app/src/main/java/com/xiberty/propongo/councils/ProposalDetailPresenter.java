@@ -6,6 +6,8 @@ import com.xiberty.propongo.councils.models.DetailResponse;
 import com.xiberty.propongo.councils.models.ViewResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.ProposalDB;
+
+import java.text.DecimalFormat;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,16 +98,22 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
     }
 
     @Override
-    public void rateProposal(Context context, String proposalId, final String average) {
-        int averageInt = (int)Double.parseDouble(average);
-        Call<DetailResponse> proposalCall = ccService.rateProposal(proposalId,averageInt);
+    public void rateProposal(Context context, String proposalId, final int average) {
+
+        Call<DetailResponse> proposalCall = ccService.rateProposal(proposalId,average);
         proposalCall.enqueue(new Callback<DetailResponse>() {
             @Override
             public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
                 if (response.isSuccessful()){
+
+
+
                     DetailResponse detailResponse = response.body();
-                    updateDatabase(average);
-                    mView.updateRating(average);
+
+
+                    updateDatabase(detailResponse.average);
+                    mView.updateRating(detailResponse.average);
+
                 }else {
                         mView.errorRating(response.body());
                     Log.e(TAG, "OMG! No rating 'cause"+ response.body());
@@ -120,9 +128,9 @@ public class ProposalDetailPresenter implements ProposalDetailContract.Presenter
 
     }
 
-    private void updateDatabase(String rate) {
+    private void updateDatabase(float rate) {
         ProposalDB proposal = new ProposalDB();
-        proposal.setAverage(Double.parseDouble(rate));
+        proposal.setAverage(Double.parseDouble(String.valueOf(rate)));
     }
 
 

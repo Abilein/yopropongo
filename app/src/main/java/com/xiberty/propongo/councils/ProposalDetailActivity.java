@@ -38,6 +38,7 @@ import com.xiberty.propongo.database.CouncilMan;
 import com.xiberty.propongo.database.ProposalDB;
 import com.xiberty.propongo.database.ProposalDB_Table;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,7 +128,11 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
                 lblProposers.setText(CouncilmenNames);
                 lblDate.setText(UIUtils.convertToDate(proposal.datetime));
-                lblAverage.setText(String.valueOf(proposal.average));
+
+                DecimalFormat df = new DecimalFormat("#.#");
+                lblAverage.setText(String.valueOf(df.format(proposal.average)));
+                ratingAverage.setRating(Float.parseFloat(String.valueOf(proposal.average)));
+
                 lblAttacchs.setText(String.valueOf(attachments.size()));
                 lblViewers.setText(String.valueOf(proposal.views));
 
@@ -137,6 +142,8 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                 presenter.getComments(this, proposalId);
                 presenter.getViews(this,proposalId);
 
+                ratingAction.setStepSize(1);
+                ratingAction.setRating(Float.parseFloat(String.valueOf(proposal.rate)));
                 ratingAction.setOnRatingBarChangeListener(this);
             }
             if (attachments.isEmpty())
@@ -175,9 +182,11 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
     }
 
     @Override
-    public void updateRating(String average) {
+    public void updateRating(float average) {
         Toast.makeText(context,"Exito al Rankear",Toast.LENGTH_LONG).show();
-        lblAverage.setText(average);
+        lblAverage.setText(String.valueOf(average));
+        Toast.makeText(context, "PROMEDIO"+average, Toast.LENGTH_SHORT).show();
+        ratingAverage.setRating(average);
     }
 
     @Override
@@ -248,9 +257,8 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-        double currentRate = (double)rating;
-        double averageRate = (currentRate + proposalRate)/2;
-        presenter.rateProposal(this,proposalId,String.valueOf(averageRate));
+        int currentRate = (int)rating;
+        presenter.rateProposal(this,proposalId,currentRate);
     }
 
     @Override

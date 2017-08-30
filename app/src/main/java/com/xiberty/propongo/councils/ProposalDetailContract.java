@@ -18,13 +18,13 @@ public class ProposalDetailContract {
         void getViews(Context context, String proposalId);
 
         void setComment(Context context,String id, String comment);
-        void rateProposal(Context context, String proposalId, String average);
+        void rateProposal(Context context, String proposalId, int average);
     }
 
     public interface View{
         void showComments(List<Comment> comments);
         void showErrorComments (String error);
-        void updateRating(String average);
+        void updateRating(float average);
 
         void errorRating(DetailResponse body);
 

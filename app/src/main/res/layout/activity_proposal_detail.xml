@@ -111,6 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="17sp"
                         android:isIndicator="true"
+                        android:numStars="5"
                         android:progressDrawable="@drawable/app_ratingbar_selector_minor"
                         android:id="@+id/ratingAverage" />
 

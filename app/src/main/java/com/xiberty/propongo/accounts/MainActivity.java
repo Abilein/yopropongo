@@ -289,7 +289,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                             }
                         })
                         .build();
-                drawer.setSelection(Menues.PROFILE.getID());
+                Bundle bundle = getIntent().getExtras();
+                if (bundle != null){
+                    switch (bundle.getInt(Constants.MENU_STATE)){
+                        case 1:drawer.setSelection(Menues.INBOX.getID());break;
+                        case 2:drawer.setSelection(Menues.PROFILE.getID());break;
+                        case 3:drawer.setSelection(Menues.COUNCIL.getID());break;
+                        case 4:drawer.setSelection(Menues.COMISSIONS.getID());break;
+                        case 5:drawer.setSelection(Menues.PROPOSAL.getID());break;
+                        default:drawer.setSelection(Menues.COMISSIONS.getID());break;
+                    }
+                }else{
+                    drawer.setSelection(Menues.PROFILE.getID());
+                }
                 drawer.getRecyclerView().setVerticalScrollBarEnabled(false);
             }else{
                 drawer = new DrawerBuilder()
