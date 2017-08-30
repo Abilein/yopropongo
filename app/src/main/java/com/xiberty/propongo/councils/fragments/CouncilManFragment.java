@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.contrib.utils.UIUtils;
+import com.xiberty.propongo.database.Council;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,4 +65,13 @@ public class CouncilManFragment extends ToolbarBaseFragment implements Directive
     }
 
 
+    @Override
+    public void updateCouncils(List<Council> councils) {
+
+    }
+
+    @Override
+    public void showError(String errorMessage) {
+
+    }
 }

@@ -16,14 +16,11 @@ import android.widget.Toast;
 
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.utils.FileDownloader;
-import com.xiberty.propongo.councils.ProposalDetailActivity;
+import com.xiberty.propongo.contrib.views.XTextView;
 import com.xiberty.propongo.database.AttachmentDB;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -53,17 +50,32 @@ public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.Re
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
         final AttachmentDB attachment = attachs.get(position);
+        Log.e("FILENAME",attachment.file);
+        final String typeOfFile = viewTypeOfFile(attachment.file);
+        switch (typeOfFile){
+            case "TXT":
+                holder.mType.setImageResource(R.drawable.file_txt);
+                break;
+            case "DOC":
+                holder.mType.setImageResource(R.drawable.file_doc);
+                break;
+            case "PDF":
+                holder.mType.setImageResource(R.drawable.file_pdf);
+                break;
+            default:
+                holder.mType.setImageResource(R.drawable.file_otro);
+                break;
+        }
+
         holder.mText.setText(attachment.name);
-        holder.mImage.setOnClickListener(new View.OnClickListener() {
+        holder.txtDwload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 String file_url = attachs.get(position).file;
                 Uri uri = Uri.parse(file_url);
-                target.setDataAndType(uri,"application/pdf");
+                target.setDataAndType(uri,"application/*");
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
                 try{
                     context.startActivity(target);
                 }catch (Exception e){
@@ -83,6 +95,17 @@ public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.Re
 
     }
 
+    private String viewTypeOfFile(String nameOfFile) {
+        String [] fileExtension = nameOfFile.split("\\.");
+        switch (fileExtension[fileExtension.length-1]){
+            case "txt": return "TXT";
+            case "doc": return "DOC";
+            case "docx": return "DOC";
+            case "pdf": return "PDF";
+            default:return "OTHER";
+        }
+    }
+
     @Override
     public int getItemCount() {
         return attachs.size();
@@ -90,13 +113,15 @@ public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.Re
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private final String TAG = RecyclerViewHolder.class.getSimpleName();
-        protected TextView mText;
-        protected ImageView mImage;
+        protected ImageView mType;
+        protected XTextView mText;
+        protected TextView txtDwload;
 
         public RecyclerViewHolder(View view) {
             super(view);
-            this.mText = (TextView) view.findViewById(R.id.attachment_name);
-            this.mImage = (ImageView) view.findViewById(R.id.attachment_clear);
+            this.mType = (ImageView) view.findViewById(R.id.attachment_type);
+            this.mText = (XTextView) view.findViewById(R.id.attachment_name);
+            this.txtDwload = (TextView) view.findViewById(R.id.attachment_download);
         }
 
 

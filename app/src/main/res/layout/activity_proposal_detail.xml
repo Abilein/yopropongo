@@ -52,7 +52,7 @@
                     android:textStyle="italic"
                     android:id="@+id/lblDate"
                     style="@style/Proposal.Value"
-                    android:paddingLeft="@dimen/activity_padding" />
+                    android:paddingLeft="@dimen/activity_half_padding" />
             </LinearLayout>
 
             <com.xiberty.propongo.contrib.views.XTextView
@@ -169,7 +169,7 @@
                             android:layout_width="25dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/imageView3"
-                            android:src="@drawable/file" />
+                            android:src="@drawable/files" />
 
                     </LinearLayout>
                 </FrameLayout>
@@ -199,7 +199,12 @@
                 android:layout_marginRight="15dp"
                 style="@style/Proposal.Divider"
                 android:layout_marginBottom="16sp" />
-
+            <com.xiberty.propongo.contrib.views.XTextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_your_rate"
+                android:gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"/>
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="72sp"

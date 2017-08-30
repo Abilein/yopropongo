@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xiberty.propongo.R;
-import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.councils.adapters.DirectiveAdapter;
 import com.xiberty.propongo.councils.models.DirectiveItem;
 
@@ -57,7 +56,7 @@ public class DirectiveCommissionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_council_proposals, container, false);
+        rootView = inflater.inflate(R.layout.fragment_proposals, container, false);
         ButterKnife.bind(this, rootView);
 
         context = rootView.getContext();

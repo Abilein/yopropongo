@@ -196,6 +196,8 @@
     <string name="label_all_comments">VER MAS COMENTARIOS</string>
     <string name="label_accept">ACEPTAR</string>
     <string name="label_deny">RECHAZAR</string>
+    <string name="label_download">Descargar</string>
+    <string name="label_your_rate">TU CALIFICACIÓN</string>
     <string name="hint_comment">Comentario</string>
     <string name="comment_title">Comenta ya!</string>
     <string name="positive">LISTO</string>

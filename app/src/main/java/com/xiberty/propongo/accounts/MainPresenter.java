@@ -99,7 +99,6 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void getCouncils(final Context context) {
-
         mView.showProgress();
         Call<List<Council>> councilsCall = ccService.getCouncils();
         councilsCall.enqueue(new Callback<List<Council>>() {
@@ -248,7 +247,6 @@ public class MainPresenter implements MainContract.Presenter {
             }
         });
     }
-
 
 
 }

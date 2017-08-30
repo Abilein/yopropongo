@@ -1,6 +1,8 @@
 package com.xiberty.propongo.councils.fragments;
 
 
+import android.content.Context;
+
 import com.xiberty.propongo.councils.CouncilService;
 
 
@@ -15,7 +17,10 @@ public class CouncilManPresenter implements DirectiveContract.Presenter {
         this.mService = mService;
     }
 
+    @Override
+    public void getCouncils(Context context) {
 
+    }
 //
 //    public void getCouncils(final Context context) {
 //        Call<List<Council>> respuesta = mService.getCouncils();

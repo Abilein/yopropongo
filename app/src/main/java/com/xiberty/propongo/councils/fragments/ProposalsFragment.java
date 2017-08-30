@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
@@ -50,6 +50,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
     FloatingActionButton btnAdd;
 
     private Council selectedCouncil;
+    private SwipeRefreshLayout swipeContainer;
 
     ProposalsPresenter presenter;
     CouncilService service;
@@ -83,7 +84,27 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         service = WS.makeService(CouncilService.class);
         presenter = new ProposalsPresenter(service,this);
 
+        swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshProposals();
+            }
+        });
+
         return rootView;
+    }
+
+    private void refreshProposals() {
+        presenter.getProposals(context);
+        List<ProposalDB> proposals = SQLite.select().
+                from(ProposalDB.class).
+                where(ProposalDB_Table.council.is(selectedCouncil.id)).
+                and(ProposalDB_Table.status.is("PUBLISHED")).
+                or(ProposalDB_Table.status.is("ACCEPTED")).
+                queryList();
+        setProposals(proposals);
+        swipeContainer.setRefreshing(false);
     }
 
     private void setProposals(List<ProposalDB> proposals) {
@@ -132,7 +153,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
                 or(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
-        Toast.makeText(context, "Actualizando...", Toast.LENGTH_SHORT).show();
+
     }
 
     @OnClick(R.id.btnAdd)

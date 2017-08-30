@@ -58,7 +58,7 @@ public class GeneralProposalsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_council_proposals, container, false);
+        rootView = inflater.inflate(R.layout.fragment_proposals, container, false);
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
 

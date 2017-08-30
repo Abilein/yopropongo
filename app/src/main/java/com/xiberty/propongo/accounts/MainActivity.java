@@ -245,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     for (Council council: councils) {
                         if (council.name().equals(profile.getName().toString())) {
                             Store.setDefaultCouncil(view.getContext(), council);
-                        }else{
                         }
                     }
                     setDrawer(MainActivity.this.getProfile());

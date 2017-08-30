@@ -79,6 +79,7 @@
 
     <!--ACTIVITY-->
     <dimen name="activity_padding">16dp</dimen>
+    <dimen name="activity_half_padding">8dp</dimen>
 
     <dimen name="headline_font_size">24sp</dimen>
     <dimen name="title_text_size">20sp</dimen>
