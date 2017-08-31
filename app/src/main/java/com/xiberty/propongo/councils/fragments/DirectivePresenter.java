@@ -3,19 +3,15 @@ package com.xiberty.propongo.councils.fragments;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.xiberty.propongo.contrib.api.FormattedResp;
 import com.xiberty.propongo.contrib.api.MessageManager;
 import com.xiberty.propongo.contrib.api.ParserError;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.database.Council;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public class DirectivePresenter implements DirectiveContract.Presenter {
 

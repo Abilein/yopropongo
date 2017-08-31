@@ -119,41 +119,9 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         }
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.proposal_menu, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.update:
-                updateProposalDB();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void updateProposalDB() {
-        
-        //TODO update proposals
-        presenter.getProposals(context);
-        List<ProposalDB> proposals = SQLite.select().
-                from(ProposalDB.class).
-                where(ProposalDB_Table.council.is(selectedCouncil.id)).
-                and(ProposalDB_Table.status.is("PUBLISHED")).
-                or(ProposalDB_Table.status.is("ACCEPTED")).
-                queryList();
-        setProposals(proposals);
-
     }
 
     @OnClick(R.id.btnAdd)

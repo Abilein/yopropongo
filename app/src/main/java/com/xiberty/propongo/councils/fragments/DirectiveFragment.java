@@ -41,6 +41,7 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
     LinearLayout placeholder;
     @BindView(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
+
     private SparseArray<UIUtils.PageItem> pages = new SparseArray<UIUtils.PageItem>();
 
     // pages positions
@@ -81,6 +82,7 @@ public class DirectiveFragment extends ToolbarBaseFragment implements DirectiveC
         setDirective(selectedCouncil);
         CouncilService service = WS.makeService(CouncilService.class);
         presenter = new DirectivePresenter(this, service);
+
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
