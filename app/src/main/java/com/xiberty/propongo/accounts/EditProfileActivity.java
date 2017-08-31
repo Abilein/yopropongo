@@ -87,6 +87,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     ChangePasswordForm changePasswordForm;
     ChangeEmailForm changeEmailForm;
     TakePhotoForm takePhotoForm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -198,6 +199,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
                 for (ValidationError error : errors) {
                     View view = error.getView();
                     String message = error.getCollatedErrorMessage(EditProfileActivity.this);
+
                     if (view instanceof XEditText) {
                         ((XEditText) view).setError(message);
                     } else {

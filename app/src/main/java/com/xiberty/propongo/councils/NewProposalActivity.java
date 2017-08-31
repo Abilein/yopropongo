@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,6 +18,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Length;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.obsez.android.lib.filechooser.ChooserDialog;
 import com.pchmn.materialchips.ChipsInput;
 import com.xiberty.propongo.R;
@@ -45,12 +51,22 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     private static final String TAG = NewProposalActivity.class.getSimpleName();
 
+
+    @NotEmpty
+    @Length(min=1, max=30, messageResId=R.string.validation_proposal_title)
+    @Pattern(regex="[a-z|A-Z|\\s]+", messageResId=R.string.validation_word)
     @BindView(R.id.txtProposalTitle)
     XEditText txtProposalTitle;
+
+    @NotEmpty
+    @Length(min=1, max=200, messageResId=R.string.validation_proposal_summary)
     @BindView(R.id.txtProposalSummary)
     XEditText txtProposalSummary;
+
+    @NotEmpty
     @BindView(R.id.path_attach)
     TextView pathAttach;
+
     @BindView(R.id.scrollContent)
     ScrollView scrollContent;
 
@@ -151,7 +167,32 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @OnClick(R.id.btnSendProposal)
     public void publishProposal(View view) {
-        // get the list
+        Validator validator = new Validator(this);
+        validator.setValidationListener(new Validator.ValidationListener() {
+            @Override
+            public void onValidationSucceeded() {
+                sendProposalEndPoint();
+            }
+
+            @Override
+            public void onValidationFailed(List<ValidationError> errors) {
+                for (ValidationError error : errors) {
+                    View view = error.getView();
+                    String message = error.getCollatedErrorMessage(NewProposalActivity.this);
+
+                    if (view instanceof XEditText) {
+                        ((XEditText) view).setError(message);
+                    } else {
+                        Toast.makeText(NewProposalActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+    }
+
+    private void sendProposalEndPoint() {
+
+        // Get the List of CouncilMen Selected
         List<CouncilManChip> councilmenSelected = (List<CouncilManChip>) chipsInput.getSelectedChipList();
         for (CouncilManChip chip : councilmenSelected)
             councilsMenIDs += CouncilMan.getCouncilmanByName(context, chip.getLabel()) + ",";
