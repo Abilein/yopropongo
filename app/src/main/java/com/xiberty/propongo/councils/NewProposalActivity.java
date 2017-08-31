@@ -2,14 +2,16 @@ package com.xiberty.propongo.councils;
 
 import android.Manifest;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.ActivityUtils;
+import com.xiberty.propongo.contrib.views.XEditText;
+import com.xiberty.propongo.contrib.views.XTextView;
 import com.xiberty.propongo.councils.models.CouncilManChip;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
@@ -42,19 +46,25 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     private static final String TAG = NewProposalActivity.class.getSimpleName();
 
     @BindView(R.id.txtProposalTitle)
-    EditText txtProposalTitle;
+    XEditText txtProposalTitle;
     @BindView(R.id.txtProposalSummary)
-    EditText txtProposalSummary;
+    XEditText txtProposalSummary;
     @BindView(R.id.path_attach)
     TextView pathAttach;
     @BindView(R.id.scrollContent)
     ScrollView scrollContent;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+
     @BindView(R.id.chips_input)
     ChipsInput chipsInput;
     @BindView(R.id.progressBarContent)
     RelativeLayout progressBarContent;
+    @BindView(R.id.imgBack)
+    ImageView imgBack;
+    @BindView(R.id.btnGoBack)
+    LinearLayout btnGoBack;
+    @BindView(R.id.txtVolver)
+    TextView txtVolver;
+
 
     private int councilId = 0;
     private File proposal_file;
@@ -71,9 +81,9 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newproposal);
         ButterKnife.bind(this);
-        toolbar.setTitle("Nueva Propuesta");
         context = getApplicationContext();
 
+        setToolbar();
         mService = WS.makeService(CouncilService.class, Store.getCredential(this));
         presenter = new NewProposalPresenter(this, mService);
 
@@ -88,9 +98,13 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
             contactList.add(new CouncilManChip(this, councilMan));
         }
         chipsInput.setFilterableList(contactList);
-
     }
 
+    private void setToolbar() {
+        imgBack.setColorFilter(Color.BLACK);
+        txtVolver.setTextColor(Color.BLACK);
+        txtVolver.setText("Nueva Propuesta");
+    }
 
     /*
     *  PERMISSIONS

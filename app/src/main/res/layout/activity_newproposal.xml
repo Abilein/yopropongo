@@ -6,113 +6,187 @@
     android:orientation="vertical">
 
 
-
-    <include layout="@layout/toolbar" />
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <include
+            android:id="@+id/toolbarArrow"
+            layout="@layout/toolbar_with_back" />
 
         <ScrollView
             android:id="@+id/scrollContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarArrow">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="60sp"
-                android:paddingLeft="@dimen/activity_padding"
-                android:paddingRight="@dimen/activity_padding">
+                >
 
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/hint_proposal_who"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <com.pchmn.materialchips.ChipsInput
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginTop="@dimen/activity_margin"
+                    style="@style/NewProposal"
+                    />
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginRight="@dimen/activity_margin">
+                    <com.pchmn.materialchips.ChipsInput
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginRight="@dimen/activity_margin"
                     android:id="@+id/chips_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:hint="Escribe un nombre"
-                    app:hintColor="@color/colorAccent"
-                    app:textColor="@color/colorAccent"
-                    app:maxRows="3"
-                    app:chip_labelColor="@color/Gray"
-                    app:chip_hasAvatarIcon="true"
                     app:chip_backgroundColor="@color/white"
                     app:chip_deletable="true"
                     app:chip_deleteIconColor="@color/red"
-                    app:chip_detailed_textColor="@color/Gray"
                     app:chip_detailed_backgroundColor="@color/white"
                     app:chip_detailed_deleteIconColor="@color/orange_dark"
+                    app:chip_detailed_textColor="@color/Gray"
+                    app:chip_hasAvatarIcon="true"
+                    app:chip_labelColor="@color/Gray"
                     app:filterable_list_backgroundColor="@color/white"
-                    app:filterable_list_textColor="@color/Gray" />
+                    app:filterable_list_textColor="@color/Gray"
+                    app:hint="Escribe el nombre de algún consejal"
+                    app:hintColor="@color/Gray"
+                    app:maxRows="3"
+                    app:textColor="@color/colorAccent" />
+                </android.support.v7.widget.CardView>
 
-                <TextView
+                <com.xiberty.propongo.contrib.views.XTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_half_margin"
-                    android:text="@string/hint_proposal_title"
-                    android:textStyle="bold" />
+                    android:text="@string/hint_proposal_about"
+                    android:layout_marginTop="@dimen/activity_half_quarter_margin"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    style="@style/NewProposal"/>
 
-                <EditText
-                    android:id="@+id/txtProposalTitle"
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
-
-                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginRight="@dimen/activity_margin">
+                    <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_half_margin"
-                    android:text="@string/hint_proposal_summary"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/txtProposalSummary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:ems="10"
-                    android:inputType="textMultiLine" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hint_proposal_attachs"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_half_margin"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_add_attach"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/activity_margin">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/button_selectfile"
-                        android:textSize="12dp"
-                        android:textColor="@color/white"
-                        android:background="@color/colorAccent" />
+                        android:textColorHint="@color/secondaryText"
+                        android:textColor="@color/textIcons">
+
+                        <com.xiberty.propongo.contrib.views.XEditText
+                            android:paddingLeft="@dimen/activity_padding"
+                            android:paddingRight="@dimen/activity_padding"
+                            style="@style/Proposal.Input"
+                            android:id="@+id/txtProposalTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_proposal_title"
+                            android:inputType="text" />
+
+                    </android.support.design.widget.TextInputLayout>
+                    <View style="@style/View.Proposal" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/secondaryText"
+                        android:textColor="@color/textIcons">
+
+                        <com.xiberty.propongo.contrib.views.XEditText
+                            style="@style/Proposal.Input"
+                            android:id="@+id/txtProposalSummary"
+                            android:paddingLeft="@dimen/activity_padding"
+                            android:paddingRight="@dimen/activity_padding"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:hint="@string/hint_proposal_summary"
+                            android:ems="10"
+                            android:inputType="textMultiLine" />
+
+                    </android.support.design.widget.TextInputLayout>
+                    <View style="@style/View.Proposal" />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <com.xiberty.propongo.contrib.views.XTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_proposal_files"
+                    android:layout_marginTop="@dimen/activity_half_quarter_margin"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    style="@style/NewProposal"/>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginRight="@dimen/activity_margin">
+                    <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/activity_margin">
+
+                    <com.xiberty.propongo.contrib.views.XTextView
+                        android:paddingLeft="@dimen/activity_padding"
+                        android:paddingRight="@dimen/activity_padding"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_half_margin"
+                        android:text="@string/hint_addFile"
+                        android:textStyle="italic|bold"
+                        android:textSize="@dimen/text_normal"/>
                     <TextView
                         android:id="@+id/path_attach"
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:layout_marginLeft="@dimen/activity_half_margin"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:textColor="@color/accent"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/activity_margin"
+                        />
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btn_add_attach"
 
+                        app:fb_defaultColor="@color/DarkGray"
+                        app:fb_focusColor="@color/DarkGray"
+                        app:fb_fontIconResource="&#xf15b;"
+
+                        app:fb_radius="@dimen/spacing_large"
+                        app:fb_text="@string/button_selectfile"
+
+                        app:fb_fontIconSize="@dimen/text_big"
+                        app:fb_iconPaddingRight="@dimen/spacing_normal_extra"
+                        app:fb_iconPosition="left"
+
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </ScrollView>
 
@@ -121,9 +195,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/send_proposal"
             android:background="@color/colorAccent"
-            android:textColor="#fff"/>
+            android:text="@string/send_proposal"
+            android:textColor="#fff" />
 
         <include layout="@layout/progressbar_circle" />
 

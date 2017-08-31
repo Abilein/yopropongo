@@ -38,6 +38,7 @@
             android:textSize="@dimen/text_regular"
             android:textColor="@color/white"
             android:text="Volver"
+            android:id="@+id/txtVolver"
             />
     </LinearLayout>
 

@@ -182,6 +182,26 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Proposal.Input" parent="Input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:drawablePadding">12sp</item>
+        <item name="android:gravity">left</item>
+    </style>
 
+    <style name="View.Proposal" >
+        <item name="android:layout_marginLeft">@dimen/activity_padding</item>
+        <item name="android:layout_marginRight">@dimen/activity_padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+    </style>
+    <style name="NewProposal">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

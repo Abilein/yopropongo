@@ -203,13 +203,17 @@
     <string name="positive">LISTO</string>
     <string name="close">CERRAR</string>
     <string name="list_title">Documentos</string>
-    <string name="hint_proposal_title">Propuesta</string>
-    <string name="hint_proposal_summary">Descripción</string>
+    <string name="hint_proposal_title">Nombre de la Propuesta</string>
+    <string name="hint_proposal_summary">Escribe una breve descripción de tu Propuesta:</string>
+    <string name="hint_proposal_description">Descripción</string>
     <string name="hint_choose_councilman">Escoge un Consejal</string>
+    <string name="hint_addFile">¿Tienes algún archivo que respalde tu Propuesta? Seleccionalo ya mismo!</string>
     <string name="hint_proposal_attachs">Añade Archivos</string>
     <string name="send_proposal">Enviar Propuestas</string>
     <string name="update_icon">Actualizar</string>
-    <string name="button_selectfile">Seleccionar..</string>
+    <string name="button_selectfile">Seleccionar archivo..</string>
     <string name="hint_proposal_who">¿A quién va dirigida la Propuesta?</string>
+    <string name="hint_proposal_about">Acerca de la Propuesta</string>
+    <string name="hint_proposal_files">Añade Archivos</string>
 
 </resources>
