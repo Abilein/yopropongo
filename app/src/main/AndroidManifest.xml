@@ -100,6 +100,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".councils.NewProposalActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".councils.InboxDetailActivity"

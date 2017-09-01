@@ -6,9 +6,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -61,27 +65,15 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     XEditText txtProposalSummary;
 
     @NotEmpty(messageResId = R.string.validation_select_file)
-    @BindView(R.id.path_attach)
-    TextView pathAttach;
-
-    @BindView(R.id.scrollContent)
-    ScrollView scrollContent;
-
-    @BindView(R.id.chips_input)
-    ChipsInput chipsInput;
-
-    @BindView(R.id.progressBarContent)
-    RelativeLayout progressBarContent;
-    @BindView(R.id.imgBack)
-    ImageView imgBack;
-    @BindView(R.id.btnGoBack)
-    LinearLayout btnGoBack;
-    @BindView(R.id.txtVolver)
-    TextView txtVolver;
-    @BindView(R.id.lblValidateCouncil)
-    TextView lblValidateCouncil;
-    @BindView(R.id.lblValidateFile)
-    TextView lblValidateFile;
+    @BindView(R.id.path_attach) TextView pathAttach;
+    @BindView(R.id.scrollContent) ScrollView scrollContent;
+    @BindView(R.id.chips_input) ChipsInput chipsInput;
+    @BindView(R.id.progressBarContent) RelativeLayout progressBarContent;
+    @BindView(R.id.imgBack) ImageView imgBack;
+    @BindView(R.id.btnGoBack) LinearLayout btnGoBack;
+    @BindView(R.id.txtVolver) TextView txtVolver;
+    @BindView(R.id.lblValidateCouncil) TextView lblValidateCouncil;
+    @BindView(R.id.lblValidateFile) TextView lblValidateFile;
 
 
     private int councilId = 0;
@@ -98,23 +90,29 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newproposal);
-        ButterKnife.bind(this);
         context = getApplicationContext();
-
+        ButterKnife.bind(this);
+        setScrollRecognition();
         setToolbar();
         mService = WS.makeService(CouncilService.class, Store.getCredential(this));
         presenter = new NewProposalPresenter(this, mService);
-
         Council council = Store.getDefaultCouncil(this);
         councilId = council.id;
 
-        //Filling the CouncilMen for ChipsInput
-        councilsMenList = Store.getCouncilman(this);
+        fillCouncilMenChipList();
 
+    }
+
+
+
+    private void fillCouncilMenChipList() {
+
+        councilsMenList = Store.getCouncilman(this);
         List<CouncilManChip> contactList = new ArrayList<>();
-        for (CouncilMan councilMan : councilsMenList) {
+
+        for (CouncilMan councilMan : councilsMenList)
             contactList.add(new CouncilManChip(this, councilMan));
-        }
+
         chipsInput.setFilterableList(contactList);
         chipsInput.addChipsListener(new ChipsInput.ChipsListener() {
             @Override
@@ -132,6 +130,29 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
                 lblValidateCouncil.setVisibility(View.GONE);
             }
         });
+    }
+
+    /**
+     * Detect the Scroll to Hide de Keyboard
+     */
+    private void setScrollRecognition() {
+        //on touch
+        scrollContent.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                hideSoftKeyboard();
+            }
+        });
+    }
+
+    /**
+     * Hides the soft keyboard
+     */
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     private void setToolbar() {
@@ -188,6 +209,7 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     @OnClick(R.id.btnSendProposal)
     public void publishProposal(View view) {
         final List<CouncilManChip> councilmenSelected = (List<CouncilManChip>) chipsInput.getSelectedChipList();
+
         if (councilmenSelected.size() == 0)
             lblValidateCouncil.setVisibility(View.VISIBLE);
 
