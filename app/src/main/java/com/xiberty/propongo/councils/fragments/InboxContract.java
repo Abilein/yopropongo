@@ -16,6 +16,11 @@ public class InboxContract {
 
     public interface CommissionView{
         void showProposals(List<NewProposalRespse> proposalRespses);
+
+        void showProgress();
+        void hideProgress();
+
+        void showInboxError();
 //        void loadCommissions(List<Commission> commissions);
     }
 }

@@ -27,20 +27,26 @@ public class InboxPresenter implements InboxContract.Presenter {
 
     @Override
     public void getInbox(Context context) {
+        view.showProgress();
         Call<List<NewProposalRespse>> inboxCall = service.getCouncilMenInbox(Store.getAccessToken(context));
         inboxCall.enqueue(new Callback<List<NewProposalRespse>>() {
             @Override
             public void onResponse(Call<List<NewProposalRespse>> call, Response<List<NewProposalRespse>> response) {
                 if (response.isSuccessful()){
+                    view.hideProgress();
                     List<NewProposalRespse> proposalRespses = response.body();
                     view.showProposals(proposalRespses);
                 }else {
+                    view.hideProgress();
+                    view.showInboxError();
                     Log.e(TAG,"1 Inbox error 'cause "+response.body());
                 }
             }
 
             @Override
             public void onFailure(Call<List<NewProposalRespse>> call, Throwable t) {
+                view.hideProgress();
+                view.showInboxError();
                 Log.e(TAG,"2 Inbox error 'cause "+t.getMessage());
             }
         });

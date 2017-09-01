@@ -4,50 +4,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <include layout="@layout/header_spaced"
-            android:id="@+id/header"/>
+    <include layout="@layout/header_spaced"
+        android:id="@+id/header"/>
 
-        <android.support.v4.widget.SwipeRefreshLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header">
+        <include layout="@layout/progressimage"
+            />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/header">
 
-            <ListView
+        <ListView
             android:id="@+id/listView"
             android:layout_below="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:divider="@null"/>
-        </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-        <LinearLayout
-            android:id="@+id/placeholder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:layout_below="@+id/header">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/placeholder_spacing"
-                android:src="@drawable/ave"/>
-            <TextView
-                android:id="@+id/placeholder_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="NOT FOUND MESSAGE"
-                android:textSize="14dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-        </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
+    <LinearLayout
+        android:id="@+id/placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_below="@+id/header">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/placeholder_spacing"
+            android:src="@drawable/ave"/>
+        <TextView
+            android:id="@+id/placeholder_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="NOT FOUND MESSAGE"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

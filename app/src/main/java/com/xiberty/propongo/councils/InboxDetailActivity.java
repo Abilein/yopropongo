@@ -25,6 +25,8 @@ import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
+import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
 import com.xiberty.propongo.councils.fragments.ProposalsFragment;
 import com.xiberty.propongo.councils.models.ActivateResponse;
@@ -62,25 +64,20 @@ public class InboxDetailActivity extends AppCompatActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.lblTitle)
-    TextView lblTitle;
+    XTextViewBold lblTitle;
     @BindView(R.id.lblAttacchs)
     TextView lblAttacchs;
     @BindView(R.id.imageView3)
     ImageView imageView3;
     @BindView(R.id.lblDescription)
-    TextView lblDescription;
+    XTextView lblDescription;
     @BindView(R.id.blockAttachs)
     LinearLayout blockAttachs;
     @BindView(R.id.imgBack)
     ImageView imgBack;
-    @BindView(R.id.btnGoBack)
-    LinearLayout btnGoBack;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.btnAccept)
-    Button btnAccept;
-    @BindView(R.id.btnDeny)
-    Button btnDeny;
 
     private List<Attachment> attachments = null;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -125,8 +122,6 @@ public class InboxDetailActivity extends AppCompatActivity {
         finish();
     }
 
-
-
     @OnClick(R.id.btnDeny)
     public void DenyProposal(View view) {
         Toast.makeText(context, "RECHAZADO", Toast.LENGTH_SHORT).show();
@@ -169,7 +164,7 @@ public class InboxDetailActivity extends AppCompatActivity {
         String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
         if (TAG.equals(ProposalsFragment.class.getSimpleName())) {
             Intent intent = new Intent(InboxDetailActivity.this, MainActivity.class);
-            intent.putExtra(Constants.MENU_STATE, 5);
+            intent.putExtra(Constants.MENU_STATE, 1);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {
