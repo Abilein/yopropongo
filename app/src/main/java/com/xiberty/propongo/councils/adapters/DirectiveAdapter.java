@@ -84,6 +84,11 @@ public class DirectiveAdapter extends BaseAdapter {
                     .load(councilMan.avatar)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.avatar);
+        else
+            Glide.with(context)
+                    .load(R.drawable.avatar)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.avatar);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override

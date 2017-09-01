@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.facebook.login.LoginManager;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.xiberty.propongo.R;
 
 import com.facebook.AccessToken;
@@ -14,11 +17,14 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.xiberty.propongo.accounts.AccountService;
+import com.xiberty.propongo.accounts.EditProfileActivity;
 import com.xiberty.propongo.accounts.MainActivity;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.views.XEditText;
 import com.xiberty.propongo.credentials.responses.OAuthCredential;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.*;
 
 import java.util.ArrayList;
@@ -38,8 +44,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     CallbackManager callbackManager;
 
     @BindView(R.id.btnEnter) FancyButton btnEnter;
+
+    @NotEmpty(messageResId=R.string.validation_required)
     @BindView(R.id.txtUser) XEditText txtUser;
+
+    @NotEmpty(messageResId=R.string.validation_required)
     @BindView(R.id.txtPassword) XEditText txtPassword;
+
     @BindView(R.id.lblForgotPassword) TextView lblForgotPassword;
     @BindView(R.id.checkRememberPass) CheckBox checkRememberPass;
     @BindView(R.id.progressBar) ProgressBar progressBar;
@@ -86,7 +97,29 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     @OnClick(R.id.btnEnter)
     public void signInHandler() {
-        loginPresenter.login(this, txtUser.getText().toString(), txtPassword.getText().toString());
+        Validator validator = new Validator(this);
+        validator.setValidationListener(new Validator.ValidationListener() {
+            @Override
+            public void onValidationSucceeded() {
+                loginPresenter.login(getApplicationContext(), txtUser.getText().toString(), txtPassword.getText().toString());
+            }
+
+            @Override
+            public void onValidationFailed(List<ValidationError> errors) {
+                for (ValidationError error : errors) {
+                    View view = error.getView();
+                    String message = error.getCollatedErrorMessage(LoginActivity.this);
+
+                    if (view instanceof XEditText) {
+                        ((XEditText) view).setError(message);
+                    } else {
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+        validator.validate();
+
     }
 
     @Override

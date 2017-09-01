@@ -98,10 +98,10 @@ public class ProposalsAdapter extends BaseAdapter {
         holder.cardFiles.setText(attachments.size()+" archivo(s)");
         switch (proposal.status){
             case "ACCEPTED":
-                holder.cardImageStatus.setImageResource(R.drawable.draaft);
+                holder.cardImageStatus.setImageResource(R.drawable.pro_aprobed);
                 break;
             case "PROPOSED":
-                holder.cardImageStatus.setImageResource(R.drawable.publisheeed);
+                holder.cardImageStatus.setImageResource(R.drawable.pro_proposed);
                 break;
         }
 
