@@ -10,7 +10,7 @@ import java.util.List;
  * Created by growcallisaya on 8/7/17.
  */
 
-public class NewProposalRespse {
+public class NewProposalResponse {
     @SerializedName("id") public int id;
     @SerializedName("title") public String title;
     @SerializedName("description") public String description;

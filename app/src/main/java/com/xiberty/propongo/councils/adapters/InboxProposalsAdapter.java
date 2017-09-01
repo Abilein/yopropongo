@@ -15,21 +15,19 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.councils.InboxDetailActivity;
-import com.xiberty.propongo.councils.ProposalDetailActivity;
-import com.xiberty.propongo.councils.models.NewProposalRespse;
-import com.xiberty.propongo.database.AttachmentDB;
-import com.xiberty.propongo.database.AttachmentDB_Table;
+import com.xiberty.propongo.councils.models.NewProposalResponse;
 import com.xiberty.propongo.database.ProposalDB;
+import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
 
 
 public class InboxProposalsAdapter extends BaseAdapter {
     private Context context;
-    private List<NewProposalRespse> items;
-    private String TAG ;
+    private List<NewProposalResponse> items;
+    private String TAG;
 
-    public InboxProposalsAdapter(Context context, List<NewProposalRespse> items, String TAG) {
+    public InboxProposalsAdapter(Context context, List<NewProposalResponse> items, String TAG) {
         this.context = context;
         this.items = items;
         this.TAG = TAG;
@@ -75,7 +73,7 @@ public class InboxProposalsAdapter extends BaseAdapter {
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        final NewProposalRespse proposal = items.get(position);
+        final NewProposalResponse proposal = items.get(position);
 
         holder.cardTitle.setText(proposal.title);
         String textAbout = proposal.description;
@@ -85,6 +83,14 @@ public class InboxProposalsAdapter extends BaseAdapter {
 
         holder.cardSummary.setText(textAbout);
         holder.cardImageStatus.setImageResource(R.drawable.inboox);
+
+        ProposalDB proposalDB = SQLite.select().
+                from(ProposalDB.class).
+                where(ProposalDB_Table.id.is(proposal.id)).
+                querySingle();
+        holder.cardRate.setText(String.valueOf(proposalDB.average)+" punto(s)");
+        holder.cardView.setText(String.valueOf(proposalDB.views)+ " vista(s)");
+        holder.cardFiles.setText(String.valueOf(proposal.attachments.size())+" archivo(s)");
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override

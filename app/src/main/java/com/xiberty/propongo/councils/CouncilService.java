@@ -1,10 +1,9 @@
 package com.xiberty.propongo.councils;
 
 import com.xiberty.propongo.Constants;
-import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.councils.models.ActivateResponse;
 import com.xiberty.propongo.councils.models.DetailResponse;
-import com.xiberty.propongo.councils.models.NewProposalRespse;
+import com.xiberty.propongo.councils.models.NewProposalResponse;
 import com.xiberty.propongo.councils.models.ViewResponse;
 import com.xiberty.propongo.database.Comment;
 import com.xiberty.propongo.database.Commission;
@@ -21,7 +20,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -40,19 +38,19 @@ public interface CouncilService {
     Call<List<CouncilMan>> getCouncilMan(@Path("pk") String pk);
 
     @GET(Constants.COUNCILMEN_INBOX_ENDPOINT)
-    Call<List<NewProposalRespse>> getCouncilMenInbox(@Header("Authorization") String token);
+    Call<List<NewProposalResponse>> getCouncilMenInbox(@Header("Authorization") String token);
 
     @GET(Constants.PROPOSALS_ENDPOINT)
     Call<List<Proposal>> getProposal(@Path("pk") String pk);
 
     @Multipart
     @POST(Constants.PROPOSAL_ROOT_ENDPOINT)
-    Call<List<NewProposalRespse>> createProposal(@Part("title") RequestBody title,
-                                           @Part("description") RequestBody summary,
-                                           @Part("councilmen") RequestBody for_councilman,
-                                           @Part("council") RequestBody council,
-                                           @Part MultipartBody.Part attached_file,
-                                           @Header("Authorization") String token);
+    Call<List<NewProposalResponse>> createProposal(@Part("title") RequestBody title,
+                                                   @Part("description") RequestBody summary,
+                                                   @Part("councilmen") RequestBody for_councilman,
+                                                   @Part("council") RequestBody council,
+                                                   @Part MultipartBody.Part attached_file,
+                                                   @Header("Authorization") String token);
 
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/up/")

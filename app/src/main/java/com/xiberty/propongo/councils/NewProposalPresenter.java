@@ -4,9 +4,7 @@ import android.content.Context;
 
 
 import com.xiberty.propongo.contrib.Store;
-import com.xiberty.propongo.councils.models.NewProposalRespse;
-import com.xiberty.propongo.database.CouncilMan;
-import com.xiberty.propongo.database.ProposalDB;
+import com.xiberty.propongo.councils.models.NewProposalResponse;
 
 import java.io.File;
 import java.util.List;
@@ -41,10 +39,10 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
         final RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("attached_file", file.getName(), reqFile);
 
-        Call<List<NewProposalRespse>> proposalCall = mService.createProposal(titlePart,descriptionPart,councilmenPart,councilPart,filePart, "Bearer "+ Store.getAccessToken(context));
-        proposalCall.enqueue(new Callback<List<NewProposalRespse>>() {
+        Call<List<NewProposalResponse>> proposalCall = mService.createProposal(titlePart,descriptionPart,councilmenPart,councilPart,filePart, "Bearer "+ Store.getAccessToken(context));
+        proposalCall.enqueue(new Callback<List<NewProposalResponse>>() {
             @Override
-            public void onResponse(Call<List<NewProposalRespse>> call, Response<List<NewProposalRespse>> response) {
+            public void onResponse(Call<List<NewProposalResponse>> call, Response<List<NewProposalResponse>> response) {
                 if (response.isSuccessful()){
                     mView.hideProgress();
                     mView.showSuccessUploadProposal();
@@ -54,7 +52,7 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<List<NewProposalRespse>> call, Throwable t) {
+            public void onFailure(Call<List<NewProposalResponse>> call, Throwable t) {
                 mView.showErrorUploadProposal("2 "+t.getMessage());
             }
         });

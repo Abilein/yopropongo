@@ -87,20 +87,20 @@ public class ProposalsAdapter extends BaseAdapter {
             textAbout = proposal.description.substring(0,40)+"...";
 
         holder.cardSummary.setText(textAbout);
-        holder.cardView.setText(proposal.views+" vistas");
-        holder.cardRate.setText(proposal.rate+" puntos");
+        holder.cardView.setText(proposal.views+" vista(s)");
+        holder.cardRate.setText(proposal.average+" punto(s)");
 
         List<AttachmentDB> attachments = SQLite.select().
                 from(AttachmentDB.class).
                 where(AttachmentDB_Table.proposal.is(proposal.getId())).
                 queryList();
 
-        holder.cardFiles.setText(attachments.size()+" archivos");
+        holder.cardFiles.setText(attachments.size()+" archivo(s)");
         switch (proposal.status){
             case "ACCEPTED":
                 holder.cardImageStatus.setImageResource(R.drawable.draaft);
                 break;
-            case "PUBLISHED":
+            case "PROPOSED":
                 holder.cardImageStatus.setImageResource(R.drawable.publisheeed);
                 break;
         }

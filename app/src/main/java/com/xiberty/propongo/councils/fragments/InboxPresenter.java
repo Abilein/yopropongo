@@ -5,8 +5,9 @@ import android.util.Log;
 
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.councils.CouncilService;
-import com.xiberty.propongo.councils.models.NewProposalRespse;
+import com.xiberty.propongo.councils.models.NewProposalResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,14 +29,21 @@ public class InboxPresenter implements InboxContract.Presenter {
     @Override
     public void getInbox(Context context) {
         view.showProgress();
-        Call<List<NewProposalRespse>> inboxCall = service.getCouncilMenInbox(Store.getAccessToken(context));
-        inboxCall.enqueue(new Callback<List<NewProposalRespse>>() {
+        Call<List<NewProposalResponse>> inboxCall = service.getCouncilMenInbox(Store.getAccessToken(context));
+        inboxCall.enqueue(new Callback<List<NewProposalResponse>>() {
             @Override
-            public void onResponse(Call<List<NewProposalRespse>> call, Response<List<NewProposalRespse>> response) {
+            public void onResponse(Call<List<NewProposalResponse>> call, Response<List<NewProposalResponse>> response) {
                 if (response.isSuccessful()){
                     view.hideProgress();
-                    List<NewProposalRespse> proposalRespses = response.body();
-                    view.showProposals(proposalRespses);
+                    List<NewProposalResponse> proposalResponses = response.body();
+                    List<NewProposalResponse> newProposals = new ArrayList<>();
+
+                    for (NewProposalResponse proposalResponse: proposalResponses){
+                        if (proposalResponse.status.equals("PROPOSED"))
+                            newProposals.add(proposalResponse);
+                    }
+
+                    view.showProposals(newProposals);
                 }else {
                     view.hideProgress();
                     view.showInboxError();
@@ -44,7 +52,7 @@ public class InboxPresenter implements InboxContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<List<NewProposalRespse>> call, Throwable t) {
+            public void onFailure(Call<List<NewProposalResponse>> call, Throwable t) {
                 view.hideProgress();
                 view.showInboxError();
                 Log.e(TAG,"2 Inbox error 'cause "+t.getMessage());

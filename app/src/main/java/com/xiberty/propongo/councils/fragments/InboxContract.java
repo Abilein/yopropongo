@@ -3,7 +3,7 @@ package com.xiberty.propongo.councils.fragments;
 
 import android.content.Context;
 
-import com.xiberty.propongo.councils.models.NewProposalRespse;
+import com.xiberty.propongo.councils.models.NewProposalResponse;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class InboxContract {
     }
 
     public interface CommissionView{
-        void showProposals(List<NewProposalRespse> proposalRespses);
+        void showProposals(List<NewProposalResponse> proposalRespses);
 
         void showProgress();
         void hideProgress();

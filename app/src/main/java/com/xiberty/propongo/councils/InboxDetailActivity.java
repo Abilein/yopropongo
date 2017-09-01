@@ -8,18 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.MainActivity;
@@ -30,13 +26,10 @@ import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
 import com.xiberty.propongo.councils.fragments.ProposalsFragment;
 import com.xiberty.propongo.councils.models.ActivateResponse;
-import com.xiberty.propongo.councils.models.NewProposalRespse;
+import com.xiberty.propongo.councils.models.NewProposalResponse;
 import com.xiberty.propongo.database.Attachment;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.Comment;
-import com.xiberty.propongo.database.Proposal;
-import com.xiberty.propongo.database.ProposalDB;
-import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +90,7 @@ public class InboxDetailActivity extends AppCompatActivity {
         if (!bundle.isEmpty()) {
             String proposalStr = bundle.getString(Constants.KEY_PROPOSAL_ID);
             Gson gson = new Gson();
-            NewProposalRespse proposal = gson.fromJson(proposalStr, NewProposalRespse.class);
+            NewProposalResponse proposal = gson.fromJson(proposalStr, NewProposalResponse.class);
 
             Log.e(TAG,"PROPIESTA "+proposalStr);
             if (proposal != null) {

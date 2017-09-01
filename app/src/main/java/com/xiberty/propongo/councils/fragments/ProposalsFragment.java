@@ -76,7 +76,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
-                and(ProposalDB_Table.status.is("PUBLISHED")).
+                and(ProposalDB_Table.status.is("PROPOSED")).
                 or(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
