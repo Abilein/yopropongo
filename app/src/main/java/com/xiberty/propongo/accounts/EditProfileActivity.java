@@ -139,8 +139,9 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         setSupportActionBar(toolbar);
     }
 
+    @OnClick(R.id.imgBack)
     public void goToBack(android.view.View view) {
-        finish();
+        onBackPressed();
     }
 
     @Override

@@ -8,9 +8,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,12 +23,12 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.obsez.android.lib.filechooser.ChooserDialog;
 import com.pchmn.materialchips.ChipsInput;
+import com.pchmn.materialchips.model.ChipInterface;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.ActivityUtils;
 import com.xiberty.propongo.contrib.views.XEditText;
-import com.xiberty.propongo.contrib.views.XTextView;
 import com.xiberty.propongo.councils.models.CouncilManChip;
 import com.xiberty.propongo.database.Council;
 import com.xiberty.propongo.database.CouncilMan;
@@ -51,19 +49,18 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     private static final String TAG = NewProposalActivity.class.getSimpleName();
 
-
-    @NotEmpty
-    @Length(min=1, max=30, messageResId=R.string.validation_proposal_title)
-    @Pattern(regex="[a-z|A-Z|\\s]+", messageResId=R.string.validation_word)
+    @NotEmpty(messageResId = R.string.validation_required)
+    @Length(min = 1, max = 40, messageResId = R.string.validation_proposal_title)
+    @Pattern(regex = "[a-z|A-Z|\\s]+", messageResId = R.string.validation_word)
     @BindView(R.id.txtProposalTitle)
     XEditText txtProposalTitle;
 
-    @NotEmpty
-    @Length(min=1, max=200, messageResId=R.string.validation_proposal_summary)
+    @NotEmpty(messageResId = R.string.validation_required)
+    @Length(min = 1, max = 200, messageResId = R.string.validation_proposal_summary)
     @BindView(R.id.txtProposalSummary)
     XEditText txtProposalSummary;
 
-    @NotEmpty
+    @NotEmpty(messageResId = R.string.validation_select_file)
     @BindView(R.id.path_attach)
     TextView pathAttach;
 
@@ -72,6 +69,7 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @BindView(R.id.chips_input)
     ChipsInput chipsInput;
+
     @BindView(R.id.progressBarContent)
     RelativeLayout progressBarContent;
     @BindView(R.id.imgBack)
@@ -80,6 +78,10 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     LinearLayout btnGoBack;
     @BindView(R.id.txtVolver)
     TextView txtVolver;
+    @BindView(R.id.lblValidateCouncil)
+    TextView lblValidateCouncil;
+    @BindView(R.id.lblValidateFile)
+    TextView lblValidateFile;
 
 
     private int councilId = 0;
@@ -114,6 +116,22 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
             contactList.add(new CouncilManChip(this, councilMan));
         }
         chipsInput.setFilterableList(contactList);
+        chipsInput.addChipsListener(new ChipsInput.ChipsListener() {
+            @Override
+            public void onChipAdded(ChipInterface chipInterface, int i) {
+
+            }
+
+            @Override
+            public void onChipRemoved(ChipInterface chipInterface, int i) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence) {
+                lblValidateCouncil.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void setToolbar() {
@@ -131,6 +149,8 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @OnClick(R.id.btn_add_attach)
     public void addAttach(View view) {
+        lblValidateFile.setVisibility(View.GONE);
+
         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
         NewProposalActivityPermissionsDispatcher.requestPermissionToReadFilesWithCheck(this);
         if (ActivityUtils.hasPermissions(this, permissions)) {
@@ -167,11 +187,20 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @OnClick(R.id.btnSendProposal)
     public void publishProposal(View view) {
+        final List<CouncilManChip> councilmenSelected = (List<CouncilManChip>) chipsInput.getSelectedChipList();
+        if (councilmenSelected.size() == 0)
+            lblValidateCouncil.setVisibility(View.VISIBLE);
+
         Validator validator = new Validator(this);
         validator.setValidationListener(new Validator.ValidationListener() {
             @Override
             public void onValidationSucceeded() {
-                sendProposalEndPoint();
+                if (councilmenSelected.size() == 0) {
+                    lblValidateCouncil.setVisibility(View.VISIBLE);
+                } else {
+                    lblValidateCouncil.setVisibility(View.GONE);
+                    sendProposalEndPoint();
+                }
             }
 
             @Override
@@ -179,15 +208,16 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
                 for (ValidationError error : errors) {
                     View view = error.getView();
                     String message = error.getCollatedErrorMessage(NewProposalActivity.this);
-
                     if (view instanceof XEditText) {
                         ((XEditText) view).setError(message);
-                    } else {
-                        Toast.makeText(NewProposalActivity.this, message, Toast.LENGTH_LONG).show();
+                    } else if (view instanceof TextView) {
+                        lblValidateFile.setVisibility(View.VISIBLE);
                     }
+
                 }
             }
         });
+        validator.validate();
     }
 
     private void sendProposalEndPoint() {

@@ -51,7 +51,6 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
                 }else{
                     mView.showErrorUploadProposal("1 "+ response.body());
                 }
-
             }
 
             @Override
