@@ -23,7 +23,7 @@
 
     <!-- Labels -->
     <string name="label_welcome">Bienvenido!</string>
-    <string name="label_start_message">La mejor app para empezar</string>
+    <string name="label_start_message">Tu propuesta, si vale!</string>
     <string name="label_user_or_email">Usuario o correo electrónico</string>
     <string name="label_username">Nombre de Usuario</string>
     <string name="label_email">Correo Electrónico</string>

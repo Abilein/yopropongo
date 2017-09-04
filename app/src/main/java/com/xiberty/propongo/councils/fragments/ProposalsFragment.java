@@ -26,6 +26,7 @@ import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.councils.NewProposalActivity;
 import com.xiberty.propongo.councils.adapters.ProposalsAdapter;
 import com.xiberty.propongo.database.Council;
+import com.xiberty.propongo.database.Proposal;
 import com.xiberty.propongo.database.ProposalDB;
 import com.xiberty.propongo.database.ProposalDB_Table;
 
@@ -59,6 +60,8 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+
     }
 
 
@@ -72,18 +75,16 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         //Default Council
         selectedCouncil = Store.getDefaultCouncil(context);
         setHeader(rootView, getString(R.string.menu_proposals).toUpperCase(), selectedCouncil.name());
-
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
-                where(ProposalDB_Table.council.is(selectedCouncil.id)).
-                and(ProposalDB_Table.status.is("PROPOSED")).
-                or(ProposalDB_Table.status.is("ACCEPTED")).
+                where(ProposalDB_Table.council.is(2)).
+                and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
 
         service = WS.makeService(CouncilService.class);
         presenter = new ProposalsPresenter(service,this);
-
+        refreshProposals();
         swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -100,11 +101,9 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
-                and(ProposalDB_Table.status.is("PUBLISHED")).
-                or(ProposalDB_Table.status.is("ACCEPTED")).
+                and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
-        swipeContainer.setRefreshing(false);
     }
 
     private void setProposals(List<ProposalDB> proposals) {

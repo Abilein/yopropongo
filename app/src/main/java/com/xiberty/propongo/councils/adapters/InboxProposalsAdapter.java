@@ -13,17 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.councils.InboxDetailActivity;
 import com.xiberty.propongo.councils.models.ProposalResponse;
-import com.xiberty.propongo.database.ProposalDB;
-import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
 
-import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class InboxProposalsAdapter extends BaseAdapter {
@@ -87,12 +83,8 @@ public class InboxProposalsAdapter extends BaseAdapter {
         holder.cardSummary.setText(textAbout);
         holder.cardImageStatus.setImageResource(R.drawable.inboox);
 
-        ProposalDB proposalDB = SQLite.select().
-                from(ProposalDB.class).
-                where(ProposalDB_Table.id.is(proposal.id)).
-                querySingle();
-        holder.cardRate.setText(String.valueOf(proposalDB.average)+" punto(s)");
-        holder.cardView.setText(String.valueOf(proposalDB.views)+ " vista(s)");
+        holder.cardRate.setText("0.0 punto(s)");
+        holder.cardView.setText("0 vista(s)");
         holder.cardFiles.setText(String.valueOf(proposal.attachments.size())+" archivo(s)");
 
         holder.card.setOnClickListener(new View.OnClickListener() {

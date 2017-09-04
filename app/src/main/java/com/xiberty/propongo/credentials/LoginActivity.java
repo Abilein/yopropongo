@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @BindView(R.id.txtPassword) XEditText txtPassword;
 
     @BindView(R.id.lblForgotPassword) TextView lblForgotPassword;
-    @BindView(R.id.checkRememberPass) CheckBox checkRememberPass;
     @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.layoutMainContainer) RelativeLayout container;
     @BindView(R.id.goRegister) TextView goRegister;

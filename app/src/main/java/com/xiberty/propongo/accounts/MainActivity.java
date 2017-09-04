@@ -1,7 +1,6 @@
 
 package com.xiberty.propongo.accounts;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,10 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.login.LoginManager;
@@ -130,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             hasCouncil= true;
         }
         if (!hasCouncil) {
-            presenter.getCouncils(getApplicationContext());
+            presenter.saveCouncils(getApplicationContext());
         } else {
 //            showCouncils();
         }
@@ -206,9 +203,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }else{
 
             Council defaulCouncil = Store.getDefaultCouncil(this);
-            presenter.getCouncilmen(this);
-            presenter.getCommissions(this);
-            presenter.getProposals(this);
+            presenter.saveCouncilmen(this);
+            presenter.saveCommissions(this);
+            presenter.saveProposals(this);
 
             AccountHeaderBuilder header = new AccountHeaderBuilder()
                     .withActivity(this)
@@ -245,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     for (Council council: councils) {
                         if (council.name().equals(profile.getName().toString())) {
                             Store.setDefaultCouncil(view.getContext(), council);
+                            presenter.saveProposals(view.getContext());
                         }
                     }
                     setDrawer(MainActivity.this.getProfile());

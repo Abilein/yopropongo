@@ -24,10 +24,10 @@ public class MainContract {
     public interface Presenter {
         void logout(Context context);
 
-        void getCouncils(Context context);
-        void getCouncilmen(Context context);
-        void getProposals(Context context);
-        void getCommissions(Context context);
+        void saveCouncils(Context context);
+        void saveCouncilmen(Context context);
+        void saveProposals(Context context);
+        void saveCommissions(Context context);
     }
     
 }

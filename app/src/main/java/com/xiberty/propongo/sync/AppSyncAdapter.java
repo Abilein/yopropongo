@@ -63,7 +63,7 @@ public class AppSyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
 
-//        Call<List<Commission>> getCommissions();
+//        Call<List<Commission>> saveCommissions();
 //
 //
 //        Call<List<CouncilMan>> getCouncilMan();

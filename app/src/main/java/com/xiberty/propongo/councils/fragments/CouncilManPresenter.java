@@ -22,8 +22,8 @@ public class CouncilManPresenter implements DirectiveContract.Presenter {
 
     }
 //
-//    public void getCouncils(final Context context) {
-//        Call<List<Council>> respuesta = mService.getCouncils();
+//    public void saveCouncils(final Context context) {
+//        Call<List<Council>> respuesta = mService.saveCouncils();
 //        respuesta.enqueue(new Callback<List<Council>>() {
 //            @Override
 //            public void onResponse(Call<List<Council>> call, Response<List<Council>> response) {
@@ -72,8 +72,8 @@ public class CouncilManPresenter implements DirectiveContract.Presenter {
 //    }
 //
 //    @Override
-//    public void getCommissions(Context context) {
-//        Call<List<Commission>> call = mService.getCommissions();
+//    public void saveCommissions(Context context) {
+//        Call<List<Commission>> call = mService.saveCommissions();
 //        Callback<List<Commission>> callback = new Callback<List<Commission>>() {
 //            @Override
 //            public void onResponse(Call<List<Commission>> call, Response<List<Commission>> response) {
@@ -118,7 +118,7 @@ public class CouncilManPresenter implements DirectiveContract.Presenter {
 //    }
 //
 //    @Override
-//    public void getProposals(Context context) {
+//    public void saveProposals(Context context) {
 //        Call<List<Proposal>> call = mService.getProposal();
 //        Callback<List<Proposal>> callback = new Callback<List<Proposal>>() {
 //            @Override

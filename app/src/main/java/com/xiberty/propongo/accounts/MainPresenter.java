@@ -98,7 +98,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getCouncils(final Context context) {
+    public void saveCouncils(final Context context) {
         mView.showProgress();
         Call<List<Council>> councilsCall = ccService.getCouncils();
         councilsCall.enqueue(new Callback<List<Council>>() {
@@ -125,7 +125,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getCouncilmen(final Context context) {
+    public void saveCouncilmen(final Context context) {
         Council defaultCouncil = Store.getDefaultCouncil(context);
         Call<List<CouncilMan>> councilmenCall = ccService.getCouncilMan(defaultCouncil.id()+"");
         councilmenCall.enqueue(new Callback<List<CouncilMan>>() {
@@ -149,7 +149,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getProposals(final Context context) {
+    public void saveProposals(final Context context) {
         Council defaultCouncil = Store.getDefaultCouncil(context);
         String id = String.valueOf(defaultCouncil.id);
         Call<List<Proposal>> proposalCall = ccService.getProposal(id);
@@ -226,7 +226,7 @@ public class MainPresenter implements MainContract.Presenter {
 
 
     @Override
-    public void getCommissions(final Context context) {
+    public void saveCommissions(final Context context) {
         Council defaultCouncil = Store.getDefaultCouncil(context);
         Call<List<Commission>> commissionCall = ccService.getCommissions(defaultCouncil.id()+"");
         commissionCall.enqueue(new Callback<List<Commission>>() {

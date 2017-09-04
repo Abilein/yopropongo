@@ -13,6 +13,12 @@ public class ProfileContract {
         void getProfileError(String message);
 
         void showProposals(List<ProposalResponse> body);
+
+        void showProgress();
+
+        void hideProgress();
+
+        void showError();
     }
 
     public interface Presenter {

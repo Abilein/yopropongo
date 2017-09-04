@@ -56,6 +56,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     LinearLayout placeholder;
     @BindView(R.id.listContent)
     RelativeLayout listContent;
+    @BindView(R.id.progressBarContent)
+    RelativeLayout progressBarContent;
 
     public ProfileFragment() {
     }
@@ -167,8 +169,26 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         }
     }
 
+    @Override
+    public void showProgress() {
+        progressBarContent.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBarContent.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError() {
+        placeholder.setVisibility(View.VISIBLE);
+        placeholderText.setText("No tienes propuestas ");
+        MyProposalslist.setVisibility(View.GONE);
+
+    }
+
     @OnClick(R.id.btnCrearPropuesta)
-    public void crearPropuesta(View view){
+    public void crearPropuesta(View view) {
         Intent intent = new Intent(context, NewProposalActivity.class);
         startActivity(intent);
     }

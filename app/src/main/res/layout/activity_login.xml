@@ -4,9 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
     android:id="@+id/layoutMainContainer">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/city_black"/>
 
     <include layout="@layout/progressbar_horizontal" />
 
@@ -26,6 +30,7 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ave"
                 android:id="@+id/imageView"
+                android:tint="@color/white"
                 android:layout_gravity="center" />
         </FrameLayout>
 
@@ -34,51 +39,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_login"
-            android:textColor="@color/primaryText"
+            android:textColor="@color/white"
             android:textSize="@dimen/title_regular"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/spacing_double" />
 
+        <com.xiberty.propongo.contrib.views.XEditText
+            style="@style/Input.Auth"
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/secondaryText"
-            android:textColor="@color/textIcons">
+            android:hint="@string/label_user_or_email"
+            android:maxLength="25"
+            android:drawableLeft="@drawable/ic_profile"
+            android:id="@+id/txtUser" />
 
-            <com.xiberty.propongo.contrib.views.XEditText
-                style="@style/Input.Auth"
-
-                android:text="groverto"
-                android:hint="@string/label_user_or_email"
-                android:maxLength="25"
-                android:drawableLeft="@drawable/ic_profile"
-                android:id="@+id/txtUser" />
-
-        </android.support.design.widget.TextInputLayout>
 
         <View style="@style/View.Auth" />
 
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/secondaryText"
-            android:textColor="@color/textIcons">
-
-            <com.xiberty.propongo.contrib.views.XEditText
-                style="@style/Input.Auth"
-                android:text="12345678x"
-                android:hint="@string/label_password"
-                android:drawableLeft="@drawable/ic_lock"
-                android:id="@+id/txtPassword"
-                android:inputType="textPassword"
-                 />
-
-        </android.support.design.widget.TextInputLayout>
-
+        <com.xiberty.propongo.contrib.views.XEditText
+            style="@style/Input.Auth"
+            android:hint="@string/label_password"
+            android:drawableLeft="@drawable/ic_lock"
+            android:id="@+id/txtPassword"
+            android:inputType="textPassword"
+             />
 
         <View style="@style/View.Auth" />
 
@@ -91,20 +74,9 @@
 
             android:layout_marginBottom="@dimen/spacing_double"
             android:layout_marginLeft="@dimen/auth_button_spacing"
-            android:layout_marginRight="@dimen/auth_button_spacing"
-            >
+            android:layout_marginRight="@dimen/auth_button_spacing">
 
-            <CheckBox
-                android:id="@+id/checkRememberPass"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/label_remember_me"
-                android:checked="false"
-                android:buttonTint="@color/secondaryText"
-                android:textColor="@color/secondaryText"
-                android:textSize="@dimen/text_normal"
-                android:layout_marginLeft="@dimen/spacing_normal" />
+
 
             <TextView
                 android:layout_weight="1.2"
@@ -114,6 +86,7 @@
                 android:text="@string/label_forgot_password"
                 android:textColor="@color/divider"
                 android:textSize="@dimen/text_standar"
+                android:tint="@color/white"
                 android:gravity="right|center_vertical"
                 android:textStyle="normal|bold" />
 

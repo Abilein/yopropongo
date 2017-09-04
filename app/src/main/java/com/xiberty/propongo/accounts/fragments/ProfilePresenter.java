@@ -26,19 +26,24 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
     @Override
     public void getMyProposals(Context context) {
+        mView.showProgress();
         Call<List<ProposalResponse>> responseCall = mService.getMyProposals();
         responseCall.enqueue(new Callback<List<ProposalResponse>>() {
             @Override
             public void onResponse(Call<List<ProposalResponse>> call, Response<List<ProposalResponse>> response) {
                 if (response.isSuccessful()){
                     mView.showProposals(response.body());
+                    mView.hideProgress();
                 }else{
-
+                    mView.showError();
+                    mView.hideProgress();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ProposalResponse>> call, Throwable t) {
+                mView.showError();
+                mView.hideProgress();
 
             }
         });

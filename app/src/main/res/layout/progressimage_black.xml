@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressPicture="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:id="@+id/progressBarContent">
+
+    <com.bluehomestudio.progressimage.ProgressPicture
+        android:id="@+id/ave"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:tint="#2e2e2e"
+        android:src="@drawable/ave_sola"
+        ProgressPicture:animation="rotate_y" />
+    <com.xiberty.propongo.contrib.views.XTextViewBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ave"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:tint="#2e2e2e"
+        android:textSize="14dp"
+        android:text="CARGANDO..."/>
+
+</RelativeLayout>
+
