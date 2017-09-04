@@ -69,7 +69,7 @@
     <string name="button_select">Seleccionar</string>
 
     <string name="button_cancel">CANCELAR</string>
-
+    <string name="button_create_proposal">Crear Propuesta</string>
     <!-- Menues -->
     <string name="menu_info">Información</string>
     <string name="menu_account">Cuenta</string>

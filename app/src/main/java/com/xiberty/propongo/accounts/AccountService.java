@@ -3,7 +3,10 @@ package com.xiberty.propongo.accounts;
 
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.contrib.api.FormattedResp;
+import com.xiberty.propongo.councils.models.ProposalResponse;
 import com.xiberty.propongo.credentials.responses.UserProfile;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -21,6 +24,8 @@ public interface AccountService {
     @GET(Constants.PROFILE_ENDPOINT)
     Call<UserProfile> getProfile();
 
+    @GET(Constants.MY_PROPOSALS_ENDPOINT)
+    Call<List<ProposalResponse>> getMyProposals();
     @Multipart
     @PUT(Constants.PROFILE_ENDPOINT)
     Call<UserProfile> updateProfile(

@@ -61,9 +61,10 @@ public class Constants {
     public static final String PROFILE_ENDPOINT = "/api/account/profile/";
     public static final String CHANGE_EMAIL_ENDPOINT = "/api/account/change-email/";
     public static final String CHANGE_PASSWORD_ENDPOINT = "/api/account/change-password/";
+    public static final String MY_PROPOSALS_ENDPOINT ="/api/account/proposals/" ;
 
 
-    // CouncilOLD
+    // Councils EndPoints
     public static final String COUNCIL_ENDPOINT = "/api/councils/";
     public static final String COMISSIONS_ENDPOINT = "/api/councils/{pk}/commissions/";
     public static final String COUNCILMEN_ENDPOINT = "/api/councils/{pk}/councilmen/";
@@ -71,7 +72,6 @@ public class Constants {
     public static final String PROPOSALS_ENDPOINT = "/api/councils/{pk}/proposals/";
     public static final String PROPOSAL_ROOT_ENDPOINT = "/api/councils/proposals/";
     public static final String CONTACTS_ENDPOINT = "/api/councils/contacts/";
-
     /**
      * KEYS BETWEEN UI
      **/
@@ -79,13 +79,15 @@ public class Constants {
     public static final String KEY_COUNCILMAN_ID = "councilman_id";
     public static final String KEY_COMMISSION_ID = "commission_id";
     public static final String KEY_COUNCIL_ID = "council_id";
+
+
     public static final String KEY_BASE_CLASS = "base_class";
 
 
     public static final String KEY_COMMENTS = "comments_list";
 
-
     public static final String KEY_IS_ALONE = "is_alone";
+
 
     public static final String MENU_STATE ="menu_state";
 }

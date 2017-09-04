@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:diagonal="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:windowSoftInputMode="adjustPan"
-    >
+    android:windowSoftInputMode="adjustPan">
 
     <com.xiberty.propongo.contrib.views.DiagonalLayout
         android:id="@+id/diagonalLayout"
         android:layout_width="match_parent"
         android:layout_height="266dp"
-        diagonal:diagonal_angle="10"
+        diagonal:diagonal_angle="0"
         android:elevation="3dp"
         android:paddingBottom="16dp"
         diagonal:diagonal_gravity="left"
@@ -96,16 +97,61 @@
 
     </LinearLayout>
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/listContent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/imgAvatar"
+        android:layout_height="500dp"
+        android:layout_marginTop="10dp">
+
+        <ListView
+            android:id="@+id/MyProposalslist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null">
+
+        </ListView>
+
+        <LinearLayout
+            android:id="@+id/placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/placeholder_spacing"
+                android:src="@drawable/ave"/>
+            <TextView
+                android:id="@+id/placeholder_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="NOT FOUND MESSAGE"
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnCrearPropuesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColor="#717171"
-        android:text="UI/UX, FrontEnd Developer, Design Thinking, Prototypes ,Branding and Visual Design. Android Developer, certificado por EDX y Udacity. Freelancer, le encanta compartir experiencias a través de conferencias, blogs y librerías de código abierto. Actual miembro del GDG La Paz y GDG Android Bolivia."/>
-
-
-
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/activity_half_padding"
+        app:fb_defaultColor="@color/colorAccent"
+        app:fb_focusColor="@color/colorAccentLight"
+        app:fb_fontIconResource="&#xf067;"
+        app:fb_fontIconSize="@dimen/text_big"
+        app:fb_iconPosition="left"
+        app:fb_text="@string/button_create_proposal"
+        app:fb_textColor="@color/white"
+        app:fb_textSize="@dimen/text_regular"
+        tools:targetApi="lollipop"
+        />
 
 </RelativeLayout>

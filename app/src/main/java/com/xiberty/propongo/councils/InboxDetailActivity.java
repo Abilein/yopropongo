@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.accounts.MainActivity;
+import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.views.XTextView;
@@ -26,7 +27,7 @@ import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.AttachmentAdapter;
 import com.xiberty.propongo.councils.fragments.ProposalsFragment;
 import com.xiberty.propongo.councils.models.ActivateResponse;
-import com.xiberty.propongo.councils.models.NewProposalResponse;
+import com.xiberty.propongo.councils.models.ProposalResponse;
 import com.xiberty.propongo.database.Attachment;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.Comment;
@@ -37,6 +38,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,6 +73,10 @@ public class InboxDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.btnAccept)
+    FancyButton btnAccept;
+    @BindView(R.id.btnDeny)
+    FancyButton btnDeny;
 
     private List<Attachment> attachments = null;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -90,20 +96,26 @@ public class InboxDetailActivity extends AppCompatActivity {
         if (!bundle.isEmpty()) {
             String proposalStr = bundle.getString(Constants.KEY_PROPOSAL_ID);
             Gson gson = new Gson();
-            NewProposalResponse proposal = gson.fromJson(proposalStr, NewProposalResponse.class);
+            ProposalResponse proposal = gson.fromJson(proposalStr, ProposalResponse.class);
 
-            Log.e(TAG,"PROPIESTA "+proposalStr);
+            Log.e(TAG, "PROPIESTA " + proposalStr);
             if (proposal != null) {
                 lblTitle.setText(proposal.title);
                 lblDescription.setText(proposal.description);
                 attachments = proposal.attachments;
 
-                if (attachments.size()>0 )
+                if (attachments.size() > 0)
                     lblAttacchs.setText(String.valueOf(attachments.size()));
                 else
                     blockAttachs.setClickable(false);
 
                 proposalId = String.valueOf(proposal.id);
+            }
+
+            String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
+            if (TAG.equals(ProfileFragment.class.getSimpleName())) {
+                btnAccept.setVisibility(View.GONE);
+                btnDeny.setVisibility(View.GONE);
             }
         }
     }
@@ -130,7 +142,7 @@ public class InboxDetailActivity extends AppCompatActivity {
     @OnClick(R.id.blockAttachs)
     public void viewFiles(View view) {
         List<AttachmentDB> attachmentDBs = new ArrayList<>();
-        for (Attachment attachment :attachments){
+        for (Attachment attachment : attachments) {
             AttachmentDB a = new AttachmentDB();
             a.file = attachment.file;
             a.proposal = attachment.getId();
@@ -170,9 +182,9 @@ public class InboxDetailActivity extends AppCompatActivity {
         activateCall.enqueue(new Callback<ActivateResponse>() {
             @Override
             public void onResponse(Call<ActivateResponse> call, Response<ActivateResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(context, "PROPUESTA ACTIVADA!!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
 
                 }
             }
@@ -189,9 +201,9 @@ public class InboxDetailActivity extends AppCompatActivity {
         activateCall.enqueue(new Callback<ActivateResponse>() {
             @Override
             public void onResponse(Call<ActivateResponse> call, Response<ActivateResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(context, "PROPUESTA RECHAZADA!!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
 
                 }
             }

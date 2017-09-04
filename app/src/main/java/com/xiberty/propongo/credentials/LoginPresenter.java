@@ -11,6 +11,7 @@ import com.xiberty.propongo.contrib.api.Excepts;
 import com.xiberty.propongo.contrib.api.FormattedResp;
 import com.xiberty.propongo.contrib.api.MessageManager;
 import com.xiberty.propongo.contrib.api.ParserError;
+import com.xiberty.propongo.councils.models.ProposalResponse;
 import com.xiberty.propongo.credentials.responses.OAuthCredential;
 import com.xiberty.propongo.credentials.responses.UserProfile;
 
@@ -86,7 +87,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         }
 
     }
-
 
     @Override
     public void getProfile(final Context context, AccountService aService) {

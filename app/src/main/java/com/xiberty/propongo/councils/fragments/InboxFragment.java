@@ -21,7 +21,7 @@ import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.fragments.ToolbarBaseFragment;
 import com.xiberty.propongo.councils.CouncilService;
 import com.xiberty.propongo.councils.adapters.InboxProposalsAdapter;
-import com.xiberty.propongo.councils.models.NewProposalResponse;
+import com.xiberty.propongo.councils.models.ProposalResponse;
 import com.xiberty.propongo.database.ProposalDB;
 
 import java.util.List;
@@ -91,7 +91,7 @@ public class InboxFragment extends ToolbarBaseFragment implements InboxContract.
     }
 
     @Override
-    public void showProposals(List<NewProposalResponse> proposals) {
+    public void showProposals(List<ProposalResponse> proposals) {
         InboxProposalsAdapter adapter = new InboxProposalsAdapter(context, proposals, TAG);
         if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);

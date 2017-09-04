@@ -7,27 +7,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.councils.InboxDetailActivity;
-import com.xiberty.propongo.councils.models.NewProposalResponse;
+import com.xiberty.propongo.councils.models.ProposalResponse;
 import com.xiberty.propongo.database.ProposalDB;
 import com.xiberty.propongo.database.ProposalDB_Table;
 
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 
 public class InboxProposalsAdapter extends BaseAdapter {
     private Context context;
-    private List<NewProposalResponse> items;
+    private List<ProposalResponse> items;
     private String TAG;
 
-    public InboxProposalsAdapter(Context context, List<NewProposalResponse> items, String TAG) {
+    public InboxProposalsAdapter(Context context, List<ProposalResponse> items, String TAG) {
         this.context = context;
         this.items = items;
         this.TAG = TAG;
@@ -67,13 +71,12 @@ public class InboxProposalsAdapter extends BaseAdapter {
             viewHolder.cardView = (TextView) rowView.findViewById(R.id.lblViews);
             viewHolder.cardFiles = (TextView) rowView.findViewById(R.id.lblFiles);
             viewHolder.cardImageStatus = (ImageView) rowView.findViewById(R.id.image_status);
-
             rowView.setTag(viewHolder);
         }
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        final NewProposalResponse proposal = items.get(position);
+        final ProposalResponse proposal = items.get(position);
 
         holder.cardTitle.setText(proposal.title);
         String textAbout = proposal.description;

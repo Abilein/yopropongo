@@ -282,4 +282,9 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         NewProposalActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
+
+    @OnClick(R.id.btnGoBack)
+    public void goBack(){
+        finish();
+    }
 }

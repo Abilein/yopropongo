@@ -1,7 +1,16 @@
 package com.xiberty.propongo.accounts.fragments;
 
 
+import android.content.Context;
+
 import com.xiberty.propongo.accounts.AccountService;
+import com.xiberty.propongo.councils.models.ProposalResponse;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ProfilePresenter implements ProfileContract.Presenter {
@@ -14,4 +23,24 @@ public class ProfilePresenter implements ProfileContract.Presenter {
         this.mService = mService;
     }
 
+
+    @Override
+    public void getMyProposals(Context context) {
+        Call<List<ProposalResponse>> responseCall = mService.getMyProposals();
+        responseCall.enqueue(new Callback<List<ProposalResponse>>() {
+            @Override
+            public void onResponse(Call<List<ProposalResponse>> call, Response<List<ProposalResponse>> response) {
+                if (response.isSuccessful()){
+                    mView.showProposals(response.body());
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ProposalResponse>> call, Throwable t) {
+
+            }
+        });
+    }
 }

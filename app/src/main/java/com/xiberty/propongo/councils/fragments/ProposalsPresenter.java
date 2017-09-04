@@ -49,7 +49,6 @@ public class ProposalsPresenter implements ProposalsContract.Presenter {
 
                 Log.e("MainPresenter","Updating Database .....");
                 List<Proposal> proposals = response.body();
-
                 for (Proposal proposal : proposals){
                     ProposalDB proposalDB = new ProposalDB();
                     proposalDB.id = proposal.getId();
