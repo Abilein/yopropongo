@@ -56,7 +56,7 @@ public class CommentsActivity extends AppCompatActivity {
             Gson gson = new Gson();
             List<Comment> comments = gson.fromJson(commentStr, new TypeToken<List<Comment>>() {
             }.getType());
-            if (!comments.isEmpty())
+            if (!comments.isEmpty() && comments !=null)
                 fillComments(comments);
             else
                 placeholder.setVisibility(View.VISIBLE);

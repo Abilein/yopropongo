@@ -45,6 +45,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 
 public class ProposalDetailActivity extends AppCompatActivity implements ProposalDetailContract.View, RatingBar.OnRatingBarChangeListener {
@@ -136,6 +137,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                 lblAttacchs.setText(String.valueOf(attachments.size()));
                 lblViewers.setText(String.valueOf(proposal.views));
 
+
                 proposalId =String.valueOf(proposal.getId());
                 proposalRate =proposal.getAverage();
 
@@ -145,6 +147,8 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                 ratingAction.setStepSize(1);
                 ratingAction.setRating(Float.parseFloat(String.valueOf(proposal.rate)));
                 ratingAction.setOnRatingBarChangeListener(this);
+
+                btnComments.setEnabled(false);
             }
             if (attachments.isEmpty())
                 blockAttachs.setClickable(false);
@@ -152,18 +156,17 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
         }
     }
 
-    private void validateButtonComments() {
-        if (this.comments.size()<4)
-            btnComments.setEnabled(false);
-    }
-
     @Override
     public void showComments(List<Comment> comments) {
         /**
          * Show just 3 comments
          * **/
+        if(comments.size()>3){
+            btnComments.setEnabled(true);
+        }
         this.comments = comments;
         List<Comment> threeComments = new ArrayList<>();
+
         int count = 0;
         for (Comment comment : comments) {
             count++;
@@ -173,19 +176,17 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
         CommentAdapter adapter = new CommentAdapter(this, threeComments);
         listComments.setAdapter(adapter);
-        validateButtonComments();
     }
 
     @Override
     public void showErrorComments(String error) {
-        Toast.makeText(this, "Error al Cargar Comentarios | No existen Conetarios", Toast.LENGTH_SHORT).show();
+//        Toasty.info(this, "Error al Cargar Comentarios | No existen Conetarios", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void updateRating(float average) {
-        Toast.makeText(context,"Exito al Rankear",Toast.LENGTH_LONG).show();
+        Toasty.success(this, "Gracias por Votar!", Toast.LENGTH_LONG, true).show();
         lblAverage.setText(String.valueOf(average));
-        Toast.makeText(context, "PROMEDIO"+average, Toast.LENGTH_SHORT).show();
         ratingAverage.setRating(average);
     }
 
@@ -196,7 +197,7 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
 
     @Override
     public void showDetailResponse(String detail) {
-        Toast.makeText(context, detail, Toast.LENGTH_SHORT).show();
+        Toasty.success(context, detail, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -239,7 +240,8 @@ public class ProposalDetailActivity extends AppCompatActivity implements Proposa
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         String comment = input.toString();
-                        presenter.setComment(context,proposalId,comment);
+                        if(input.toString().length()>0)
+                            presenter.setComment(context,proposalId,comment);
                     }
                 }).show();
 

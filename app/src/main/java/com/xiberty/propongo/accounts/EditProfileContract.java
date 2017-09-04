@@ -22,6 +22,8 @@ public class EditProfileContract {
         void changePassError(String message);
 
 
+        void hideProgress();
+        void showProgress();
     }
 
     public interface EditProfilePresenterInterface{

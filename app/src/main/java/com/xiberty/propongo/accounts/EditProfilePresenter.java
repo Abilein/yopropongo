@@ -43,7 +43,7 @@ public class EditProfilePresenter implements EditProfileContract.EditProfilePres
     @Override
     public void saveProfileOnServer(final Context context, String username,
                                     String firstName, String lastName, Uri uri) {
-
+        mView.showProgress();
         Call<UserProfile> request;
         RequestBody usernamePart = RequestBody.create(MediaType.parse("text/plain"), username);
         RequestBody firstNamePart = RequestBody.create(MediaType.parse("text/plain"), firstName);
@@ -68,14 +68,17 @@ public class EditProfilePresenter implements EditProfileContract.EditProfilePres
                     UserProfile profile = response.body();
                     Store.saveProfile(context, profile);
                     mView.updateProfileSuccess(context.getString(R.string.success_account_updated));
+                    mView.hideProgress();
 
                 } else {
                     if(response.code()>=500 && response.code() <= 550) {
                         mView.updateProfileError(context.getString(R.string.error_server));
+                        mView.hideProgress();
                     } else {
                         FormattedResp error = ParserError.parse(response);
                         String errorMessage = MessageManager.getMessage(context, error.code());
                         mView.updateProfileError(errorMessage);
+                        mView.hideProgress();
                     }
                 }
             }
@@ -86,6 +89,7 @@ public class EditProfilePresenter implements EditProfileContract.EditProfilePres
                 if(Excepts.isConnectionFailure(t)) {
                     String errorMessage = MessageManager.getMessage(context, MessageManager.WITHOUT_CONNECTION);
                     mView.updateProfileError(errorMessage);
+                    mView.hideProgress();
                 }
             }
         });

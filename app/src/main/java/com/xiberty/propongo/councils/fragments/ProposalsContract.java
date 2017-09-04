@@ -11,6 +11,8 @@ public class ProposalsContract {
 
     public interface View{
         void showError(String errorMessage);
+
+        void setRefreshigFalse();
 //        void loadCommissions(List<Commission> commissions);
     }
 }

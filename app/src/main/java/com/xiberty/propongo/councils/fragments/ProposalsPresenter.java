@@ -91,6 +91,7 @@ public class ProposalsPresenter implements ProposalsContract.Presenter {
                         attachmentDB.proposal = proposal.getId();
                         attachmentDB.save();
                     }
+                    mView.setRefreshigFalse();
                 }
             }else{
                     FormattedResp error = ParserError.parse(response);

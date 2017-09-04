@@ -45,6 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.mateware.snacky.Snacky;
+import es.dmoral.toasty.Toasty;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
@@ -189,7 +190,6 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
                     @Override
                     public void onChoosePath(String path, File pathFile) {
                         proposal_file = pathFile;
-                        Toast.makeText(NewProposalActivity.this, "FILE: " + path, Toast.LENGTH_SHORT).show();
                         pathAttach.setText(path);
                     }
                 })
@@ -257,13 +257,13 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @Override
     public void showSuccessUploadProposal() {
-        Toast.makeText(this, "Exito al crear Propuesta, tu propuesta será REVISADA!", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Exito al crear Propuesta, tu propuesta será REVISADA!", Toast.LENGTH_LONG, true).show();
         finish();
     }
 
     @Override
     public void showErrorUploadProposal(String error) {
-        Toast.makeText(this, "Ocurrio un error, vuelva intentarlo nás tarde", Toast.LENGTH_SHORT).show();
+        Toasty.info(this, "Ocurrio un error, vuelva intentarlo nás tarde.", Toast.LENGTH_LONG, true).show();
         Log.e(TAG, "OMG! Error 'cause " + error);
     }
 

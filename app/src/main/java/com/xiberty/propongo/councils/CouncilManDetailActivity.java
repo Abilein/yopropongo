@@ -207,6 +207,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.councilmen.is(String.valueOf(councilmanSelected.id))).
+                and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
 
         Gson gson = new Gson();

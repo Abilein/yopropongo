@@ -38,9 +38,10 @@
                         android:id="@+id/textView_Bio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/activity_half_quarter_margin"
+                        android:layout_margin="@dimen/text_standar"
                         android:text="@string/lorem_ipsum"
                         android:textSize="12sp"
+                        android:textColor="#2e2e2e"
                         />
 
                 </LinearLayout>

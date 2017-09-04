@@ -149,7 +149,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/button_selector"
                         android:gravity="center_vertical|right"
-                        android:paddingRight="@dimen/activity_padding"
+                        android:paddingRight="@dimen/activity_margin"
                         android:clickable="true"
                         android:layout_gravity="right"
                         android:paddingLeft="@dimen/activity_padding"

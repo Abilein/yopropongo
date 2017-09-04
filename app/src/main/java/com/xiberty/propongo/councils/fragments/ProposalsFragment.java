@@ -92,7 +92,6 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
                 refreshProposals();
             }
         });
-
         return rootView;
     }
 
@@ -116,6 +115,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
             listView.setAdapter(adapter);
             btnAdd.setVisibility(View.VISIBLE);
         }
+
     }
 
     @Override
@@ -132,5 +132,10 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
     @Override
     public void showError(String errorMessage) {
         Toast.makeText(context, "Error al Actualizar", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setRefreshigFalse() {
+        swipeContainer.setRefreshing(false);
     }
 }

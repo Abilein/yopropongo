@@ -3,6 +3,7 @@ package com.xiberty.propongo.accounts;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,9 +12,14 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -33,10 +39,7 @@ import com.xiberty.propongo.contrib.api.WS;
 import com.xiberty.propongo.contrib.utils.ActivityUtils;
 import com.xiberty.propongo.contrib.utils.ImageUtils;
 import com.xiberty.propongo.contrib.views.XEditText;
-import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.credentials.responses.UserProfile;
-
-import android.widget.*;
 
 import java.util.List;
 
@@ -47,36 +50,46 @@ import de.mateware.snacky.Snacky;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
-import android.support.v7.widget.Toolbar;
-
 
 @RuntimePermissions
-public class EditProfileActivity extends AppCompatActivity implements EditProfileContract.EditProfileView{
+public class EditProfileActivity extends AppCompatActivity implements EditProfileContract.EditProfileView {
 
     // Main form
-    @BindView(R.id.imgAvatar) ImageView  imgAvatar;
+    @BindView(R.id.imgAvatar)
+    ImageView imgAvatar;
 
-    @NotEmpty(messageResId=R.string.validation_required)
-    @Pattern(regex="[\\w.@+-]+", messageResId=R.string.validation_username)
+    @NotEmpty(messageResId = R.string.validation_required)
+    @Pattern(regex = "[\\w.@+-]+", messageResId = R.string.validation_username)
     @BindView(R.id.txtUsername)
     XEditText txtUsername;
 
-    @NotEmpty(messageResId=R.string.validation_required)
-    @Length(min=1, max=30, messageResId=R.string.validation_name)
-    @Pattern(regex="[a-z|A-Z|\\s]+", messageResId=R.string.validation_word)
+    @NotEmpty(messageResId = R.string.validation_required)
+    @Length(min = 1, max = 30, messageResId = R.string.validation_name)
+    @Pattern(regex = "[a-z|A-Z|\\s]+", messageResId = R.string.validation_word)
     @BindView(R.id.txtFirstName)
     XEditText txtFirstName;
 
-    @NotEmpty(messageResId=R.string.validation_required)
-    @Length(min=1, max=30, messageResId=R.string.validation_name)
-    @Pattern(regex="[a-z|A-Z|\\s]+", messageResId=R.string.validation_word)
+    @NotEmpty(messageResId = R.string.validation_required)
+    @Length(min = 1, max = 30, messageResId = R.string.validation_name)
+    @Pattern(regex = "[a-z|A-Z|\\s]+", messageResId = R.string.validation_word)
     @BindView(R.id.txtLastName)
     XEditText txtLastName;
 
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
-    @BindView(R.id.fabSave) FloatingActionButton fabSave;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
+    @BindView(R.id.fabSave)
+    FloatingActionButton fabSave;
+    @BindView(R.id.progressBarContent)
+    RelativeLayout progressBarContent;
+    @BindView(R.id.txtVolver)
+    TextView txtVolver;
+    @BindView(R.id.btnGoBack)
+    LinearLayout btnGoBack;
+    @BindView(R.id.imgBack)
+    ImageView imgBack;
 
 
     private boolean HAS_NEW_PHOTO = false;
@@ -103,19 +116,19 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         setCurrentProfile();
     }
 
-    public void setCurrentProfile(){
+    public void setCurrentProfile() {
         UserProfile profile = Store.getProfile(getBaseContext());
         txtUsername.setText(profile.username());
         txtFirstName.setText(profile.firstName());
         txtLastName.setText(profile.lastName());
 
-        if(!HAS_NEW_PHOTO) {
-            if(profile.photo() != null && profile.photo().length() > 0){
+        if (!HAS_NEW_PHOTO) {
+            if (profile.photo() != null && profile.photo().length() > 0) {
                 Glide.with(this)
                         .load(profile.photo())
                         .centerCrop()
@@ -133,14 +146,16 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     public void setToolbar() {
         toolbar.setBackground(getResources().getDrawable(R.drawable.background_toolbar_invisible));
-        toolbar.setVisibility(android.view.View.VISIBLE);
+        toolbar.setVisibility(View.VISIBLE);
         toolbar.setTitle("");
         toolbar.setTitleTextColor(getResources().getColor(R.color.darken));
+        txtVolver.setTextColor(Color.BLACK);
+        imgBack.setColorFilter(Color.BLACK);
         setSupportActionBar(toolbar);
     }
 
-    @OnClick(R.id.imgBack)
-    public void goToBack(android.view.View view) {
+    @OnClick(R.id.btnGoBack)
+    public void goToBack(View view) {
         onBackPressed();
     }
 
@@ -168,7 +183,6 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
 
-
     @Override
     @OnClick(R.id.fabSave)
     public void saveHandler() {
@@ -178,8 +192,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             @Override
             public void onValidationSucceeded() {
 
-                if(HAS_NEW_PHOTO) {
-                    Bitmap bitmap = ((BitmapDrawable)imgAvatar.getDrawable()).getBitmap();
+                if (HAS_NEW_PHOTO) {
+                    Bitmap bitmap = ((BitmapDrawable) imgAvatar.getDrawable()).getBitmap();
                     Uri uri = ImageUtils.getUriFromBitmap(EditProfileActivity.this, bitmap);
 
                     presenter.saveProfileOnServer(
@@ -214,23 +228,23 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     @Override
     public void editPassword() {
-        View view = getLayoutInflater ().inflate (R.layout.sheet_edit_password, null);
+        View view = getLayoutInflater().inflate(R.layout.sheet_edit_password, null);
 
-        BottomSheetDialog sheet = new BottomSheetDialog (
+        BottomSheetDialog sheet = new BottomSheetDialog(
                 EditProfileActivity.this, R.style.Theme_Design_BottomSheetDialog);
 
-        changePasswordForm = new ChangePasswordForm(this, view, sheet, presenter,EditProfileActivity.this);
+        changePasswordForm = new ChangePasswordForm(this, view, sheet, presenter, EditProfileActivity.this);
         changePasswordForm.show();
 
     }
 
     @Override
     public void editEmail() {
-        View view = getLayoutInflater ().inflate (R.layout.sheet_edit_email, null);
-        BottomSheetDialog sheet = new BottomSheetDialog (
+        View view = getLayoutInflater().inflate(R.layout.sheet_edit_email, null);
+        BottomSheetDialog sheet = new BottomSheetDialog(
                 EditProfileActivity.this, R.style.Theme_Design_BottomSheetDialog);
 
-        changeEmailForm = new ChangeEmailForm(this, view, sheet, presenter,EditProfileActivity.this);
+        changeEmailForm = new ChangeEmailForm(this, view, sheet, presenter, EditProfileActivity.this);
         changeEmailForm.show();
 
     }
@@ -239,9 +253,9 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     public void editPhoto() {
         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
         EditProfileActivityPermissionsDispatcher.requestEditPhotoPermissionsWithCheck(this);
-        if(ActivityUtils.hasPermissions(this, permissions)){
-            View view = getLayoutInflater ().inflate (R.layout.sheet_edit_avatar, null);
-            BottomSheetDialog sheet = new BottomSheetDialog (
+        if (ActivityUtils.hasPermissions(this, permissions)) {
+            View view = getLayoutInflater().inflate(R.layout.sheet_edit_avatar, null);
+            BottomSheetDialog sheet = new BottomSheetDialog(
                     EditProfileActivity.this, R.style.Theme_Design_BottomSheetDialog);
 
             takePhotoForm = new TakePhotoForm(this, view, sheet);
@@ -262,7 +276,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             try {
                 imgAvatar.setImageBitmap(imageBitmap);
                 HAS_NEW_PHOTO = true;
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (requestCode == TakePhotoForm.PICTURE_FROM_GALLERY && resultCode == RESULT_OK) {
@@ -281,11 +295,11 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     public void successMessage(String message) {
         Snacky.builder()
-            .setActivty(EditProfileActivity.this)
-            .setText(message)
-            .setDuration(Snacky.LENGTH_LONG)
-            .success()
-            .show();
+                .setActivty(EditProfileActivity.this)
+                .setText(message)
+                .setDuration(Snacky.LENGTH_LONG)
+                .success()
+                .show();
         finish();
     }
 
@@ -315,6 +329,16 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
+    public void hideProgress() {
+        progressBarContent.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showProgress() {
+        progressBarContent.setVisibility(View.GONE);
+    }
+
+    @Override
     public void updateProfileError(String message) {
         HAS_NEW_PHOTO = false;
         Snacky.builder()
@@ -338,8 +362,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     /*
     *  PERMISSIONS
     * */
-    @NeedsPermission(value={Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA})
-    public void requestEditPhotoPermissions(){
+    @NeedsPermission(value = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA})
+    public void requestEditPhotoPermissions() {
     }
 
     @Override
@@ -352,7 +376,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-        intent.putExtra(Constants.MENU_STATE,2);
+        intent.putExtra(Constants.MENU_STATE, 2);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }

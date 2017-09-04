@@ -21,6 +21,8 @@ import com.xiberty.propongo.councils.ProposalDetailActivity;
 import com.xiberty.propongo.database.AttachmentDB;
 import com.xiberty.propongo.database.AttachmentDB_Table;
 import com.xiberty.propongo.database.ProposalDB;
+
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -88,7 +90,8 @@ public class ProposalsAdapter extends BaseAdapter {
 
         holder.cardSummary.setText(textAbout);
         holder.cardView.setText(proposal.views+" vista(s)");
-        holder.cardRate.setText(proposal.average+" punto(s)");
+        DecimalFormat df = new DecimalFormat("#.#");
+        holder.cardRate.setText(df.format(proposal.average)+" punto(s)");
 
         List<AttachmentDB> attachments = SQLite.select().
                 from(AttachmentDB.class).
