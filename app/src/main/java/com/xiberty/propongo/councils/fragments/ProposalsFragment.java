@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -100,18 +101,21 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
-                and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
     }
 
     private void setProposals(List<ProposalDB> proposals) {
+        for (ProposalDB proposalDB: proposals)
+            Log.e("PROPUESTA",proposalDB.getTitle()+"");
+
         ProposalsAdapter adapter = new ProposalsAdapter(context, proposals,TAG);
-        if (adapter.getCount() == 0) {
+        if (proposals.size() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTEN PROPUESTAS");
             listView.setVisibility(View.GONE);
         } else {
+            Log.e("MESASGE","Entra");
             listView.setAdapter(adapter);
             btnAdd.setVisibility(View.VISIBLE);
         }

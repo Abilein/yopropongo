@@ -67,7 +67,6 @@ public class MessageManager {
             case INVALID_ACCESS_TOKEN:
                 return context.getString(R.string.error_invalid_access_token);
 
-
             default:
                 return context.getString(R.string.error_default);
         }
