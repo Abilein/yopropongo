@@ -78,7 +78,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         setHeader(rootView, getString(R.string.menu_proposals).toUpperCase(), selectedCouncil.name());
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
-                where(ProposalDB_Table.council.is(2)).
+                where(ProposalDB_Table.council.is(selectedCouncil.id)).
                 and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
@@ -101,21 +101,23 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
                 where(ProposalDB_Table.council.is(selectedCouncil.id)).
+                and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
     }
 
     private void setProposals(List<ProposalDB> proposals) {
-        for (ProposalDB proposalDB: proposals)
-            Log.e("PROPUESTA",proposalDB.getTitle()+"");
 
         ProposalsAdapter adapter = new ProposalsAdapter(context, proposals,TAG);
+        adapter.notifyDataSetChanged();
+
         if (proposals.size() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTEN PROPUESTAS");
             listView.setVisibility(View.GONE);
         } else {
             Log.e("MESASGE","Entra");
+            placeholder.setVisibility(View.GONE);
             listView.setAdapter(adapter);
             btnAdd.setVisibility(View.VISIBLE);
         }
