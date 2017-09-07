@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -59,6 +60,7 @@ public class ProposalsAdapter extends BaseAdapter {
     public View getView(final int position, View rowView, ViewGroup viewGroup) {
 
         if (rowView == null) {
+
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView = inflater.inflate(R.layout.row_proposal, viewGroup, false);
@@ -77,7 +79,6 @@ public class ProposalsAdapter extends BaseAdapter {
 
         final ProposalDB proposal = items.get(position);
         ViewHolder holder = (ViewHolder) rowView.getTag();
-
         if(proposal.title.length()>30)
             holder.cardTitle.setText(proposal.title.substring(0,30)+"...");
         else

@@ -190,8 +190,11 @@ public class CouncilManDetailActivity extends AppCompatActivity {
             mEmail.setText(councilmanSelected.email);
             Glide.with(this).load(councilmanSelected.getFlag(this)).into(mFlag);
             nNameFlag.setText(councilmanSelected.getFlagName());
-            Macrodistrict macrodistrict = councilmanSelected.macrodistrict;
-            mNameMacro.setText(macrodistrict.getName());
+            if (councilmanSelected.macrodistrict != null) {
+                Macrodistrict macrodistrict = councilmanSelected.macrodistrict;
+                mNameMacro.setText(macrodistrict.getName());
+            }
+
         } else {
             /**Set Default Content**/
             mTitleTextView.setText("Concejal");

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,7 +78,7 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
         setHeader(rootView, getString(R.string.menu_proposals).toUpperCase(), selectedCouncil.name());
         List<ProposalDB> proposals = SQLite.select().
                 from(ProposalDB.class).
-                where(ProposalDB_Table.council.is(2)).
+                where(ProposalDB_Table.council.is(selectedCouncil.id)).
                 and(ProposalDB_Table.status.is("ACCEPTED")).
                 queryList();
         setProposals(proposals);
@@ -106,12 +107,17 @@ public class ProposalsFragment extends ToolbarBaseFragment implements ProposalsC
     }
 
     private void setProposals(List<ProposalDB> proposals) {
+
         ProposalsAdapter adapter = new ProposalsAdapter(context, proposals,TAG);
-        if (adapter.getCount() == 0) {
+        adapter.notifyDataSetChanged();
+
+        if (proposals.size() == 0) {
             placeholder.setVisibility(View.VISIBLE);
             placeholderText.setText("NO EXISTEN PROPUESTAS");
             listView.setVisibility(View.GONE);
         } else {
+            Log.e("MESASGE","Entra");
+            placeholder.setVisibility(View.GONE);
             listView.setAdapter(adapter);
             btnAdd.setVisibility(View.VISIBLE);
         }

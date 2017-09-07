@@ -73,10 +73,11 @@ public class ProposalsPresenter implements ProposalsContract.Presenter {
                     //Councilmen IDs (Example. 11,2)
                     List<Councilman_Proposal> councilman_proposals = proposal.getCouncilmen();
                     String id_Councilmen="";
-                    for (Councilman_Proposal councilman_proposal : councilman_proposals)
-                        id_Councilmen+= councilman_proposal.id+",";
-                    proposalDB.councilmen = id_Councilmen.substring(0, id_Councilmen.length()-1);
-
+                    if (councilman_proposals.size()>0) {
+                        for (Councilman_Proposal councilman_proposal : councilman_proposals)
+                            id_Councilmen += councilman_proposal.id + ",";
+                        proposalDB.councilmen = id_Councilmen.substring(0, id_Councilmen.length() - 1);
+                    }
                     //Council ID (Example. 2)
                     proposalDB.council = proposal.getCouncil().getId();
                     proposalDB.save();

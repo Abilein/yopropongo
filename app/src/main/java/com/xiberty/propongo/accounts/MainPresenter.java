@@ -108,7 +108,6 @@ public class MainPresenter implements MainContract.Presenter {
                     mView.hideProgress();
                     List<Council> councils = response.body();
                     mView.showCouncils(councils);
-
                 } else {
                     FormattedResp error = ParserError.parse(response);
                     String errorMessage = MessageManager.getMessage(context, error.code());
@@ -119,7 +118,7 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public void onFailure(Call<List<Council>> call, Throwable t) {
                 mView.hideProgress();
-                Log.e("MainPresenter",t.getCause()+"" );
+                Log.e("MainPresenter",t.getCause()+"");
             }
         });
     }
@@ -188,10 +187,11 @@ public class MainPresenter implements MainContract.Presenter {
                         //Councilmen IDs (Example. 11,2)
                         List<Councilman_Proposal> councilman_proposals = proposal.getCouncilmen();
                         String id_Councilmen="";
-                        for (Councilman_Proposal councilman_proposal : councilman_proposals)
-                            id_Councilmen+= councilman_proposal.id+",";
-                        proposalDB.councilmen = id_Councilmen.substring(0, id_Councilmen.length()-1);
-
+                        if (councilman_proposals.size()>0) {
+                            for (Councilman_Proposal councilman_proposal : councilman_proposals)
+                                id_Councilmen += councilman_proposal.id + ",";
+                            proposalDB.councilmen = id_Councilmen.substring(0, id_Councilmen.length() - 1);
+                        }
                         //Council ID (Example. 2)
                         proposalDB.council = proposal.getCouncil().getId();
                         proposalDB.save();
