@@ -197,7 +197,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
         } else {
             /**Set Default Content**/
-            mTitleTextView.setText("Consejal");
+            mTitleTextView.setText("Concejal");
             Glide.with(this).load(R.drawable.code).into(mFlag);
         }
     }

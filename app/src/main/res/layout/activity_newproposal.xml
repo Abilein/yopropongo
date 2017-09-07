@@ -67,7 +67,7 @@
                         app:chip_labelColor="@color/Gray"
                         app:filterable_list_backgroundColor="@color/white"
                         app:filterable_list_textColor="@color/Gray"
-                        app:hint="Escribe el nombre de algún consejal"
+                        app:hint="Escribe el nombre de algún concejal"
                         app:hintColor="@color/Gray"
                         app:maxRows="3"
                         app:textColor="@color/colorAccent" />
