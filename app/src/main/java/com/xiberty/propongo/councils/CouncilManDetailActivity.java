@@ -194,7 +194,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
             mNameMacro.setText(macrodistrict.getName());
         } else {
             /**Set Default Content**/
-            mTitleTextView.setText("Consejal");
+            mTitleTextView.setText("Concejal");
             Glide.with(this).load(R.drawable.code).into(mFlag);
         }
     }
