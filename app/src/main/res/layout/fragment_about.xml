@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/code"
     >
 
-    <!--<include layout="@layout/toolbar" />-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/city_black"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,9 +27,81 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
+            <com.xiberty.propongo.contrib.views.XTextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:text="Impulsado por:"
+                android:textColor="@color/white"
+                android:layout_marginBottom="15sp"
+                android:textStyle="bold"/>
 
-            <com.xiberty.propongo.contrib.views.XTextView
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
+                <ImageView
+                    android:id="@+id/imgLogo2"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/presabis" />
+
+                <com.xiberty.propongo.contrib.views.XTextView
+                    android:id="@+id/lblContact2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgLogo2"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:text="@string/credits_contact_us"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular_extra"
+                    android:layout_marginBottom="5sp"
+                    android:textStyle="bold"/>
+
+                <com.xiberty.propongo.contrib.views.XTextViewBold
+                    android:id="@+id/lblPage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_below="@id/lblContact2"
+                    android:layout_toRightOf="@+id/imgLogo2"
+                    android:text="Fundación Presabis"
+                    android:textColor="@color/colorAccentAlternLight"
+                    android:layout_marginTop="2sp"
+                    android:textStyle="bold"/>
+                <com.xiberty.propongo.contrib.views.XTextViewBold
+                    android:id="@+id/lblEmail2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_below="@id/lblPage2"
+                    android:layout_toRightOf="@+id/imgLogo2"
+                    android:textSize="@dimen/text_regular"
+                    android:text="presabis@gmail.com"
+                    android:textColor="@color/orange_light"
+                    android:textStyle="bold"/>
+
+                <com.xiberty.propongo.contrib.views.XTextView
+                    android:id="@+id/lblPhone2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_below="@id/lblEmail2"
+                    android:layout_toRightOf="@+id/imgLogo2"
+                    android:text="2 263632"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <com.xiberty.propongo.contrib.views.XTextViewBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -34,65 +109,72 @@
                 android:text="@string/credits_developed_by"
                 android:textColor="@color/white"
                 android:layout_marginBottom="15sp"
+                android:layout_marginTop="70sp"
                 android:textStyle="bold"/>
 
-            <ImageView
-                android:id="@+id/imgLogo"
-                android:layout_width="120sp"
-                android:layout_height="120sp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/xiberty" />
-
-            <com.xiberty.propongo.contrib.views.XTextView
-                android:id="@+id/lblPage"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
-                android:text="@string/credits_page"
-                android:textColor="@color/colorAccentAlternLight"
-                android:layout_marginTop="2sp"
-                android:layout_marginBottom="10sp"
+                android:layout_gravity="center">
 
-                android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/xiberty" />
 
+                <com.xiberty.propongo.contrib.views.XTextView
+                    android:id="@+id/lblContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgLogo"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:text="@string/credits_contact_us"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular_extra"
+                    android:layout_marginBottom="5sp"
+                    android:textStyle="bold"/>
 
-            <com.xiberty.propongo.contrib.views.XTextView
-                android:id="@+id/lblContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
-                android:text="@string/credits_contact_us"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_extra"
-                android:layout_marginBottom="5sp"
-                android:textStyle="bold"/>
+                <com.xiberty.propongo.contrib.views.XTextViewBold
+                    android:id="@+id/lblPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_below="@id/lblContact"
+                    android:layout_toRightOf="@+id/imgLogo"
+                    android:text="@string/credits_page"
+                    android:textColor="@color/colorAccentAlternLight"
+                    android:layout_marginTop="2sp"
+                    android:textStyle="bold"/>
+                <com.xiberty.propongo.contrib.views.XTextViewBold
+                    android:id="@+id/lblEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_below="@id/lblPage"
+                    android:layout_toRightOf="@+id/imgLogo"
+                    android:textSize="@dimen/text_regular"
+                    android:text="@string/credits_email"
+                    android:textColor="@color/orange_light"
+                    android:textStyle="bold"/>
 
-
-            <com.xiberty.propongo.contrib.views.XTextView
-                android:id="@+id/lblEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textSize="@dimen/text_regular"
-                android:text="@string/credits_email"
-                android:textColor="@color/orange_light"
-                android:textStyle="bold"/>
-
-
-            <com.xiberty.propongo.contrib.views.XTextView
-                android:id="@+id/lblPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
-                android:text="@string/credits_phone"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
-
-
+                <com.xiberty.propongo.contrib.views.XTextView
+                    android:id="@+id/lblPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_below="@id/lblEmail"
+                    android:layout_toRightOf="@+id/imgLogo"
+                    android:text="@string/credits_phone"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
 
 
         </LinearLayout>

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.xiberty.propongo.R;
 import com.xiberty.propongo.contrib.views.XTextView;
+import com.xiberty.propongo.contrib.views.XTextViewBold;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,9 +25,9 @@ public class AboutFragment extends Fragment {
 
     public View rootView;
 
-    @BindView(R.id.lblPage) XTextView lblPage;
+    @BindView(R.id.lblPage) XTextViewBold  lblPage;
     @BindView(R.id.lblContact) XTextView lblContact;
-    @BindView(R.id.lblEmail) XTextView lblEmail;
+    @BindView(R.id.lblEmail) XTextViewBold lblEmail;
     @BindView(R.id.lblPhone) XTextView lblPhone;
     @BindView(R.id.imgLogo) ImageView imgLogo;
 
