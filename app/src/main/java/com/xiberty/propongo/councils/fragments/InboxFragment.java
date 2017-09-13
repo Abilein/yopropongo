@@ -36,23 +36,14 @@ public class InboxFragment extends ToolbarBaseFragment implements InboxContract.
     View rootView = null;
     Context context;
 
-    @BindView(R.id.paddingBlock)
-    FrameLayout paddingBlock;
-    @BindView(R.id.headerTitle)
-    TextView headerTitle;
-    @BindView(R.id.headerSubtitle)
-    TextView headerSubtitle;
-    @BindView(R.id.listView)
-    ListView listView;
-    @BindView(R.id.placeholder_text)
-    TextView placeholderText;
-    @BindView(R.id.placeholder)
-    LinearLayout placeholder;
-    @BindView(R.id.progressBarContent)
-    RelativeLayout progressBarContent;
-    @BindView(R.id.swipeContainer)
-    SwipeRefreshLayout swipeContainer;
-
+    @BindView(R.id.paddingBlock) FrameLayout paddingBlock;
+    @BindView(R.id.headerTitle) TextView headerTitle;
+    @BindView(R.id.headerSubtitle) TextView headerSubtitle;
+    @BindView(R.id.listView) ListView listView;
+    @BindView(R.id.placeholder_text) TextView placeholderText;
+    @BindView(R.id.placeholder) LinearLayout placeholder;
+    @BindView(R.id.progressBarContent) RelativeLayout progressBarContent;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +86,7 @@ public class InboxFragment extends ToolbarBaseFragment implements InboxContract.
         InboxProposalsAdapter adapter = new InboxProposalsAdapter(context, proposals, TAG);
         if (adapter.getCount() == 0) {
             placeholder.setVisibility(View.VISIBLE);
-            placeholderText.setText("NO EXISTEN PROPUESTAS EN TU BANDEJA DE ENTRADA");
+            placeholderText.setText("NO EXISTEN PROPUESTAS \nEN TU BANDEJA DE ENTRADA");
             listView.setVisibility(View.GONE);
         } else {
             listView.setAdapter(adapter);
@@ -115,7 +106,7 @@ public class InboxFragment extends ToolbarBaseFragment implements InboxContract.
     @Override
     public void showInboxError() {
         placeholder.setVisibility(View.VISIBLE);
-        placeholderText.setText("NO EXISTEN PROPUESTAS EN TU BANDEJA DE ENTRADA");
+        placeholderText.setText("NO EXISTEN PROPUESTAS \n EN TU BANDEJA DE ENTRADA");
         listView.setVisibility(View.GONE);
     }
 

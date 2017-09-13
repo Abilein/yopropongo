@@ -26,6 +26,7 @@ public interface AccountService {
 
     @GET(Constants.MY_PROPOSALS_ENDPOINT)
     Call<List<ProposalResponse>> getMyProposals();
+
     @Multipart
     @PUT(Constants.PROFILE_ENDPOINT)
     Call<UserProfile> updateProfile(
