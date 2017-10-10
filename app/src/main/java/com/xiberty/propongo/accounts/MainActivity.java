@@ -31,6 +31,7 @@ import com.xiberty.propongo.accounts.fragments.AboutFragment;
 import com.xiberty.propongo.accounts.fragments.ProfileFragment;
 import com.xiberty.propongo.accounts.fragments.SettingsFragment;
 import com.xiberty.propongo.councils.CouncilService;
+import com.xiberty.propongo.councils.fragments.AllCouncilFragment;
 import com.xiberty.propongo.councils.fragments.CommissionsFragment;
 import com.xiberty.propongo.contrib.Store;
 import com.xiberty.propongo.contrib.api.WS;
@@ -59,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public enum Menues {
         INBOX(1001),
         PROFILE(1002),
-        COUNCIL(1003),
-        COMISSIONS(1004),
-        PROPOSAL(1005),
-        SETTINGS(1006),
+        DIRECTIVE(1003),
+        COUNCIL(1004),
+        COMISSIONS(1005),
+        PROPOSAL(1006),
         ABOUT(1007),
         LOGOUT(1008);
 
@@ -142,20 +143,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             setContainer(new ProfileFragment());
             state=2;
         } else if(identifier==Menues.COUNCIL.getID()){
-            setContainer(new DirectiveFragment());
+            setContainer(new AllCouncilFragment());
             state=3;
+        } else if(identifier==Menues.DIRECTIVE.getID()){
+            setContainer(new DirectiveFragment());
+            state=4;
         } else if(identifier==Menues.COMISSIONS.getID()){
             CommissionsFragment commissions = new CommissionsFragment();
             Bundle bcomm = new Bundle();
             bcomm.putBoolean(Constants.KEY_IS_ALONE, true);
             commissions.setArguments(bcomm);
             setContainer(commissions);
-            state=4;
+            state=5;
         } else if(identifier==Menues.PROPOSAL.getID()){
             setContainer(new ProposalsFragment());
-            state=5;
-        } else if(identifier==Menues.SETTINGS.getID()){
-            setContainer(new SettingsFragment());
+            state=6;
         } else if(identifier==Menues.ABOUT.getID()){
             setContainer(new AboutFragment());
         } else if(identifier==Menues.LOGOUT.getID()){
@@ -257,7 +259,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/latoRegular.ttf");
         PrimaryDrawerItem MenuInbox = new PrimaryDrawerItem().withName("Buzon de Entrada").withTypeface(typeface).withIdentifier(Menues.INBOX.id).withIcon(R.drawable.ic_inbox);
         PrimaryDrawerItem MenuProfile = new PrimaryDrawerItem().withName("Perfil").withTypeface(typeface).withIdentifier(Menues.PROFILE.id).withIcon(R.drawable.ic_profile);
-        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Directiva").withTypeface(typeface).withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_council);
+        PrimaryDrawerItem MenuCouncil = new PrimaryDrawerItem().withName("Consejales").withTypeface(typeface).withIdentifier(Menues.COUNCIL.id).withIcon(R.drawable.ic_settings);
+        PrimaryDrawerItem MenuDirective= new PrimaryDrawerItem().withName("Directiva").withTypeface(typeface).withIdentifier(Menues.DIRECTIVE.id).withIcon(R.drawable.ic_council);
         PrimaryDrawerItem MenuComissions = new PrimaryDrawerItem().withName("Comisiones").withTypeface(typeface).withIdentifier(Menues.COMISSIONS.id).withIcon(R.drawable.ic_commissions);
         PrimaryDrawerItem MenuProposals = new PrimaryDrawerItem().withName("Propuestas").withTypeface(typeface).withIdentifier(Menues.PROPOSAL.id).withIcon(R.drawable.ic_proposals);
         PrimaryDrawerItem MenuAbout = new PrimaryDrawerItem().withName("Acerca de").withTypeface(typeface).withIdentifier(Menues.ABOUT.id).withIcon(R.drawable.ic_about);
@@ -270,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         .withToolbar(toolbar)
                         .withHeader(R.layout.drawer_header)
                         .withAccountHeader(accountHeader)
-                        .addDrawerItems(MenuInbox ,MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuAbout, Menulogout)
+                        .addDrawerItems(MenuInbox ,MenuProfile,MenuCouncil ,MenuDirective,MenuComissions , MenuProposals, MenuAbout, Menulogout)
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                             @Override
                             public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
@@ -292,8 +295,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         case 1:drawer.setSelection(Menues.INBOX.getID());break;
                         case 2:drawer.setSelection(Menues.PROFILE.getID());break;
                         case 3:drawer.setSelection(Menues.COUNCIL.getID());break;
-                        case 4:drawer.setSelection(Menues.COMISSIONS.getID());break;
-                        case 5:drawer.setSelection(Menues.PROPOSAL.getID());break;
+                        case 4:drawer.setSelection(Menues.DIRECTIVE.getID());break;
+                        case 5:drawer.setSelection(Menues.COMISSIONS.getID());break;
+                        case 6:drawer.setSelection(Menues.PROPOSAL.getID());break;
                         default:drawer.setSelection(Menues.COMISSIONS.getID());break;
                     }
                 }else{
@@ -306,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         .withToolbar(toolbar)
                         .withHeader(R.layout.drawer_header)
                         .withAccountHeader(accountHeader)
-                        .addDrawerItems(MenuProfile,MenuCouncil ,MenuComissions , MenuProposals, MenuAbout, Menulogout)
+                        .addDrawerItems(MenuProfile,MenuCouncil ,MenuDirective,MenuComissions , MenuProposals, MenuAbout, Menulogout)
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                             @Override
                             public boolean onItemClick(android.view.View view, int position, IDrawerItem drawerItem) {
@@ -328,8 +332,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     switch (bundle.getInt(Constants.MENU_STATE)){
                         case 2:drawer.setSelection(Menues.PROFILE.getID());break;
                         case 3:drawer.setSelection(Menues.COUNCIL.getID());break;
-                        case 4:drawer.setSelection(Menues.COMISSIONS.getID());break;
-                        case 5:drawer.setSelection(Menues.PROPOSAL.getID());break;
+                        case 4:drawer.setSelection(Menues.DIRECTIVE.getID());break;
+                        case 5:drawer.setSelection(Menues.COMISSIONS.getID());break;
+                        case 6:drawer.setSelection(Menues.PROPOSAL.getID());break;
                         default:drawer.setSelection(Menues.COMISSIONS.getID());break;
                     }
                 }else{

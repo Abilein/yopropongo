@@ -237,7 +237,12 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
         if (TAG.equals(DirectiveFragment.class.getSimpleName())){
             Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
-            intent.putExtra(Constants.MENU_STATE,3);
+            intent.putExtra(Constants.MENU_STATE,4);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }else if(TAG.equals(DirectiveFragment.class.getSimpleName())){
+            Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
+            intent.putExtra(Constants.MENU_STATE,4);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }else{
