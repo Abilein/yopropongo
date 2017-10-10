@@ -16,7 +16,7 @@ public class Constants {
     public static final String USER_PROFILE = APPLICATION_PREFIX  + "_user";
 
     public static final String DATABASE_NAME = "yopropongo";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public static final int DEFAULT_COUNCIL = 1;
 
