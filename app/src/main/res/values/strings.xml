@@ -145,7 +145,7 @@
     <string name="validation_proposal_title">La longitud máxima es de 30 caracteres</string>
     <string name="validation_proposal_summary">La longitud máxima es de 200 caracteres</string>
     <string name="validation_select_file">Es necesario que seleccione un archivo(pdf,doc,etc).</string>
-    <string name="validation_councils">Escoje por lo menos un Consejal</string>
+    <string name="validation_councils">Escoje por lo menos un Concejal</string>
 
     <!-- TOAST -->
     <string name="toast_permissions_denied">Necesita activar los permisos de CAMARA y ALMACENAMIENTO para que puedas editar tu avatar</string>
@@ -210,7 +210,7 @@
     <string name="hint_proposal_title">Nombre de la Propuesta</string>
     <string name="hint_proposal_summary">Escribe una breve descripción de tu Propuesta:</string>
     <string name="hint_proposal_description">Descripción</string>
-    <string name="hint_choose_councilman">Escoge un Consejal</string>
+    <string name="hint_choose_councilman">Escoge un Concejal</string>
     <string name="hint_addFile">¿Tienes algún archivo que respalde tu Propuesta? Seleccionalo ya mismo!</string>
     <string name="hint_proposal_attachs">Añade Archivos</string>
     <string name="send_proposal">Enviar Propuestas</string>
