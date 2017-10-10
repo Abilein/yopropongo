@@ -25,6 +25,7 @@ import com.xiberty.propongo.contrib.utils.UIUtils;
 import com.xiberty.propongo.contrib.views.AppBarStateChangeListener;
 import com.xiberty.propongo.contrib.views.XTextViewBold;
 import com.xiberty.propongo.councils.adapters.SectionsPagerAdapter;
+import com.xiberty.propongo.councils.fragments.AllCouncilFragment;
 import com.xiberty.propongo.councils.fragments.BiographyFragment;
 import com.xiberty.propongo.councils.fragments.DirectiveFragment;
 import com.xiberty.propongo.councils.fragments.GeneralProposalsFragment;
@@ -235,9 +236,9 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
-        if (TAG.equals(DirectiveFragment.class.getSimpleName())){
+        if (TAG.equals(AllCouncilFragment.class.getSimpleName())){
             Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
-            intent.putExtra(Constants.MENU_STATE,4);
+            intent.putExtra(Constants.MENU_STATE,3);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }else if(TAG.equals(DirectiveFragment.class.getSimpleName())){
