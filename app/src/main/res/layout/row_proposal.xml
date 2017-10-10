@@ -51,6 +51,7 @@
                         android:layout_height="wrap_content"
                         android:text="Propuesta de Cambio"
                         android:textSize="14sp"
+                        android:maxLines="1"
                         android:lineSpacingExtra="-2dp"
                         android:layout_gravity="center"
                         style="@style/Proposal" />
