@@ -56,6 +56,42 @@ public class NewProposalPresenter implements NewProposalContract.Presenter {
                 mView.showErrorUploadProposal("2 "+t.getMessage());
             }
         });
+
+
+
+
+    }
+
+    @Override
+    public void createProposal(final Context context, String title, String description, String councilmen, int id_council) {
+        mView.showProgress();
+
+        RequestBody titlePart = RequestBody.create(MediaType.parse("text/plain"), title);
+        RequestBody descriptionPart = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody councilmenPart = RequestBody.create(MediaType.parse("text/plain"), councilmen);
+        RequestBody councilPart= RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_council));
+
+        Call<List<ProposalResponse>> proposalCall = mService.createProposalWithoutFile(titlePart,descriptionPart,councilmenPart,councilPart, "Bearer "+ Store.getAccessToken(context));
+        proposalCall.enqueue(new Callback<List<ProposalResponse>>() {
+            @Override
+            public void onResponse(Call<List<ProposalResponse>> call, Response<List<ProposalResponse>> response) {
+                if (response.isSuccessful()){
+                    mView.hideProgress();
+                    mView.showSuccessUploadProposal();
+                }else{
+                    mView.showErrorUploadProposal("1 "+ response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ProposalResponse>> call, Throwable t) {
+                mView.showErrorUploadProposal("2 "+t.getMessage());
+            }
+        });
+
+
+
+
     }
 
 }

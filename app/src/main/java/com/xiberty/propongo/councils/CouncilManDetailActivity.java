@@ -124,7 +124,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(councilmanSelected.facebook));
                             startActivity(browserIntent);
                         }else{
-                            Toasty.custom(context,"El consejal no cuenta con Facebook",R.drawable.ic_facebook,Color.rgb(59,89,152),Toast.LENGTH_SHORT,true,true).show();
+                            Toasty.custom(context,"El concejal no cuenta con Facebook",R.drawable.ic_facebook,Color.rgb(59,89,152),Toast.LENGTH_SHORT,true,true).show();
                         }
                         break;
                     case R.id.optionTwitter:
@@ -132,7 +132,7 @@ public class CouncilManDetailActivity extends AppCompatActivity {
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(councilmanSelected.twitter));
                             startActivity(browserIntent);
                         }else{
-                            Toasty.custom(context,"El consejal no cuenta con Twitter",R.drawable.ic_twitter,Color.rgb(29,202,255),Toast.LENGTH_SHORT,true,true).show();
+                            Toasty.custom(context,"El concejal no cuenta con Twitter",R.drawable.ic_twitter,Color.rgb(29,202,255),Toast.LENGTH_SHORT,true,true).show();
 
                         }
                         break;

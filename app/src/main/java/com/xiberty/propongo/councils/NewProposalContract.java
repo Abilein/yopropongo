@@ -21,5 +21,6 @@ public class NewProposalContract {
 
     public interface Presenter{
         void createProposal(Context c, String title, String desc, String councilmen, int id_council, File file);
+        void createProposal(Context c, String title, String desc, String councilmen, int id_council);
     }
 }

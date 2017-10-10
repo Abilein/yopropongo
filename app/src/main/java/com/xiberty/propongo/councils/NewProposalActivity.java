@@ -56,7 +56,6 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
     @NotEmpty(messageResId = R.string.validation_required)
     @Length(min = 1, max = 40, messageResId = R.string.validation_proposal_title)
-    @Pattern(regex = "[a-z|A-Z|\\s]+", messageResId = R.string.validation_word)
     @BindView(R.id.txtProposalTitle)
     XEditText txtProposalTitle;
 
@@ -65,7 +64,6 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
     @BindView(R.id.txtProposalSummary)
     XEditText txtProposalSummary;
 
-    @NotEmpty(messageResId = R.string.validation_select_file)
     @BindView(R.id.path_attach) TextView pathAttach;
     @BindView(R.id.scrollContent) ScrollView scrollContent;
     @BindView(R.id.chips_input) ChipsInput chipsInput;
@@ -252,7 +250,11 @@ public class NewProposalActivity extends AppCompatActivity implements NewProposa
 
         String title = txtProposalTitle.getText().toString();
         String description = txtProposalSummary.getText().toString();
-        presenter.createProposal(this, title, description, councilsMenIDs, councilId, proposal_file);
+
+        if (proposal_file != null)
+            presenter.createProposal(this, title, description, councilsMenIDs, councilId, proposal_file);
+        else
+            presenter.createProposal(this, title, description, councilsMenIDs, councilId);
     }
 
     @Override

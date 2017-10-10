@@ -52,6 +52,13 @@ public interface CouncilService {
                                                 @Part MultipartBody.Part attached_file,
                                                 @Header("Authorization") String token);
 
+    @Multipart
+    @POST(Constants.PROPOSAL_ROOT_ENDPOINT)
+    Call<List<ProposalResponse>> createProposalWithoutFile(@Part("title") RequestBody title,
+                                                @Part("description") RequestBody summary,
+                                                @Part("councilmen") RequestBody for_councilman,
+                                                @Part("council") RequestBody council,
+                                                @Header("Authorization") String token);
 
     @GET(Constants.PROPOSAL_ROOT_ENDPOINT+"{pk}/up/")
     Call<ActivateResponse> activeProposal(@Path("pk") String pk);
