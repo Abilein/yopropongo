@@ -2,6 +2,7 @@
 package com.xiberty.propongo.credentials;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -34,6 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.mateware.snacky.Snacky;
+import es.dmoral.toasty.Toasty;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View, FacebookCallback<LoginResult> {
@@ -146,10 +148,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     @OnClick(R.id.btnFacebookLogin)
     public void facebookSignHandler() {
-        List<String> permissions = new ArrayList<>();
-        permissions.add("email");
-        permissions.add("public_profile");
-        LoginManager.getInstance().logInWithReadPermissions(this, permissions);
+        Toasty.custom(this,"Esta funcionalidad estará disponible muy pronto!",R.drawable.ic_facebook, Color.rgb(59,89,152),Toast.LENGTH_LONG,true,true).show();
+//        List<String> permissions = new ArrayList<>();
+//        permissions.add("email");
+//        permissions.add("public_profile");
+//        LoginManager.getInstance().logInWithReadPermissions(this, permissions);
     }
 
     @Override
