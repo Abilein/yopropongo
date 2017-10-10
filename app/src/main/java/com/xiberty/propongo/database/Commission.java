@@ -130,17 +130,17 @@ public class Commission {
         if (this.president != 0) {
             CouncilMan president = CouncilMan.getCouncilman(context,this.president);
             if (president != null)
-                directive.add(new DirectiveItem(president, "Presidente"));
+                directive.add(new DirectiveItem(president, "PRESIDENTE"));
         }
         if (this.secretary != 0) {
             CouncilMan secretary = CouncilMan.getCouncilman(context,this.secretary);
             if (secretary != null)
-                directive.add(new DirectiveItem(secretary, "Secretario"));
+                directive.add(new DirectiveItem(secretary, "SECRETARIO"));
         }
         if (this.vocal != 0) {
             CouncilMan vocal = CouncilMan.getCouncilman(context,this.vocal);
             if (vocal != null)
-                directive.add(new DirectiveItem(vocal, "Vocal"));
+                directive.add(new DirectiveItem(vocal, "VOCAL"));
         }
 
         return directive;

@@ -5,18 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="gone"
+    android:background="#ccFFFFFF"
     android:id="@+id/progressBarContent">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ab000000"/>
+
     <com.bluehomestudio.progressimage.ProgressPicture
         android:id="@+id/ave"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:tint="@color/white"
+        android:tint="@color/black"
         android:src="@drawable/ave_sola"
         ProgressPicture:animation="rotate_y" />
     <com.xiberty.propongo.contrib.views.XTextViewBold
@@ -25,7 +23,7 @@
         android:layout_below="@+id/ave"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_margin"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:text="CARGANDO..."/>
 

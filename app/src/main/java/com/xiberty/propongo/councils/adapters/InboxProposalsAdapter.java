@@ -74,7 +74,11 @@ public class InboxProposalsAdapter extends BaseAdapter {
 
         final ProposalResponse proposal = items.get(position);
 
-        holder.cardTitle.setText(proposal.title);
+        if(proposal.title.length()>30)
+            holder.cardTitle.setText(proposal.title.substring(0,30)+"...");
+        else
+            holder.cardTitle.setText(proposal.title);
+
         String textAbout = proposal.description;
 
         if (proposal.description.length()>40)

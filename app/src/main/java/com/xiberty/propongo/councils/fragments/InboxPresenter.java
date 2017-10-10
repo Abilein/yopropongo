@@ -35,6 +35,7 @@ public class InboxPresenter implements InboxContract.Presenter {
             public void onResponse(Call<List<ProposalResponse>> call, Response<List<ProposalResponse>> response) {
                 if (response.isSuccessful()){
                     view.hideProgress();
+
                     List<ProposalResponse> proposalResponses = response.body();
                     List<ProposalResponse> newProposals = new ArrayList<>();
 

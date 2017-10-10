@@ -49,9 +49,20 @@ public class EditProfilePresenter implements EditProfileContract.EditProfilePres
         RequestBody firstNamePart = RequestBody.create(MediaType.parse("text/plain"), firstName);
         RequestBody lastNamePart = RequestBody.create(MediaType.parse("text/plain"), lastName);
 
+        Log.e("PERFIL", "PREPARANDO ACTUALIZACIÓN");
         if(uri != null) {
+
+
             File file = new File(ImageUtils.getPathFromUri(context, uri));
-            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+            String mediaType = context.getContentResolver().getType(uri);
+
+            Log.e("PERFIL", "TIPO>>> " + mediaType + ", URI>> " + uri  + " FILE>>> " + file);
+
+
+            RequestBody reqFile = RequestBody.create(
+                    MediaType.parse(mediaType), file);
+
+
             MultipartBody.Part photoPart = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);
 
             request = mService.updateProfileWithAvatar(
@@ -61,16 +72,26 @@ public class EditProfilePresenter implements EditProfileContract.EditProfilePres
             request = mService.updateProfile(usernamePart, firstNamePart, lastNamePart);
         }
 
+        Log.e("PERFIL", "REQUEST PREPARADO" + request);
+
         request.enqueue(new Callback<UserProfile>() {
             @Override
             public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
+
+
                 if (response.isSuccessful()){
+
+                    Log.e("PERFIL", "RESPUESTA BUENA");
+
                     UserProfile profile = response.body();
                     Store.saveProfile(context, profile);
                     mView.updateProfileSuccess(context.getString(R.string.success_account_updated));
                     mView.hideProgress();
 
                 } else {
+
+                    Log.e("PERFIL", "RESPUESTA MALA");
+
                     if(response.code()>=500 && response.code() <= 550) {
                         mView.updateProfileError(context.getString(R.string.error_server));
                         mView.hideProgress();

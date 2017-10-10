@@ -96,17 +96,17 @@ public class Council {
         if (this.president != 0) {
             CouncilMan president = CouncilMan.getCouncilman(context,this.president);
             if (president != null)
-                directive.add(new DirectiveItem(president, "presidente"));
+                directive.add(new DirectiveItem(president, "PRESIDENTE"));
         }
         if (vice_president != 0) {
             CouncilMan vicepresident = CouncilMan.getCouncilman(context,this.vice_president);
             if (vicepresident != null)
-                directive.add(new DirectiveItem(vicepresident, "Vice Presidente"));
+                directive.add(new DirectiveItem(vicepresident, "VICE PRESIDENTE"));
         }
         if (secretary != 0) {
             CouncilMan secretary = CouncilMan.getCouncilman(context,this.secretary);
             if (secretary != null)
-                directive.add(new DirectiveItem(secretary, "Secretario"));
+                directive.add(new DirectiveItem(secretary, "SECRETARIO"));
         }
 
         return directive;
