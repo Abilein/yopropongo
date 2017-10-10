@@ -1,7 +1,9 @@
 package com.xiberty.propongo.councils;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
@@ -13,10 +15,12 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
+import com.joaquimley.faboptions.FabOptions;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xiberty.propongo.Constants;
 import com.xiberty.propongo.R;
@@ -39,6 +43,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 
 public class CouncilManDetailActivity extends AppCompatActivity {
@@ -71,7 +76,8 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     ViewPager pager;
     @BindView(R.id.scrollView)
     NestedScrollView scrollView;
-
+    @BindView(R.id.fab_options)
+    FabOptions fabOptions;
 
 
     private AppBarStateChangeListener mAppBarStateChangeListener;
@@ -81,11 +87,13 @@ public class CouncilManDetailActivity extends AppCompatActivity {
     private float mTitleTextSize;
 
     private CouncilMan councilmanSelected;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_council_man_detail);
+        context = this;
         ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
@@ -96,13 +104,47 @@ public class CouncilManDetailActivity extends AppCompatActivity {
         setTabs();
         setUpViews();
         fetchAvatar();
+        setupFab();
 
     }
 
+    private void setupFab() {
+        fabOptions.setButtonsMenu(R.menu.social_items);
+        fabOptions.setBackgroundColor(R.color.white);
+        fabOptions.setButtonColor(R.id.optionFacebook,R.color.colorFacebook);
+        fabOptions.setButtonColor(R.id.optionTwitter,R.color.colorTwitter);
+        fabOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = v.getId();
+                Intent browserIntent;
+                switch (id){
+                    case R.id.optionFacebook:
+                        if (councilmanSelected.facebook !=null){
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(councilmanSelected.facebook));
+                            startActivity(browserIntent);
+                        }else{
+                            Toasty.custom(context,"El consejal no cuenta con Facebook",R.drawable.ic_facebook,Color.rgb(59,89,152),Toast.LENGTH_SHORT,true,true).show();
+                        }
+                        break;
+                    case R.id.optionTwitter:
+                        if (councilmanSelected.twitter !=null) {
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(councilmanSelected.twitter));
+                            startActivity(browserIntent);
+                        }else{
+                            Toasty.custom(context,"El consejal no cuenta con Twitter    ",R.drawable.ic_twitter,Color.rgb(29,202,255),Toast.LENGTH_SHORT,true,true).show();
+
+                        }
+                        break;
+                }
+            }
+        });
+    }
+
     private void setTabs() {
-        tabs.setBackgroundColor(Color.rgb(46,46,46));
-        tabs.setTabTextColors(Color.WHITE, Color.rgb(254,190,17));
-        tabs.setSelectedTabIndicatorColor(Color.rgb(254,190,17));
+        tabs.setBackgroundColor(Color.rgb(46, 46, 46));
+        tabs.setTabTextColors(Color.WHITE, Color.rgb(254, 190, 17));
+        tabs.setSelectedTabIndicatorColor(Color.rgb(254, 190, 17));
         setupViewPager(pager);
         tabs.setupWithViewPager(pager);
     }
@@ -236,19 +278,21 @@ public class CouncilManDetailActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String TAG = bundle.getString(Constants.KEY_BASE_CLASS);
-        if (TAG.equals(AllCouncilFragment.class.getSimpleName())){
+        if (TAG.equals(AllCouncilFragment.class.getSimpleName())) {
             Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
-            intent.putExtra(Constants.MENU_STATE,3);
+            intent.putExtra(Constants.MENU_STATE, 3);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }else if(TAG.equals(DirectiveFragment.class.getSimpleName())){
+        } else if (TAG.equals(DirectiveFragment.class.getSimpleName())) {
             Intent intent = new Intent(CouncilManDetailActivity.this, MainActivity.class);
-            intent.putExtra(Constants.MENU_STATE,4);
+            intent.putExtra(Constants.MENU_STATE, 4);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }else{
+        } else {
             finish();
         }
         return true;
     }
+
+
 }

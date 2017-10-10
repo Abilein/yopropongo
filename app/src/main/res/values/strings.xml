@@ -220,5 +220,7 @@
     <string name="hint_proposal_who">¿A quién va dirigida la Propuesta?</string>
     <string name="hint_proposal_about">Acerca de la Propuesta</string>
     <string name="hint_proposal_files">Añade Archivos</string>
+    <string name="ic_twitter">Twitter</string>
+    <string name="ic_facebook">Facebook</string>
 
 </resources>

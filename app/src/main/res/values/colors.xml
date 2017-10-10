@@ -48,6 +48,7 @@
   <color name="material_yellow">#ff8800</color>
 
   <color name="white">#ffffffff</color>
+  <color name="opacity">#00ffff00</color>
   <color name="yellow">#ffffff00</color>
   <color name="fuchsia">#ffff00ff</color>
   <color name="red">#ffff0000</color>
@@ -212,5 +213,9 @@
   <color name="hint_color">#42000000</color>
   <color name="success_color">#009688</color>
     <color name="background">#ffffff</color>
+
+  <!--Social Accounts-->
+    <color name="colorFacebook">#3b5998</color>
+  <color name="colorTwitter">#00aced</color>
 
 </resources>

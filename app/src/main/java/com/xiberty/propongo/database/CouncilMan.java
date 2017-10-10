@@ -47,6 +47,8 @@ public class CouncilMan {
     @SerializedName("town_council") public int town_council;
     @SerializedName("agrupation") public String agrupation;
     @SerializedName("macrodistrict") public Macrodistrict macrodistrict;
+    @SerializedName("facebook") public String facebook;
+    @SerializedName("twitter") public String twitter;
 
     /**
      * OBJECT GETTERS
