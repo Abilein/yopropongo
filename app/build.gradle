@@ -67,7 +67,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.1.0"
     implementation "com.squareup.retrofit2:converter-gson:2.1.0"
     implementation "com.facebook.android:facebook-android-sdk:4.+"
-    implementation "com.github.medyo:fancybuttons:1.843"
+    implementation "com.github.medyo:fancybuttons:1.8.4"
     implementation "com.jakewharton:butterknife:8.8.1"
     implementation "com.github.matecode:Snacky:1.0.3"
     implementation "com.mobsandgeeks:android-saripaar:2.0.3"
